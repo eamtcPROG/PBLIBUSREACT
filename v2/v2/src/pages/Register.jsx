@@ -16,7 +16,7 @@ const formItemLayout = {
             span: 24
         },
         sm: {
-            span: 8
+            span: 10
         }
     },
     wrapperCol: {
@@ -53,13 +53,14 @@ const Register = () => {
                 }}
             >
                 <Option value="373">+373</Option>
+                <Option value="40">+40</Option>
             </Select>
         </Form.Item>
     );
 
     return (
-        <div class="register">
-            <Form
+        <div  class="register" >
+            <Form style={{marginRight:"10%"}}
                 {...formItemLayout}
                 form={form}
                 name="register"
@@ -72,7 +73,14 @@ const Register = () => {
                 class="formStyle"
             >
                 <h1>Register</h1>
+                <Form.Item label="Nume">
+                   <Input />
+               </Form.Item>
+               <Form.Item label="Prenume">
+                    <Input />
+               </Form.Item>
                 <Form.Item
+                
                     name="email"
                     label="E-mail"
                     rules={[
@@ -138,7 +146,7 @@ const Register = () => {
                         }
                     ]}
                 >
-                    <Input
+                    <Input 
                         addonBefore={prefixSelector}
                         style={{
                             width: "100%"
@@ -162,8 +170,8 @@ const Register = () => {
                     </Select>
                 </Form.Item>
 
-                <Form.Item {...tailFormItemLayout}>
-                    <Button type="primary" htmlType="submit">
+                <Form.Item {...tailFormItemLayout} style={{marginRight:"10%"}}>
+                    <Button type="primary" htmlType="submit" >
                         Register
                     </Button>
                 </Form.Item>

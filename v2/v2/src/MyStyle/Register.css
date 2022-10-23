@@ -1,16 +1,18 @@
 .register{
     display: flex;
-    width: 40em;
+    width: 33em;
     height: 40em;
     border: 1px solid black;
     text-align:center;
     float: center;
     margin-top: 5%;
-    margin-left: 40%;
+    margin-left: 35%;
     margin-bottom: 5%;
 }
+
 
 .formStyle{
     margin-top: 10%;
     
 }
+

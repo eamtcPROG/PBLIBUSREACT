@@ -1,0 +1,29 @@
+.AddOffer{
+    display: flex;
+    width: 75em;
+    height: 30em;
+    border: 1px solid black;
+    text-align:center;
+    float: center;
+    margin-top: 5%;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-bottom: 5%;
+}
+
+
+.form-add-offer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 600px;
+    height: 300px;
+    margin: auto;
+    position: relative;
+}
+
+
+.sizes {
+    width:250px;
+}

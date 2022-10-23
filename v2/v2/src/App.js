@@ -10,6 +10,8 @@ import {
 } from 'react-router-dom';
 import Login from "./pages/Login.jsx"
 import Register from "./pages/Register";
+import AddOrder from "./pages/Order/AddOrder";
+import AddOffer from "./pages/Offer/AddOffer"
 const { Header, Content, Footer } = Layout;
 
 function App() {
@@ -32,11 +34,15 @@ function App() {
                 element={<Register />}
               />
 
-              {/* <Route
-              path="/"
-              render={(props) => (
-                
-              )} />*/}
+              <Route
+                path="/addorder"
+                element={<AddOrder />}
+              />
+
+              <Route
+                path="/addoffer"
+                element={<AddOffer />}
+              />
 
             </Routes>
           </Router>
