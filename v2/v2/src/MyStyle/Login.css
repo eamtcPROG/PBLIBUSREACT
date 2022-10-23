@@ -1,17 +1,53 @@
 .login{
+    background-color:white;
+    
     display: flex;
     width: 30em;
-    height: 30em;
-    border: 1px solid black;
+    height: 40em;
+    position: static;
+    
     text-align:center;
     float: center;
     margin-top: 5%;
     margin-left: 40%;
     margin-bottom: 5%;
+    border-radius: 20px;
+    
 }
+[title="Username"] {
+    
+  }
+[title="Password"]{
+
+
+}
+#UserForm__label{
+    
+}
+#Username{
+
+    
+}
+#password{
+    
+}
+#Submit{
+    color: white;
+    border-radius: 5px;
+}
+.background{
+    position: relative;
+    
+    background-color: gray;
+    opacity: 0.2;
+}
+
 .formStyle{
+    
     margin-top: 15%;
     margin-left: 10%;
+    color:white;
+    
 }
 h1{
     text-align: center;

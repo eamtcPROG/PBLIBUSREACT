@@ -7,6 +7,7 @@ import {
     Input,
     Select
 } from "antd";
+import { NavLink } from "react-router-dom";
 
 const { Option } = Select;
 
@@ -59,7 +60,7 @@ const Register = () => {
     );
 
     return (
-        <div  class="register" >
+        <div  class="register" style={{marginLeft:"40%"}} >
             <Form style={{marginRight:"10%"}}
                 {...formItemLayout}
                 form={form}
@@ -72,7 +73,7 @@ const Register = () => {
                 scrollToFirstError
                 class="formStyle"
             >
-                <h1>Register</h1>
+                <h1 style={{marginTop:"50px",marginBottom:"40px"}}>Register</h1>
                 <Form.Item label="Nume">
                    <Input />
                </Form.Item>
@@ -170,10 +171,11 @@ const Register = () => {
                     </Select>
                 </Form.Item>
 
-                <Form.Item {...tailFormItemLayout} style={{marginRight:"10%"}}>
-                    <Button type="primary" htmlType="submit" >
+                <Form.Item {...tailFormItemLayout} style={{marginRight:"23%"}}>
+                    <Button style={{marginLeft:"35%"}} type="primary" htmlType="submit" >
                         Register
                     </Button>
+                    <div><NavLink style={{marginLeft:"35%"}} to="/login">or Login</NavLink></div>
                 </Form.Item>
             </Form>
         </div>

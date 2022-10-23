@@ -2,6 +2,8 @@ import { Button, Checkbox, Form, Input } from 'antd';
 import React from 'react';
 import 'antd/dist/antd.css';
 import '../MyStyle/Login.css'
+import ColumnGroup from 'antd/lib/table/ColumnGroup';
+import { NavLink } from "react-router-dom";
 const Login = (props) => {
     const onFinish = (values) => {
         console.log('Success:', values);
@@ -11,7 +13,7 @@ const Login = (props) => {
     };
     return (
         <div class="login">
-            <Form class="formStyle"
+            <Form class="formStyle" style={{marginLeft:"9%"}}
                 name="basic"
                 labelCol={{
                     span: 8,
@@ -25,11 +27,16 @@ const Login = (props) => {
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
                 autoComplete="off"
-            >
-                <h1>Login</h1>
-                <Form.Item
+            ><div class="background">
+
+            </div>
+                <h1 style={{marginTop:"20%"}}>Login</h1>
+                <Form.Item id="UserForm" 
+                
                     label="Username"
                     name="username"
+                    style={{color:"white"}}
+                    
                     rules={[
                         {
                             required: true,
@@ -37,7 +44,7 @@ const Login = (props) => {
                         },
                     ]}
                 >
-                    <Input />
+                    <Input id="Username"/>
                 </Form.Item>
 
                 <Form.Item
@@ -50,7 +57,7 @@ const Login = (props) => {
                         },
                     ]}
                 >
-                    <Input.Password />
+                    <Input type="password"id="password"/>
                 </Form.Item>
 
                 <Form.Item
@@ -61,7 +68,7 @@ const Login = (props) => {
                         span: 16,
                     }}
                 >
-                    <Checkbox>Remember me</Checkbox>
+                    <Checkbox style={{color:"white"}}>Remember me</Checkbox>
                 </Form.Item>
 
                 <Form.Item
@@ -70,10 +77,13 @@ const Login = (props) => {
                         span: 16,
                     }}
                 >
-                    <Button type="primary" htmlType="submit">
+                    <Button id="Submit"type="primary" htmlType="submit" >
                         Submit
                     </Button>
+                    <div><NavLink to="/register">or Register</NavLink></div>
+                    
                 </Form.Item>
+                
             </Form>
         </div>
     );
