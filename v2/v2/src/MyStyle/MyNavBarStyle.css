@@ -1,7 +1,11 @@
 .site-layout-content {
-  min-height: 280px;
+  min-height: 290px;
   padding: 24px;
-  background: #fff;
+  background: white;
+  
+  
+ 
+  
 }
 #components-layout-demo-top .logo {
   float: left;
@@ -13,11 +17,17 @@
 .logo{
   float: left;
   width: 120px;
-  height: 31px;
+  height: 40px;
   margin: 16px 24px 16px 0;
-  background: rgba(255, 255, 255, 0.3);
+
+  background-image: url(/public/logo192.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 35%;
+  
 }
 .ant-row-rtl #components-layout-demo-top .logo {
   float: right;
-  margin: 16px 0 16px 24px;
+  margin: 16px 0 16px 30px;
+  
 }

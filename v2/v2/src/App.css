@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: Calibri !important;
 }
 
 .App-logo {
@@ -12,9 +13,17 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+.layout{
+  background-image: url(/public/NewYork.jpg);
+  background-size:cover;
+ 
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+  
 
 .App-header {
-  background-color: #282c34;
+  background-color: white;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -22,6 +31,11 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+ 
+  
+  
+  
+  
 }
 
 .App-link {

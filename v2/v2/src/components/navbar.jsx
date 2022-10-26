@@ -1,27 +1,35 @@
-import { Menu } from 'antd';
+import { Form, Menu,Tabs } from 'antd';
 import React from 'react';
 import 'antd/dist/antd.css';
 import '../MyStyle/MyNavBarStyle.css'
+import { NavLink } from 'react-router-dom';
 
 const MyNavBar = () => {
 const  items=[{
-    key:"1",
-    label: "Offer",
+    
+    key:"/OfferPage",
+    label:"Offer",
+    path: './Offer/AddOffer.jsx',
+    
 },
 {
-    key:"2",
+    key:"/OrderPage",
     label: "Order",
 },
+
 ]   
     return (
         <>
             <div className="logo" />
             <Menu
-                theme="dark"
+                theme="light"
                 mode="horizontal"
-                defaultSelectedKeys={['2']}
+                defaultSelectedKeys={"/OfferPage"}
                 items={items}
-            />
+            >
+               
+            </Menu>
+
         </>
     );
 }
