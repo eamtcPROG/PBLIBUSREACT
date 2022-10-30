@@ -1,83 +1,94 @@
-import { Space, Table, Tag, Layout } from 'antd';
-import type { ColumnsType } from 'antd/es/table';
-import React from 'react';
+import { Button, Space, Table } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Axios from "axios";
+const OfferPage = () => {
+  const history = useNavigate();
+  const [filteredInfo, setFilteredInfo] = useState({});
+  const [sortedInfo, setSortedInfo] = useState({});
+  const [state, setState] = useState([]);
+  const [loading, setloading] = useState(true);
+  const handleChange = (pagination, filters, sorter) => {
+    console.log('Various parameters', pagination, filters, sorter);
+    setFilteredInfo(filters);
+    setSortedInfo(sorter);
+  };
+  const clearFilters = () => {
+    setFilteredInfo({});
+  };
+  const clearAll = () => {
+    setFilteredInfo({});
+    setSortedInfo({});
+  };
+  useEffect(() => {
+    getData();
+  }, []);
+  const getData = async () => {
+    await Axios.get(
+      "http://localhost:8080/api/order/getall"
+    ).then(
+      res => {
+
+        setState(
+          res.data.map(row => ({
+            NumberPersons: row.NumberPersons,
+            StartPointAddressId: row.StartPointAddressId,
+            EndPointAddressId: row.EndPointAddressId,
+            Date: row.Date,
+            MoreDetails: row.MoreDetails
+          }))
+        );
+        setloading(false);
+      }
+    );
 
 
-const { Header, Content, Footer } = Layout;
-interface DataType {
-  key: string;
-  name: string;
-  age: number;
-  address: string;
-  tags: string[];
-}
-<Header>
-    <h1>lol</h1>
-</Header>
-const columns: ColumnsType<DataType> = [
-    
- 
+  };
+
+
+
+  const handleAddOrder = () => {
+    history('/AddOrder');
+  };
+  const columns = [
     {
-    title: 'Start/Finish',
-    dataIndex: 'name',
-    key: 'name',
-    
-  },
-  {
-    title: 'Number of people',
-    dataIndex: 'age',
-    key: 'age',
-  },
-  {
-    title: 'Contractor',
-    dataIndex: 'address',
-    key: 'address',
-  },
-  {
-    title: 'Price',
-    key: 'tags',
-    dataIndex: 'tags',
-    
-          
-        },
-      
-    
-  {
-    title: 'Action',
-    key: 'action',
-    render: (_, record) => (
-      <Space size="middle">
-        <a>Edit </a>
-        <a>Delete</a>
+      title: "Number of Persons",
+      dataIndex: "NumberPersons",
+      width: 150
+    },
+    {
+      title: "Start Point Address",
+      dataIndex: "StartPointAddressId",
+      width: 150
+    },
+    {
+      title: "End Point Address",
+      dataIndex: "EndPointAddressId",
+      width: 150
+    },
+    {
+      title: "Date",
+      dataIndex: "Date",
+      width: 150
+    },
+    {
+      title: "More Details",
+      dataIndex: "MoreDetails",
+      width: 150
+    }
+  ];
+  return (
+    <>
+      <Space
+        style={{
+          marginBottom: 16,
+        }}
+      >
+        <Button onClick={handleAddOrder}>Add order</Button>
+
       </Space>
-    ),
-  },
-];
-
-const data: DataType[] = [
-  {
-    key: '1',
-    name: 'Molovata-Chisinau',
-    age: 10,
-    address: 'Transport.md',
-    tags: ['500 lei'],
-  },
-  {
-    key: '2',
-    name: 'Chisinau-Iasi',
-    age: 42,
-    address: 'Transportica',
-    tags: ['1000 lei'],
-  },
-  {
-    key: '3',
-    name: 'Chisinau-Bucuresti',
-    age: 2,
-    address: 'Complexica Transporter',
-    tags: ['1500 lei'],
-  },
-];
-
-const OfferPage: React.FC = () => <Table columns={columns} dataSource={data} />;
-
+      <Table columns={columns} dataSource={state} onChange={handleChange} />
+    </>
+  );
+};
 export default OfferPage;
