@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate  } from 'react-router-dom';
 import "antd/dist/antd.css";
 import '../MyStyle/Register.css'
 import {
@@ -8,6 +9,9 @@ import {
     Select
 } from "antd";
 import { NavLink } from "react-router-dom";
+
+
+
 
 const { Option } = Select;
 
@@ -41,7 +45,93 @@ const tailFormItemLayout = {
         }
     }
 };
-const Register = () => {
+const Register = ({ setIsAuthenticated }) => {
+    const history = useNavigate ();
+    const [name, setName] = useState('');
+    const [surname, setSurname] = useState('');
+    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [birhdate, setBirhdate] = useState(null);
+    const [typeUserId, setUserType] = useState(0);
+
+    const handleNameChange = (e) => {
+        setName(e.target.value);
+        console.log(e.target.value);
+    };
+    const handleSurnameChange = (e) => {
+        setSurname(e.target.value);
+    };
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+    };
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+    };
+    const handlePhoneChange = (e) => {
+        setPhone(prefixSelector+e.target.value);
+    };
+    const handleUserType = (e) => {
+        setUserType(e);
+    };
+
+    const handleSubmit = (e) => {
+        //e.preventDefault();
+    
+        fetch(`http://localhost:8080/api/auth/signup`, {
+          method: 'POST',
+          
+          body: JSON.stringify({
+            name,
+            password,
+            surname,
+            email,
+            birhdate,
+            typeUserId
+          }),
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        }).then((res) => {
+            console.log(surname);
+            if (res.status === 200) {
+           console.log(name);
+            return res.json();
+          
+          }
+          if (res.status === 400) {
+            alert("This email is already in use. Please use another email!");
+            return   ;
+           
+           }
+        }).then((res) => {
+          fetch(`http://localhost:8080/api/auth/signin`, {
+          method: 'POST',
+         
+          body: JSON.stringify({
+            email,
+            password
+          }),
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        }).then((res) => {
+          if (res.status === 200) {
+         
+            return res.json();
+          
+          }
+         
+        }).then((data) => {
+            localStorage.setItem("token", data.accessToken);
+            setIsAuthenticated(true);
+            return history('/OrderPage');
+          });;
+      });
+        
+      };
     const [form] = Form.useForm();
     const onFinish = (values) => {
         console.log("Received values of form: ", values);
@@ -60,12 +150,12 @@ const Register = () => {
     );
 
     return (
-        <div  class="register" style={{marginLeft:"40%"}} >
-            <Form style={{marginRight:"10%"}}
+        <div class="register" style={{ marginLeft: "40%" }} >
+            <Form style={{ marginRight: "10%" }}
                 {...formItemLayout}
                 form={form}
                 name="register"
-                onFinish={onFinish}
+                onFinish={handleSubmit}
                 initialValues={{
 
                     prefix: "373"
@@ -73,15 +163,15 @@ const Register = () => {
                 scrollToFirstError
                 class="formStyle"
             >
-                <h1 style={{marginTop:"50px",marginBottom:"40px"}}>Register</h1>
+                <h1 style={{ marginTop: "50px", marginBottom: "40px" }}>Register</h1>
                 <Form.Item label="Nume">
-                   <Input />
-               </Form.Item>
-               <Form.Item label="Prenume">
-                    <Input />
-               </Form.Item>
+                    <Input onChange={handleNameChange} value={name}/>
+                </Form.Item>
+                <Form.Item label="Prenume">
+                    <Input onChange={handleSurnameChange} value={surname}/>
+                </Form.Item>
                 <Form.Item
-                
+
                     name="email"
                     label="E-mail"
                     rules={[
@@ -95,7 +185,7 @@ const Register = () => {
                         }
                     ]}
                 >
-                    <Input />
+                    <Input onChange={handleEmailChange} value={email}/>
                 </Form.Item>
 
                 <Form.Item
@@ -109,7 +199,7 @@ const Register = () => {
                     ]}
                     hasFeedback
                 >
-                    <Input.Password />
+                    <Input.Password value={password}/>
                 </Form.Item>
 
                 <Form.Item
@@ -134,7 +224,7 @@ const Register = () => {
                         })
                     ]}
                 >
-                    <Input.Password />
+                    <Input.Password onChange={handlePasswordChange} value={password}/>
                 </Form.Item>
 
                 <Form.Item
@@ -147,11 +237,13 @@ const Register = () => {
                         }
                     ]}
                 >
-                    <Input 
+                    <Input
                         addonBefore={prefixSelector}
                         style={{
                             width: "100%"
                         }}
+                        onChange={handlePhoneChange}
+                        value={phone}
                     />
                 </Form.Item>
 
@@ -165,17 +257,17 @@ const Register = () => {
                         }
                     ]}
                 >
-                    <Select placeholder="select your user type">
-                        <Option value="trasporter">Trasporter</Option>
-                        <Option value="custemer">Custemer</Option>
+                    < Select onSelect={handleUserType} value={typeUserId} placeholder="select your user type">
+                        <Option value="1">Trasporter</Option>
+                        <Option value="2">Custemer</Option>
                     </Select>
                 </Form.Item>
 
-                <Form.Item {...tailFormItemLayout} style={{marginRight:"23%"}}>
-                    <Button style={{marginLeft:"35%"}} type="primary" htmlType="submit" >
+                <Form.Item {...tailFormItemLayout} style={{ marginRight: "23%" }}>
+                    <Button style={{ marginLeft: "35%" }} type="submit" htmlType="submit" >
                         Register
                     </Button>
-                    <div><NavLink style={{marginLeft:"35%"}} to="/login">or Login</NavLink></div>
+                    <div><NavLink style={{ marginLeft: "35%" }} to="/login">or Login</NavLink></div>
                 </Form.Item>
             </Form>
         </div>

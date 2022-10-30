@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { SliderData } from './SliderData';
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
-
+import { NavLink } from "react-router-dom";
+import { Button } from 'antd';
 const ImageSlider = ({ slides }) => {
   const [current, setCurrent] = useState(0);
   const length = slides.length;
@@ -29,12 +30,22 @@ const ImageSlider = ({ slides }) => {
             key={index}
           >
             {index === current && (
+            
+            <>
               <img src={slide.image} alt='travel image' className='image' />
+              <NavLink to="/login"><Button className='btn' shape="round" size='large'>Login</Button></NavLink>
+            </>
+            
             )}
+            
           </div>
+
         );
+
       })}
+
     </section>
+
   );
 };
 

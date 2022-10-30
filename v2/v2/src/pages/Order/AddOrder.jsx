@@ -1,13 +1,62 @@
-import React from "react";
-import { Form, Input, Button, Typography,DatePicker, Space } from "antd";
-import type { DatePickerProps } from 'antd';
-
-const onChange: DatePickerProps['onChange'] = (date, dateString) => {
-    console.log(date, dateString);
-  };
+import React,{useState}from "react";
+import { Form, Input, Button, Typography, DatePicker, Space } from "antd";
+import { useNavigate } from "react-router-dom";
 const AddOrder = () => {
+  const history = useNavigate();
   const [form] = Form.useForm();
   const { Title, Text } = Typography;
+  const [numberpersons, setNumberPersons] = useState(0);
+  const [startpointaddressid, setStartPointAddressId] = useState(0);
+  const [endpointaddressid, setEndPointAddressId] = useState(0);
+  const [date, setDate] = useState(null);
+  const [moredetails, setMoreDetails] = useState('');
+
+  const handleNumberPersonsChange = (e) => {
+    setNumberPersons(e.target.value);
+    console.log(e.target.value);
+  };
+  const handleStartPointAddressIdChange = (e) => {
+    setStartPointAddressId(e.target.value);
+  };
+  const handleEndPointAddressIdChange = (e) => {
+    setEndPointAddressId(e.target.value);
+  };
+  const handleDateChange = (e, value) => {
+    setDate(value);
+  };
+  const handleMoreDetailsChange = (e) => {
+    setMoreDetails(e.target.value);
+  };
+  const handleSubmit = (e) => {
+    //e.preventDefault();
+
+    fetch(`http://localhost:8080/api/order/add`, {
+      method: 'POST',
+      body: JSON.stringify({
+        numberpersons,
+        startpointaddressid,
+        endpointaddressid,
+        date,
+        moredetails
+      }),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then((res) => {
+      if (res.status === 200) {
+        return res.json();
+
+      }
+
+    }).then((data) => {
+
+      if (data != null) {
+        return history('/OrderPage');
+      }
+    });
+
+  };
   return (
     <div>
       <Title // Form's Title
@@ -19,7 +68,7 @@ const AddOrder = () => {
           paddingRight: 30,
         }}
       >
-         Add Order
+        Add Order
       </Title>
       <Text // Form's Description
         type="secondary"
@@ -28,7 +77,7 @@ const AddOrder = () => {
           paddingRight: 30,
         }}
       >
-        
+
       </Text>
       <Form // Ant Design's Form Component
         name="contact-us"
@@ -43,6 +92,7 @@ const AddOrder = () => {
           paddingLeft: 30,
           paddingRight: 30,
         }}
+        onFinish={handleSubmit}
       >
         <Form.Item // Form Item (First Name)
           label="Start Location"
@@ -56,11 +106,11 @@ const AddOrder = () => {
             },
           ]}
         >
-          <Input placeholder="From" />
+          <Input placeholder="From" onChange={handleStartPointAddressIdChange} value={startpointaddressid} />
         </Form.Item>
         <Form.Item // Form Item (Last Name)
           label="Destination"
-          name="lastName"
+          name="destination"
           required
           tooltip="This is a required field"
           rules={[
@@ -70,22 +120,7 @@ const AddOrder = () => {
             },
           ]}
         >
-          <Input placeholder="To" />
-        </Form.Item>
-        <Form.Item // Form Item (Email)
-          label="Email"
-          name="email"
-          required
-          tooltip="This is a required field"
-          rules={[
-            {
-              required: true,
-              message: "Please enter your email!",
-              type: "email",
-            },
-          ]}
-        >
-          <Input placeholder="Email" />
+          <Input placeholder="To" onChange={handleEndPointAddressIdChange} value={endpointaddressid} />
         </Form.Item>
         <Form.Item label="Date"
           name="date"
@@ -97,46 +132,37 @@ const AddOrder = () => {
               message: "Please enter the date!",
               type: "date",
             },
-        ]}
-            >
-            
-        <DatePicker onChange={onChange} />
+          ]}
+        >
+
+          <DatePicker onChange={handleDateChange} value={date} />
         </Form.Item>
         <Form.Item // Form Item (Email)
           label="Number of people"
-          name="nr. people"
+          name="nrPeople"
           required
           tooltip="This is a required field"
           rules={[
             {
               required: true,
-              message: "Please enter number of people!",
-              type: "people",
+              message: "Please enter number of people!"
             },
           ]}
         >
-          <Input style={{width:"150px"}} placeholder="Number of people" />
+          <Input style={{ width: "150px" }} placeholder="Number of people" onChange={handleNumberPersonsChange} value={numberpersons} />
         </Form.Item>
         <Form.Item // Form Item (Message)
           label="Preferences"
           name="message"
-          required
-          tooltip="This is a required field"
-          rules={[
-            {
-              required: true,
-              message: "Message is a required field!",
-            },
-          ]}
         >
           <Input.TextArea
             placeholder="Type here.."
             autoSize={{ minRows: 4, maxRows: 6 }}
+            onChange={handleMoreDetailsChange} value={moredetails}
           />
         </Form.Item>
-        <Form.Item // Form Item (Submit Button)
-        >
-          <Button type="primary">Submit</Button>
+        <Form.Item>
+          <Button type="primary" htmlType="submit">Submit</Button>
         </Form.Item>
       </Form>
     </div>

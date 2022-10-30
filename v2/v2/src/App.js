@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import AddOrder from "./pages/Order/AddOrder";
 import AddOffer from "./pages/Offer/AddOffer";
@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import { Layout, Menu } from "antd";
 import "antd/dist/antd.css";
 import MyNavBar from "./components/navbar";
+import PrivateRoute from "./components/PrivateRoute";
 import "./styles.css";
 import {
   BrowserRouter as Router,
@@ -23,6 +24,33 @@ import Home from "./pages/Home";
 const { Header, Content, Footer } = Layout;
 
 const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  useEffect(() => {
+
+    const token = localStorage.getItem('token');
+
+    if (token == null) {
+      setIsAuthenticated(false);
+    }
+    fetch(`http://localhost:8080/api/auth/check-auth`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        token: token,
+      },
+    }).then((res) => {
+      switch (res.status) {
+        case 200:
+          setIsAuthenticated(true);
+          break;
+        default:
+          setIsAuthenticated(false);
+          break;
+      }
+    })
+      .catch(console.error);
+  }, []);
+
   return (
     //Layout Component
     <Layout className="layout">
@@ -31,13 +59,13 @@ const App = () => {
           position: "fixed",
           zIndex: 1,
           width: "100%",
-          height:"64px",
-          background:"white",
-          
+          height: "64px",
+          background: "white",
+
         }}
       >
-        
-       <MyNavBar />
+
+        <MyNavBar setIsAuthenticated={setIsAuthenticated} />
       </Header>
       <Content // Content Component
         className="site-layout"
@@ -45,60 +73,78 @@ const App = () => {
           marginTop: 64,
           padding: 20,
           paddingBottom: "800px",
-          
+
         }}
       >
         <div className="site-layout-background"></div>
-        <Router>
-            <Routes>
-              
-              <Route
-                path="/AddOffer"
-                element={<AddOffer />}
-              />
-               <Route
-                path="/AddOrder"
-                element={<AddOrder />}
-              />
-              <Route
-                path="/login"
-                element={<Login />}
-              />
-              <Route
-                path="/register"
-                element={<Register />}
-              />
-               <Route
-                path="/OrderPage"
-                element={<OrderPage />}
-              />
-               <Route
-                path="/OfferPage"
-                element={<OfferPage />}
-              />
-              <Route
-                path="/EditOrder"
-                element={<EditOrder />}
-              />
-              <Route
-                path="/home"
-                element={<Home />}
-              />
+        {/* <Router> */}
+        <Routes>
+          <Route
+            path="/AddOrder"
+            element={
+              <PrivateRoute
+                isAuthenticated={isAuthenticated}
+              >
+                <AddOrder />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/AddOffer"
+            element={<PrivateRoute
+              isAuthenticated={isAuthenticated}
+            >
+              <AddOffer />
+            </PrivateRoute>}
+          />
+          
+          <Route
+            path="/login"
+            element={<Login setIsAuthenticated={setIsAuthenticated} />}
+          />
+          <Route
+            path="/register"
+            element={<Register setIsAuthenticated={setIsAuthenticated} />}
+          />
+          <Route
+            path="/OrderPage"
+            element={<PrivateRoute
+              isAuthenticated={isAuthenticated}
+            >
+              <OrderPage />
+            </PrivateRoute>}
+            
+          />
+          <Route
+            path="/OfferPage"
+            element={<PrivateRoute
+              isAuthenticated={isAuthenticated}
+            >
+              <OfferPage />
+            </PrivateRoute>}
+          />
+          <Route
+            path="/EditOrder"
+            element={<PrivateRoute
+              isAuthenticated={isAuthenticated}
+            >
+              <EditOrder />
+            </PrivateRoute>}
+          />
+          <Route
+            path="/home"
+            element={<Home />}
+          />
 
-              {/* <Route
-              path="/"
-              render={(props) => (
-                
-              )} />*/}
 
-            </Routes>
-          </Router>
-        
+        </Routes>
+        {/* </Router> */}
+
       </Content>
       <Footer
         style={{ textAlign: "center", backgroundColor: "fff" }} // Footer Component
       >
-        
+
       </Footer>
     </Layout>
   );

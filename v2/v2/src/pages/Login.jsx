@@ -1,10 +1,58 @@
 import { Button, Checkbox, Form, Input } from 'antd';
-import React from 'react';
+import React,{useState} from 'react';
 import 'antd/dist/antd.css';
 import '../MyStyle/Login.css'
 import ColumnGroup from 'antd/lib/table/ColumnGroup';
-import { NavLink } from "react-router-dom";
-const Login = (props) => {
+import { NavLink,useNavigate } from "react-router-dom";
+const Login = ({setIsAuthenticated}) => {
+    const history = useNavigate ();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+  
+    const handleEmailChange = (e) => {
+      setEmail(e.target.value);
+    };
+    const handlePasswordChange = (e) => {
+      setPassword(e.target.value);
+    };
+    // Controlled form
+    const handleSubmit = (e) => {
+      //e.preventDefault();
+  
+      fetch(`http://localhost:8080/api/auth/signin`, {
+        method: 'POST',
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }).then((res) => {
+        if (res.status === 200) {
+          return res.json();
+        
+        }else{
+          setError('Invalid credentials');
+          setIsAuthenticated(false);
+        }
+  
+        
+      }).then((data) => {
+        try {
+          if(error != null ){  
+            localStorage.setItem("token", data.accessToken);
+            setIsAuthenticated(true);
+            return history('/OrderPage');
+           }
+        } catch(error){console.log(error)} 
+        
+        
+        
+        });
+    };
     const onFinish = (values) => {
         console.log('Success:', values);
     };
@@ -24,7 +72,7 @@ const Login = (props) => {
                 initialValues={{
                     remember: true,
                 }}
-                onFinish={onFinish}
+                onFinish={handleSubmit}
                 onFinishFailed={onFinishFailed}
                 autoComplete="off"
             ><div class="background">
@@ -33,18 +81,18 @@ const Login = (props) => {
                 <h1 style={{marginTop:"20%"}}>Login</h1>
                 <Form.Item id="UserForm" 
                 
-                    label="Username"
-                    name="username"
+                    label="Email"
+                    name="email"
                     style={{color:"white"}}
                     
                     rules={[
                         {
                             required: true,
-                            message: 'Please input your username!',
+                            message: 'Please input your email!',
                         },
                     ]}
                 >
-                    <Input id="Username"/>
+                    <Input onChange={handleEmailChange} value={email}id="email"/>
                 </Form.Item>
 
                 <Form.Item
@@ -57,7 +105,7 @@ const Login = (props) => {
                         },
                     ]}
                 >
-                    <Input type="password"id="password"/>
+                    <Input  onChange={handlePasswordChange} value={password} type="password"id="password"/>
                 </Form.Item>
 
                 <Form.Item
@@ -68,7 +116,7 @@ const Login = (props) => {
                         span: 16,
                     }}
                 >
-                    <Checkbox style={{color:"white"}}>Remember me</Checkbox>
+                    <Checkbox style={{color:"black"}}>Remember me</Checkbox>
                 </Form.Item>
 
                 <Form.Item
