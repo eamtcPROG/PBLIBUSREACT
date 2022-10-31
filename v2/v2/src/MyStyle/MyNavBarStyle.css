@@ -4,8 +4,14 @@
   background: white;
   
   
- 
   
+}
+.space_to_logout{
+  margin-right: 538px;
+}
+
+.button_logout:hover {
+  background-color: white; /* Green */
 }
 #components-layout-demo-top .logo {
   float: left;
@@ -16,9 +22,10 @@
 }
 .logo{
   float: left;
-  width: 120px;
-  height: 40px;
-  margin: 16px 24px 16px 0;
+  width: 80px;
+  height: 70px;
+  margin-top: 0px;
+  margin-right: 50px;
 
   background-image: url(/public/logo192.png);
   background-size: contain;

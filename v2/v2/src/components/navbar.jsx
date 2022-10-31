@@ -35,13 +35,13 @@ const MyNavBar = ({ setIsAuthenticated }) => {
     },
     {
         key: "OrderPage",
-        label: (<NavLink to="/OrderPage">Order</NavLink>),
-        icon: <TagOutlined />
+        label: (<NavLink className="space_to_logout" to="/OrderPage">Order</NavLink>),
+        //icon: <TagOutlined />
     },
     {
         key: "Logout",
-        label: (<Button type="text" className='logoutbtn' icon={<PoweroffOutlined />} block={true} onClick={logout}
-        >Logout</Button>),
+        label: (<Button type="text" className='button_logout' icon={<PoweroffOutlined />} block={true} onClick={logout} >Logout</Button>),
+        
     }
     ]
     return (
@@ -53,9 +53,7 @@ const MyNavBar = ({ setIsAuthenticated }) => {
                 defaultSelectedKeys={"OfferPage"}
                 items={items}
             >
-
             </Menu>
-
         </>
     );
 }
