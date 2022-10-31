@@ -43,6 +43,7 @@ const MyNavBar = ({ setIsAuthenticated }) => {
         key: "Logout",
         label: (<Button type="text" className='logoutbtn' icon={<PoweroffOutlined />} block={true} onClick={logout}
         >Logout</Button>),
+        danger:true,
     }
     ]
     return (

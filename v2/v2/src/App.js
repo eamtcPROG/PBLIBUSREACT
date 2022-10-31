@@ -20,6 +20,7 @@ import OrderPage from "./pages/Order/OrderPage";
 import OfferPage from "./pages/Offer/OfferPage";
 import EditOrder from "./pages/Order/EditOrder";
 import Home from "./pages/Home";
+import AddresForm from "./components/AddresForm";
 
 const { Header, Content, Footer } = Layout;
 
@@ -132,9 +133,19 @@ const App = () => {
             </PrivateRoute>}
           />
           <Route
+            path="/AddresForm"
+            element={<PrivateRoute
+              isAuthenticated={isAuthenticated}
+            >
+              <AddresForm />
+            </PrivateRoute>}
+          />
+          <Route
             path="/home"
             element={<Home />}
           />
+          
+         
 
 
         </Routes>

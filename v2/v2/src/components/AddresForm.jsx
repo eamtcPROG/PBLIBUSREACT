@@ -1,11 +1,11 @@
 import React from "react";
-import { Form, Input, Button, Typography,DatePicker, Space,Row,Col } from "antd";
+import { Form, Input, Button, Typography, Space,Row,Col } from "antd";
 
-const EditOrder = () => {
+const AddresForm = () => {
   const [form] = Form.useForm();
   const { Title, Text } = Typography;
   return (
-    <div>
+    <div class="OfferBackground">
       <Title // Form's Title
         level={3}
         style={{
@@ -15,7 +15,7 @@ const EditOrder = () => {
           paddingRight: 30,
         }}
       >
-         Add Order
+         Fill in Address Details
       </Title>
       <Text // Form's Description
         type="secondary"
@@ -41,8 +41,7 @@ const EditOrder = () => {
         }}
       >
         <Form.Item // Form Item (First Name)
-          label="ID Addres"
-          name="firstName"
+          label="Country"
           required
           tooltip="This is a required field"
           rules={[
@@ -52,11 +51,10 @@ const EditOrder = () => {
             },
           ]}
         >
-          <Input placeholder="From" />
+          <Input placeholder="Address ID" />
         </Form.Item>
         <Form.Item // Form Item (Last Name)
-          label="Destination"
-          name="lastName"
+          label="City"
           required
           tooltip="This is a required field"
           rules={[
@@ -66,70 +64,70 @@ const EditOrder = () => {
             },
           ]}
         >
-          <Input placeholder="To" />
+          <Input placeholder="Location Name" />
         </Form.Item>
-        <Form.Item // Form Item (Email)
-          label="Email"
-          name="email"
+
+        <Form.Item 
+          label="Town"
           required
           tooltip="This is a required field"
           rules={[
             {
               required: true,
-              message: "Please enter your email!",
-              type: "email",
+              message: "Price",
+              type: "price",
             },
           ]}
         >
-          <Input placeholder="Email" />
+          <Input placeholder="If not,type city name" />
         </Form.Item>
-        <Form.Item label="Date"
-          name="date"
+        
+          
+        <Form.Item 
+          label="Street"
           required
           tooltip="This is a required field"
           rules={[
             {
               required: true,
-              message: "Please enter the date!",
-              type: "date",
-            },
-        ]}
-            >
-            
-        <DatePicker  />
-        </Form.Item>
-        <Form.Item // Form Item (Email)
-          label="Number of people"
-          name="nr. people"
-          required
-          tooltip="This is a required field"
-          rules={[
-            {
-              required: true,
-              message: "Please enter number of people!",
-              type: "people",
+              message: "Price",
+              type: "price",
             },
           ]}
         >
-          <Input style={{width:"150px"}} placeholder="Number of people" />
+          <Input placeholder="Street Name" />
         </Form.Item>
-        <Form.Item // Form Item (Message)
-          label="Preferences"
-          name="message"
+
+        <Form.Item 
+          label="Street Number"
           required
           tooltip="This is a required field"
           rules={[
             {
               required: true,
-              message: "Message is a required field!",
+              message: "Price",
+              type: "price",
             },
           ]}
         >
-          <Input.TextArea
-            placeholder="Type here.."
-            autoSize={{ minRows: 4, maxRows: 6 }}
-          />
+          <Input placeholder="Street Number" />
         </Form.Item>
+
+        <Form.Item 
+          label="Zip Code"
+          required
+          tooltip="This is a required field"
+          rules={[
+            {
+              required: true,
+              message: "Price",
+              type: "price",
+            },
+          ]}
+        >
+          <Input placeholder="Zip" />
+        </Form.Item>
+       
         { <Row>
                         <Col span={4}>
                             <Form.Item>
@@ -138,7 +136,7 @@ const EditOrder = () => {
                          </Col>
                         <Col span={4} offset={0}>
                             <Form.Item>
-                        <Button   type="primary" >Submit</Button>
+                        <Button   type="primary" >OK</Button>
                          </Form.Item> 
                         </Col>
                          </Row>
@@ -148,4 +146,4 @@ const EditOrder = () => {
   );
 };
 
-export default EditOrder;
+export default AddresForm;
