@@ -25,17 +25,15 @@ const OfferPage = () => {
   }, []);
   const getData = async () => {
     await Axios.get(
-      "http://localhost:8080/api/order/getall"
+      "http://localhost:8080/api/offer/getall"
     ).then(
       res => {
 
         setState(
           res.data.map(row => ({
-            NumberPersons: row.NumberPersons,
-            StartPointAddressId: row.StartPointAddressId,
-            EndPointAddressId: row.EndPointAddressId,
-            Date: row.Date,
-            MoreDetails: row.MoreDetails
+            Price: row.Price,
+            OrderId: row.OrderId,
+            TrasporterId: row.TrasporterId,
           }))
         );
         setloading(false);
@@ -48,32 +46,22 @@ const OfferPage = () => {
 
 
   const handleAddOrder = () => {
-    history('/AddOrder');
+    history('/AddOffer');
   };
   const columns = [
     {
-      title: "Number of Persons",
-      dataIndex: "NumberPersons",
+      title: "Price",
+      dataIndex: "Price",
       width: 150
     },
     {
-      title: "Start Point Address",
-      dataIndex: "StartPointAddressId",
+      title: "Order Id",
+      dataIndex: "OrderId",
       width: 150
     },
     {
-      title: "End Point Address",
-      dataIndex: "EndPointAddressId",
-      width: 150
-    },
-    {
-      title: "Date",
-      dataIndex: "Date",
-      width: 150
-    },
-    {
-      title: "More Details",
-      dataIndex: "MoreDetails",
+      title: "Transporter Id",
+      dataIndex: "TrasporterId",
       width: 150
     }
   ];
@@ -84,7 +72,7 @@ const OfferPage = () => {
           marginBottom: 16,
         }}
       >
-        <Button onClick={handleAddOrder}>Add order</Button>
+        <Button onClick={handleAddOrder}>Add offer</Button>
 
       </Space>
       <Table columns={columns} dataSource={state} onChange={handleChange} />

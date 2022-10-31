@@ -6,7 +6,8 @@ import {
     Button,
     Form,
     Input,
-    Select
+    Select,
+    DatePicker
 } from "antd";
 import { NavLink } from "react-router-dom";
 
@@ -71,6 +72,9 @@ const Register = ({ setIsAuthenticated }) => {
     const handlePhoneChange = (e) => {
         setPhone(prefixSelector+e.target.value);
     };
+    const handleBirthdateChange = (e, value) => {
+        setBirhdate(value);
+      };
     const handleUserType = (e) => {
         setUserType(e);
     };
@@ -227,25 +231,21 @@ const Register = ({ setIsAuthenticated }) => {
                     <Input.Password onChange={handlePasswordChange} value={password}/>
                 </Form.Item>
 
-                <Form.Item
-                    name="phone"
-                    label="Phone Number"
-                    rules={[
-                        {
-                            required: true,
-                            message: "Please input your phone number!"
-                        }
-                    ]}
-                >
-                    <Input
-                        addonBefore={prefixSelector}
-                        style={{
-                            width: "100%"
-                        }}
-                        onChange={handlePhoneChange}
-                        value={phone}
-                    />
-                </Form.Item>
+                <Form.Item label="Date"
+          name="date"
+          required
+          tooltip="This is a required field"
+          rules={[
+            {
+              required: true,
+              message: "Please enter the date!",
+              type: "date",
+            },
+          ]}
+        >
+
+          <DatePicker onChange={handleBirthdateChange} value={birhdate} />
+        </Form.Item>
 
                 <Form.Item
                     name="userType"

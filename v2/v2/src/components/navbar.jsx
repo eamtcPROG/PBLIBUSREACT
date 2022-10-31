@@ -30,8 +30,7 @@ const MyNavBar = ({ setIsAuthenticated }) => {
     const items = [{
 
         key: "OfferPage",
-        label: (<NavLink to="/AddOrder">Offer</NavLink>),
-        path: './Offer/AddOffer.jsx',
+        label: (<NavLink to="/OfferPage">Offer</NavLink>),
         icon: <FormOutlined />
     },
     {
