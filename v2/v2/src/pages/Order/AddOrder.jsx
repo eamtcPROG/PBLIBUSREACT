@@ -1,6 +1,7 @@
 import React,{useState}from "react";
 import { Form, Input, Button, Typography, DatePicker, Space } from "antd";
 import { useNavigate } from "react-router-dom";
+import AddresForm from "../../components/AddresForm";
 const AddOrder = () => {
   const history = useNavigate();
   const [form] = Form.useForm();
@@ -10,7 +11,8 @@ const AddOrder = () => {
   const [endpointaddressid, setEndPointAddressId] = useState(0);
   const [date, setDate] = useState(null);
   const [moredetails, setMoreDetails] = useState('');
-
+  const [isActive, setIsActive] = useState(false);
+  const [isActiveSecond, setIsActiveSecond] = useState(false);
   const handleNumberPersonsChange = (e) => {
     setNumberPersons(e.target.value);
     console.log(e.target.value);
@@ -27,6 +29,13 @@ const AddOrder = () => {
   const handleMoreDetailsChange = (e) => {
     setMoreDetails(e.target.value);
   };
+  const handleAddress  =()=> {
+   setIsActive(!isActive);
+}
+const handleAddressSecond  =()=> {
+  setIsActiveSecond(!isActiveSecond);
+} 
+  
   const handleSubmit = (e) => {
     //e.preventDefault();
 
@@ -107,6 +116,8 @@ const AddOrder = () => {
           ]}
         >
           <Input placeholder="From" onChange={handleStartPointAddressIdChange} value={startpointaddressid} />
+          <Button onClick={handleAddress} >Add address</Button>
+          {isActive ? <AddresForm/> : <></>}
         </Form.Item>
         <Form.Item // Form Item (Last Name)
           label="Destination"
@@ -121,6 +132,8 @@ const AddOrder = () => {
           ]}
         >
           <Input placeholder="To" onChange={handleEndPointAddressIdChange} value={endpointaddressid} />
+          <Button onClick={handleAddressSecond} >Add address</Button>
+          {isActiveSecond ? <AddresForm/> : <></>}
         </Form.Item>
         <Form.Item label="Date"
           name="date"

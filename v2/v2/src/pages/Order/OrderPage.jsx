@@ -7,6 +7,7 @@ const OrderPage = () => {
   const [filteredInfo, setFilteredInfo] = useState({});
   const [sortedInfo, setSortedInfo] = useState({});
   const [state, setState] = useState([]);
+  const [stateIds, setStateIds] = useState([]);
   const [loading, setloading] = useState(true);
   const handleChange = (pagination, filters, sorter) => {
     console.log('Various parameters', pagination, filters, sorter);
@@ -35,14 +36,19 @@ const OrderPage = () => {
             StartPointAddressId: row.StartPointAddressId,
             EndPointAddressId: row.EndPointAddressId,
             Date: row.Date,
-            MoreDetails: row.MoreDetails
-          }))
+            MoreDetails: row.MoreDetails,
+            IdOrder: row.IdOrder
+          })
+          
+          )
+          
         );
+        
+        console.log(state);
+        
         setloading(false);
       }
     );
-
-
   };
 
 
