@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import 'antd/dist/antd.css';
 import '../MyStyle/MyNavBarStyle.css'
 import { NavLink, useNavigate } from 'react-router-dom';
-import { HomeOutlined, TagOutlined, FormOutlined, PoweroffOutlined } from "@ant-design/icons/lib/icons"
+import { HomeOutlined, TagOutlined, FormOutlined, PoweroffOutlined, UserOutlined} from "@ant-design/icons/lib/icons"
 const MyNavBar = ({ setIsAuthenticated, typeUserId, isAuthenticated }) => {
     const history = useNavigate();
     const logout = () => {
@@ -85,8 +85,8 @@ const MyNavBar = ({ setIsAuthenticated, typeUserId, isAuthenticated }) => {
                         }
                             : {
                                 key: "PersonalCabinetC",
-                                label: "In development",
-                                icon: <FormOutlined />
+                                label: "My Profile",
+                                icon: <UserOutlined />
                             },
                 {
                     key: "Logout",
