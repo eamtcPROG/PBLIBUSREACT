@@ -41,8 +41,9 @@
 
 .logoutbtn:hover{
   background-color: white;
-  color: rgb(104, 104, 237);
+  color:#1890ff;
 }
+
 
 
 .ant-layout-header{
