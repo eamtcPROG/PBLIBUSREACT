@@ -1,9 +1,67 @@
-import React from "react";
+import React,{useState} from "react";
 import { Form, Input, Button, Typography, Space,Row,Col } from "antd";
 
-const AddresForm = () => {
+const AddresForm = ({setIdAddress}) => {
   const [form] = Form.useForm();
   const { Title, Text } = Typography;
+  const [locationname, setLocationName] = useState('');
+    const [addressnumber, setAddressNumber] = useState('');
+    const [addressname, setAddressName] = useState('');
+    const [countryid, setCountryId] = useState(0);
+    const [error, setError] = useState('');
+  
+    const handleLocationNameChange = (e) => {
+        setLocationName(e.target.value);
+    };
+    const handleAddressNumberChange = (e) => {
+        setAddressNumber(e.target.value);
+    };
+    const handleAddressNameChange = (e) => {
+        setAddressName(e.target.value);
+    };
+    const handleCountryIdChange = (e) => {
+        setCountryId(e.target.value);
+    };
+    // Controlled form
+    const handleSubmit = (e) => {
+      //e.preventDefault();
+  
+      fetch(`http://localhost:8080/api/address/add`, {
+        method: 'POST',
+        body: JSON.stringify({
+            locationname,
+            addressnumber,
+            addressname,
+            countryid
+
+        }),
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }).then((res) => {
+        if (res.status === 200) {
+          return res.json();
+        
+        }else{
+          setError('Invalid ');
+          
+        }
+  
+        
+      }).then((data) => {
+        try {
+          if(error != null ){  
+            
+            setIdAddress(data.IdAddress);
+           
+           }
+        } catch(error){console.log(error)} 
+        
+        
+        
+        });
+    };
   return (
     <div class="OfferBackground">
       <Title // Form's Title
@@ -30,6 +88,7 @@ const AddresForm = () => {
         name="contact-us"
         layout="vertical"
         form={form}
+        onFinish={handleSubmit}
         wrapperCol={{
           span: 6,
         }}
@@ -51,7 +110,7 @@ const AddresForm = () => {
             },
           ]}
         >
-          <Input placeholder="Address ID" />
+          <Input placeholder="Country" onChange={handleCountryIdChange} value={countryid}/>
         </Form.Item>
         <Form.Item // Form Item (Last Name)
           label="City"
@@ -64,7 +123,7 @@ const AddresForm = () => {
             },
           ]}
         >
-          <Input placeholder="Location Name" />
+          <Input placeholder="Location Name" onChange={handleLocationNameChange} value={locationname}/>
         </Form.Item>
 
         <Form.Item 
@@ -79,7 +138,7 @@ const AddresForm = () => {
             },
           ]}
         >
-          <Input placeholder="If not,type city name" />
+          <Input placeholder="If not,type city name" onChange={handleAddressNumberChange} value={addressnumber}/>
         </Form.Item>
         
           
@@ -95,7 +154,7 @@ const AddresForm = () => {
             },
           ]}
         >
-          <Input placeholder="Street Name" />
+          <Input placeholder="Street Name" onChange={handleAddressNameChange} value={addressname}/>
         </Form.Item>
 
         <Form.Item 
@@ -113,30 +172,16 @@ const AddresForm = () => {
           <Input placeholder="Street Number" />
         </Form.Item>
 
-        <Form.Item 
-          label="Zip Code"
-          required
-          tooltip="This is a required field"
-          rules={[
-            {
-              required: true,
-              message: "Price",
-              type: "price",
-            },
-          ]}
-        >
-          <Input placeholder="Zip" />
-        </Form.Item>
        
         { <Row>
                         <Col span={4}>
                             <Form.Item>
-                        <Button type="primary" >Cancel</Button>
+                        <Button type="danger" >Cancel</Button>
                          </Form.Item>  
                          </Col>
                         <Col span={4} offset={0}>
                             <Form.Item>
-                        <Button   type="primary" >OK</Button>
+                        <Button   type="submit" >OK</Button>
                          </Form.Item> 
                         </Col>
                          </Row>

@@ -9,6 +9,8 @@ const AddOrder = () => {
   const [numberpersons, setNumberPersons] = useState(0);
   const [startpointaddressid, setStartPointAddressId] = useState(0);
   const [endpointaddressid, setEndPointAddressId] = useState(0);
+  const [idaddress, setIdAddress] = useState(0);
+  
   const [date, setDate] = useState(null);
   const [moredetails, setMoreDetails] = useState('');
   const [isActive, setIsActive] = useState(false);
@@ -31,14 +33,17 @@ const AddOrder = () => {
   };
   const handleAddress  =()=> {
    setIsActive(!isActive);
+
 }
 const handleAddressSecond  =()=> {
   setIsActiveSecond(!isActiveSecond);
+  setStartPointAddressId(idaddress);
+  
 } 
   
   const handleSubmit = (e) => {
     //e.preventDefault();
-
+    setEndPointAddressId(idaddress);
     fetch(`http://localhost:8080/api/order/add`, {
       method: 'POST',
       body: JSON.stringify({
@@ -117,7 +122,7 @@ const handleAddressSecond  =()=> {
         >
           <Input placeholder="From" onChange={handleStartPointAddressIdChange} value={startpointaddressid} />
           <Button onClick={handleAddress} >Add address</Button>
-          {isActive ? <AddresForm/> : <></>}
+          {isActive ? <AddresForm setIdAddress={setIdAddress}/> : <></>}
         </Form.Item>
         <Form.Item // Form Item (Last Name)
           label="Destination"
@@ -133,7 +138,7 @@ const handleAddressSecond  =()=> {
         >
           <Input placeholder="To" onChange={handleEndPointAddressIdChange} value={endpointaddressid} />
           <Button onClick={handleAddressSecond} >Add address</Button>
-          {isActiveSecond ? <AddresForm/> : <></>}
+          {isActiveSecond ? <AddresForm setIdAddress={setIdAddress}/> : <></>}
         </Form.Item>
         <Form.Item label="Date"
           name="date"
