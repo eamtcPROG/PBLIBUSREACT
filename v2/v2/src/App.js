@@ -143,7 +143,7 @@ const App = () => {
           />
           <Route
             path="/register"
-            element={<Register setIsAuthenticated={setIsAuthenticated} />}
+            element={<Register setIsAuthenticated={setIsAuthenticated} setTypeUserId={setTypeUserId}/>}
           />
           
             <Route
