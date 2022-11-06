@@ -1,7 +1,7 @@
 import React,{useState}from "react";
 import { Form, Input, Button, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
-const AddOffer = () => {
+const AddOffer = ({orderId}) => {
   const history = useNavigate();
   const [form] = Form.useForm();
   const { Title, Text } = Typography;
@@ -30,7 +30,7 @@ const AddOffer = () => {
       method: 'POST',
       body: JSON.stringify({
         price,
-        orderid,
+        orderid:orderId,
         trasporterid
       }),
       headers: {
@@ -103,20 +103,7 @@ const AddOffer = () => {
         >
           <Input placeholder="Price" onChange={handlePriceChange} value={price} />
         </Form.Item>
-        <Form.Item // Form Item (Last Name)
-          label="Order"
-          name="order"
-          required
-          tooltip="This is a required field"
-          rules={[
-            {
-              required: true,
-              message: "Please enter your order!",
-            },
-          ]}
-        >
-          <Input placeholder="order" onChange={handleOrderIdChange} value={orderid} />
-        </Form.Item>
+       
         
         <Form.Item // Form Item (Email)
           label="Transport"

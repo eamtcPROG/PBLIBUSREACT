@@ -4,7 +4,7 @@ import AddOrder from "./pages/Order/AddOrder";
 import AddOffer from "./pages/Offer/AddOffer";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import { Layout, Menu } from "antd";
+import { Layout, Menu,Skeleton } from "antd";
 import "antd/dist/antd.css";
 import MyNavBar from "./components/navbar";
 import PrivateRoute from "./components/PrivateRoute";
@@ -20,11 +20,16 @@ import OrderPage from "./pages/Order/OrderPage";
 import OfferPage from "./pages/Offer/OfferPage";
 import EditOrder from "./pages/Order/EditOrder";
 import Home from "./pages/Home";
-
+import Order from "./pages/Order/Order";
+import Offer from "./pages/Offer/Offer";
+import Axios from "axios";
 const { Header, Content, Footer } = Layout;
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [orderId, setOrderId] = useState(0);
+  const [typeUserId, setTypeUserId] = useState(0);
+  const [loading, setloading] = useState(true);
   useEffect(() => {
 
     const token = localStorage.getItem('token');
@@ -39,9 +44,11 @@ const App = () => {
         token: token,
       },
     }).then((res) => {
+      
       switch (res.status) {
         case 200:
           setIsAuthenticated(true);
+          console.log(res)
           break;
         default:
           setIsAuthenticated(false);
@@ -49,9 +56,41 @@ const App = () => {
       }
     })
       .catch(console.error);
+    
+
   }, []);
 
-  return (
+  useEffect(() => {
+
+    const token = localStorage.getItem('token');
+
+    if (token == null) {
+      setIsAuthenticated(false);
+    }
+    
+    fetch(`http://localhost:8080/api/auth/getuser`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        token: token,
+      },
+    }).then((res) => {
+      return res.json();
+
+    }).then((data) => {
+
+      if(data) {
+        setTypeUserId(data.TypeUserId);
+        setIsAuthenticated(true);
+        setloading(false)
+      }
+    })
+      .catch(console.error);
+    
+
+  }, []);
+
+  return loading ?(<Skeleton />):(
     //Layout Component
     <Layout className="layout">
       <Header // Header Component
@@ -65,7 +104,7 @@ const App = () => {
         }}
       >
 
-        <MyNavBar setIsAuthenticated={setIsAuthenticated} />
+        <MyNavBar setIsAuthenticated={setIsAuthenticated} typeUserId={typeUserId} isAuthenticated={isAuthenticated}/>
       </Header>
       <Content // Content Component
         className="site-layout"
@@ -94,35 +133,38 @@ const App = () => {
             element={<PrivateRoute
               isAuthenticated={isAuthenticated}
             >
-              <AddOffer />
+              <AddOffer orderId={orderId} />
             </PrivateRoute>}
           />
-          
+
           <Route
             path="/login"
-            element={<Login setIsAuthenticated={setIsAuthenticated} />}
+            element={<Login setIsAuthenticated={setIsAuthenticated} setTypeUserId={setTypeUserId} />}
           />
           <Route
             path="/register"
             element={<Register setIsAuthenticated={setIsAuthenticated} />}
           />
-          <Route
-            path="/OrderPage"
-            element={<PrivateRoute
-              isAuthenticated={isAuthenticated}
-            >
-              <OrderPage />
-            </PrivateRoute>}
-            
-          />
-          <Route
-            path="/OfferPage"
-            element={<PrivateRoute
-              isAuthenticated={isAuthenticated}
-            >
-              <OfferPage />
-            </PrivateRoute>}
-          />
+          
+            <Route
+              path="/OrderPage"
+              element={<PrivateRoute
+                isAuthenticated={isAuthenticated}
+              >
+                {typeUserId == 2 ?<OrderPage />:<></>}
+              </PrivateRoute>}
+
+            /> 
+          
+          
+            <Route
+              path="/OfferPage"
+              element={<PrivateRoute
+                isAuthenticated={isAuthenticated}
+              >
+               {typeUserId == 1 ? <OfferPage />: <></>}
+              </PrivateRoute>}
+            /> 
           <Route
             path="/EditOrder"
             element={<PrivateRoute
@@ -131,6 +173,25 @@ const App = () => {
               <EditOrder />
             </PrivateRoute>}
           />
+          
+            <Route
+              path="/order"
+              element={<PrivateRoute
+                isAuthenticated={isAuthenticated}
+              >
+              {typeUserId == 1 ?  <Order setOrderId={setOrderId} />: <></> }
+              </PrivateRoute>}
+            />
+          
+            <Route
+              path="/offer"
+              element={<PrivateRoute
+                isAuthenticated={isAuthenticated}
+              >
+               {typeUserId == 2 ? <Offer />: <></>}
+              </PrivateRoute>}
+            />
+            
           <Route
             path="/home"
             element={<Home />}

@@ -1,10 +1,10 @@
 import { Form, Menu, Tabs, Button } from 'antd';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import 'antd/dist/antd.css';
 import '../MyStyle/MyNavBarStyle.css'
-import { NavLink ,useNavigate} from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { HomeOutlined, TagOutlined, FormOutlined, PoweroffOutlined } from "@ant-design/icons/lib/icons"
-const MyNavBar = ({ setIsAuthenticated }) => {
+const MyNavBar = ({ setIsAuthenticated, typeUserId, isAuthenticated }) => {
     const history = useNavigate();
     const logout = () => {
         localStorage.removeItem("token");
@@ -16,34 +16,82 @@ const MyNavBar = ({ setIsAuthenticated }) => {
             },
         }).then((res) => {
             switch (res.status) {
-                case 403:{
+                case 403: {
                     setIsAuthenticated(false);
                     return history('/home');
-                    break;
+
                 }
                 default:
                     setIsAuthenticated(true);
+
                     break;
             }
         });
     }
-    const items = [{
 
-        key: "OfferPage",
-        label: (<NavLink to="/OfferPage">Offer</NavLink>),
-        icon: <FormOutlined />
-    },
-    {
-        key: "OrderPage",
-        label: (<NavLink to="/OrderPage">Order</NavLink>),
-        icon: <TagOutlined />
-    },
-    {
-        key: "Logout",
-        label: (<Button type="text" className='logoutbtn' icon={<PoweroffOutlined />} block={true} onClick={logout}
-        >Logout</Button>),
-    }
-    ]
+    const [items, setItems] = useState([])
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+
+        if (token == null) {
+            setIsAuthenticated(false);
+        }
+        fetch(`http://localhost:8080/api/auth/check-auth`, {
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                token: token,
+            },
+        }).then((res) => {
+            if (res.status == 200) {
+                setIsAuthenticated(true);
+            }
+            else {
+                setIsAuthenticated(false);
+            }
+
+        })
+            .catch(console.error);
+        console.log(isAuthenticated == true)
+        if (isAuthenticated == true) {
+            setItems([
+                typeUserId == 1 ? {
+
+                    key: "OfferPage",
+                    label: (<NavLink to="/OfferPage">My Offer</NavLink>),
+                    icon: <FormOutlined />
+                } : {
+
+
+                    key: "OrderPage",
+                    label: (<NavLink to="/OrderPage">My Order</NavLink>),
+                    icon: <TagOutlined />
+                },
+                typeUserId == 1 ? {
+                    key: "Order",
+                    label: (<NavLink to="/order">Order</NavLink>),
+                    icon: <TagOutlined />
+                }
+                    : {
+                        key: "Offer",
+                        label: (<NavLink to="/offer">Offer</NavLink>),
+                        icon: <FormOutlined />
+                    },
+                {
+                    key: "Logout",
+                    label: (<Button type="text" className='logoutbtn' icon={<PoweroffOutlined />} block={true} onClick={logout}
+                    >Logout</Button>),
+                }
+            ])
+        } else {
+            setItems([{
+                key: "OfferPage",
+                label: (<NavLink to="/login">Sign in</NavLink>),
+                icon: <FormOutlined />
+            }])
+        }
+    }, [isAuthenticated])
+
     return (
         <>
             <div className="logo" />

@@ -15,6 +15,7 @@ const AddOrder = () => {
   const [moredetails, setMoreDetails] = useState('');
   const [isActive, setIsActive] = useState(false);
   const [isActiveSecond, setIsActiveSecond] = useState(false);
+  
   const handleNumberPersonsChange = (e) => {
     setNumberPersons(e.target.value);
     console.log(e.target.value);
@@ -41,15 +42,17 @@ const handleAddressSecond  =()=> {
   
 } 
   
-  const handleSubmit = (e) => {
-    //e.preventDefault();
+  const handleSubmit = (event) => {
+    //event.preventDefault();
     setEndPointAddressId(idaddress);
+    console.log(idaddress);
+    console.log(endpointaddressid);
     fetch(`http://localhost:8080/api/order/add`, {
       method: 'POST',
       body: JSON.stringify({
         numberpersons,
         startpointaddressid,
-        endpointaddressid,
+        endpointaddressid:idaddress,
         date,
         moredetails
       }),
@@ -111,34 +114,20 @@ const handleAddressSecond  =()=> {
         <Form.Item // Form Item (First Name)
           label="Start Location"
           name="firstName"
-          required
-          tooltip="This is a required field"
-          rules={[
-            {
-              required: true,
-              message: "Please enter location!",
-            },
-          ]}
+          
         >
-          <Input placeholder="From" onChange={handleStartPointAddressIdChange} value={startpointaddressid} />
+          {/* <Input placeholder="From" onChange={handleStartPointAddressIdChange} value={startpointaddressid} /> */}
           <Button onClick={handleAddress} >Add address</Button>
-          {isActive ? <AddresForm setIdAddress={setIdAddress}/> : <></>}
+          {isActive ? <AddresForm setIdAddress={setIdAddress} setIsActive={setIsActive} formNumber={1}/> : <></>}
         </Form.Item>
         <Form.Item // Form Item (Last Name)
           label="Destination"
           name="destination"
-          required
-          tooltip="This is a required field"
-          rules={[
-            {
-              required: true,
-              message: "Please enter your destination!",
-            },
-          ]}
+          
         >
-          <Input placeholder="To" onChange={handleEndPointAddressIdChange} value={endpointaddressid} />
+          {/* <Input placeholder="To" onChange={handleEndPointAddressIdChange} value={endpointaddressid} /> */}
           <Button onClick={handleAddressSecond} >Add address</Button>
-          {isActiveSecond ? <AddresForm setIdAddress={setIdAddress}/> : <></>}
+          {isActiveSecond ? <AddresForm setIdAddress={setIdAddress} setIsActiveSecond={setIsActiveSecond} formNumber={2}/> : <></>}
         </Form.Item>
         <Form.Item label="Date"
           name="date"

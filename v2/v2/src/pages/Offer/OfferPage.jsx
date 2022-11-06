@@ -72,7 +72,7 @@ const OfferPage = () => {
           marginBottom: 16,
         }}
       >
-        <Button onClick={handleAddOrder}>Add offer</Button>
+       
 
       </Space>
       <Table columns={columns} dataSource={state} onChange={handleChange} />

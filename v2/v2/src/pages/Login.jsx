@@ -4,7 +4,7 @@ import 'antd/dist/antd.css';
 import '../MyStyle/Login.css'
 import ColumnGroup from 'antd/lib/table/ColumnGroup';
 import { NavLink,useNavigate } from "react-router-dom";
-const Login = ({setIsAuthenticated}) => {
+const Login = ({setIsAuthenticated,setTypeUserId}) => {
     const history = useNavigate ();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -45,7 +45,14 @@ const Login = ({setIsAuthenticated}) => {
           if(error != null ){  
             localStorage.setItem("token", data.accessToken);
             setIsAuthenticated(true);
-            return history('/OrderPage');
+            setTypeUserId(data.TypeUserId);
+            console.log(data.TypeUserId);
+            if(data.TypeUserId == 1){
+                return history('/order');
+            }
+            else{
+                return history('/OrderPage');
+            }
            }
         } catch(error){console.log(error)} 
         
