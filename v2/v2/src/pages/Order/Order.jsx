@@ -60,7 +60,7 @@ const Order = ({setOrderId}) => {
       {
           state ?
             state.map((item) => {
-              return <OrderCard state={item} />;
+              return <OrderCard state={item} setOrderId={setOrderId}/>;
             }) : <></>
         }
     </>
