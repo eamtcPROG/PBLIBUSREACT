@@ -119,7 +119,7 @@ const App = () => {
         {/* <Router> */}
         <Routes>
           <Route
-            path="/AddOrder"
+            path="/addorder"
             element={
               <PrivateRoute
                 isAuthenticated={isAuthenticated}
@@ -129,7 +129,7 @@ const App = () => {
             }
           />
           <Route
-            path="/AddOffer"
+            path="/addoffer"
             element={<PrivateRoute
               isAuthenticated={isAuthenticated}
             >
@@ -147,7 +147,7 @@ const App = () => {
           />
           
             <Route
-              path="/OrderPage"
+              path="/orderpage"
               element={<PrivateRoute
                 isAuthenticated={isAuthenticated}
               >
@@ -158,7 +158,7 @@ const App = () => {
           
           
             <Route
-              path="/OfferPage"
+              path="/offerpage"
               element={<PrivateRoute
                 isAuthenticated={isAuthenticated}
               >
@@ -166,7 +166,7 @@ const App = () => {
               </PrivateRoute>}
             /> 
           <Route
-            path="/EditOrder"
+            path="/editorder"
             element={<PrivateRoute
               isAuthenticated={isAuthenticated}
             >
@@ -193,7 +193,7 @@ const App = () => {
             />
             
           <Route
-            path="/home"
+            path="/"
             element={<Home />}
           />
 

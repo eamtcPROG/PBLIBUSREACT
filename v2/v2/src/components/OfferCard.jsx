@@ -26,6 +26,7 @@ const OfferCard = ({ state,setOfferId }) => {
                     textAlign: 'center',
 
                 }}>
+                    
                     {state != undefined ? state.Price : ""}
                 </Card.Grid>
                 <Card.Grid hoverable={false} style={{

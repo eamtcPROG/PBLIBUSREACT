@@ -6,6 +6,20 @@ import { Button } from 'antd';
 const ImageSlider = ({ slides }) => {
   const [current, setCurrent] = useState(0);
   const length = slides.length;
+  const delay = 10000;
+  const images = ["/Slide1.jpg", "/Slide2.jpg", "/Slide3.jpg"];
+  React.useEffect(() => {
+    setTimeout(
+      () =>
+        setCurrent((prevcurrent) =>
+          prevcurrent === images.length - 1 ? 0 : prevcurrent + 1
+        ),
+      delay
+    );
+
+    return () => {};
+  }, [current]);
+
 
   const nextSlide = () => {
     setCurrent(current === length - 1 ? 0 : current + 1);
@@ -21,8 +35,7 @@ const ImageSlider = ({ slides }) => {
 
   return (
     <section className='slider'>
-      <FaArrowAltCircleLeft className='left-arrow' onClick={prevSlide} />
-      <FaArrowAltCircleRight className='right-arrow' onClick={nextSlide} />
+      
       {SliderData.map((slide, index) => {
         return (
           <div

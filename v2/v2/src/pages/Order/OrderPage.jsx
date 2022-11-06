@@ -54,7 +54,7 @@ const OrderPage = () => {
 
 
   const handleAddOrder = () => {
-    history('/AddOrder');
+    history('/addorder');
   };
   const columns = [
     {

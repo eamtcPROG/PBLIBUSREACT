@@ -131,7 +131,7 @@ const Register = ({ setIsAuthenticated }) => {
         }).then((data) => {
             localStorage.setItem("token", data.accessToken);
             setIsAuthenticated(true);
-            return history('/OrderPage');
+            return history('/orderpage');
           });;
       });
         

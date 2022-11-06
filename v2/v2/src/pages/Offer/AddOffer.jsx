@@ -47,7 +47,7 @@ const AddOffer = ({orderId}) => {
     }).then((data) => {
         console.log(data);
       if (data != null) {
-        return history('/OfferPage');
+        return history('/offerpage');
       }
     });
 

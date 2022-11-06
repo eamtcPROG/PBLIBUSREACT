@@ -46,7 +46,7 @@ const OfferPage = () => {
 
 
   const handleAddOrder = () => {
-    history('/AddOffer');
+    history('/addoffer');
   };
   const columns = [
     {

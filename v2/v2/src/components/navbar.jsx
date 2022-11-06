@@ -57,14 +57,14 @@ const MyNavBar = ({ setIsAuthenticated, typeUserId, isAuthenticated }) => {
             setItems([
                 typeUserId == 1 ? {
 
-                    key: "OfferPage",
-                    label: (<NavLink to="/OfferPage">My Offer</NavLink>),
+                    key: "offerpage",
+                    label: (<NavLink to="/offerpage">My Offer</NavLink>),
                     icon: <FormOutlined />
                 } : {
 
 
-                    key: "OrderPage",
-                    label: (<NavLink to="/OrderPage">My Order</NavLink>),
+                    key: "orderpage",
+                    label: (<NavLink to="/orderpage">My Order</NavLink>),
                     icon: <TagOutlined />
                 },
                 typeUserId == 1 ? {

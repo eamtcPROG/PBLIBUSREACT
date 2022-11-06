@@ -69,7 +69,7 @@ const handleAddressSecond  =()=> {
     }).then((data) => {
 
       if (data != null) {
-        return history('/OrderPage');
+        return history('/orderpage');
       }
     });
 

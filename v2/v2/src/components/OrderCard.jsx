@@ -6,7 +6,7 @@ const OrderCard = ({ state,setOrderId }) => {
     const history = useNavigate();
     const handleMakeOffer = ()=>{
         if(state != undefined) setOrderId(state.IdOrder);
-        history("/AddOffer");
+        history("/addoffer");
     }
     
     return state != undefined ? (

@@ -51,7 +51,7 @@ const Login = ({setIsAuthenticated,setTypeUserId}) => {
                 return history('/order');
             }
             else{
-                return history('/OrderPage');
+                return history('/orderpage');
             }
            }
         } catch(error){console.log(error)} 
