@@ -5,6 +5,13 @@
     justify-content: center;
     align-items: center;
   }
+  .titlu{
+    position: absolute;
+    left:27%
+  }
+  .comment{
+    text-align: center;
+  }
   
   .image {
     width: auto;
@@ -47,6 +54,9 @@
 
   .btn{
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 60%;
+    left: 47%;
+    background-color: #00ccff;
+    
+    border: none;
   }
