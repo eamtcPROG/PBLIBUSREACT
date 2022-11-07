@@ -1,3 +1,7 @@
+::-webkit-scrollbar{
+  display: none;
+}
+
 .App {
   text-align: center;
   font-family: Calibri !important;
@@ -14,7 +18,7 @@
   }
 }
 .layout{
-  background-image: url(/public/NewYork.jpg);
+  background-image: url(/public/Slide1.jpg);
   background-size:cover;
  
   background-position: center center;
@@ -53,7 +57,7 @@
 .site-layout-content {
   min-height: 280px;
   padding: 24px;
-  background: #fff;
+  background: white;
 }
 #components-layout-demo-top .logo {
   float: left;
@@ -65,4 +69,12 @@
 .ant-row-rtl #components-layout-demo-top .logo {
   float: right;
   margin: 16px 0 16px 24px;
+}
+.site-layout{
+  background-image: url(/public/Slide1.png);
+  background-size:cover;
+ 
+  background-position: center center;
+  background-repeat: no-repeat;
+
 }

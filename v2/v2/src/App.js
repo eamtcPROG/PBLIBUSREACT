@@ -98,7 +98,7 @@ const App = () => {
           position: "fixed",
           zIndex: 1,
           width: "100%",
-          height: "64px",
+          height: "65px",
           background: "white",
 
         }}
@@ -111,7 +111,8 @@ const App = () => {
         style={{
           marginTop: 64,
           padding: 20,
-          paddingBottom: "800px",
+          paddingBottom: "1000px",
+          
 
         }}
       >
@@ -202,11 +203,9 @@ const App = () => {
         {/* </Router> */}
 
       </Content>
-      <Footer
-        style={{ textAlign: "center", backgroundColor: "fff" }} // Footer Component
-      >
+      
 
-      </Footer>
+      
     </Layout>
   );
 };
