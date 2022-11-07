@@ -46,7 +46,7 @@ const tailFormItemLayout = {
         }
     }
 };
-const Register = ({ setIsAuthenticated }) => {
+const Register = ({ setIsAuthenticated,setTypeUserId }) => {
     const history = useNavigate ();
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');
@@ -131,7 +131,14 @@ const Register = ({ setIsAuthenticated }) => {
         }).then((data) => {
             localStorage.setItem("token", data.accessToken);
             setIsAuthenticated(true);
-            return history('/orderpage');
+            setTypeUserId(data.TypeUserId);
+            if(data.TypeUserId == 1){
+                return history('/order');
+            }
+            else{
+                return history('/orderpage');
+            }
+           
           });;
       });
         

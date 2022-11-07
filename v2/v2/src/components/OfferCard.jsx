@@ -2,13 +2,20 @@ import React, { useEffect, useState } from "react";
 import { Button, Card } from "antd";
 import { EditOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
-const OfferCard = ({ state,setOfferId }) => {
+import Axios from "axios";
+const OfferCard = ({ state, setOfferId }) => {
     const history = useNavigate();
-    const handleMakeOffer = ()=>{
+    const handleMakeOffer = () => {
         //if(state != undefined) setOfferId(state.IdOffer);
-        
+        console.log(state.IdOffer);
+        Axios.delete(`http://localhost:8080/api/offer/delete/${state.IdOffer}`).then(res => {
+            console.log(res);
+            if (res.status == 200) {
+                window.location.reload();
+            }
+        });
     }
-    
+
     return state != undefined ? (
         <>
 
@@ -26,7 +33,7 @@ const OfferCard = ({ state,setOfferId }) => {
                     textAlign: 'center',
 
                 }}>
-                    
+
                     {state != undefined ? state.Price : ""}
                 </Card.Grid>
                 <Card.Grid hoverable={false} style={{
@@ -40,10 +47,10 @@ const OfferCard = ({ state,setOfferId }) => {
                     textAlign: 'center',
                 }}>
                     {state != undefined ? state.TrasporterId : ""}
-                </Card.Grid> 
+                </Card.Grid>
             </Card>
         </>
-    ):(<></>);
+    ) : (<></>);
 };
 
 export default OfferCard;

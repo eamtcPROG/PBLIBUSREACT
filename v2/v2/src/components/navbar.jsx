@@ -18,7 +18,7 @@ const MyNavBar = ({ setIsAuthenticated, typeUserId, isAuthenticated }) => {
             switch (res.status) {
                 case 403: {
                     setIsAuthenticated(false);
-                    return history('/home');
+                    return history('/');
 
                 }
                 default:
