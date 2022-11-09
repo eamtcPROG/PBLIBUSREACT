@@ -85,8 +85,9 @@ const MyNavBar = ({ setIsAuthenticated, typeUserId, isAuthenticated }) => {
             ])
         } else {
             setItems([{
+                
                 key: "OfferPage",
-                label: (<NavLink to="/login">Sign in</NavLink>),
+                label: (<NavLink align="middle" to="/login">Sign in</NavLink>),
                 icon: <FormOutlined />
             }])
         }

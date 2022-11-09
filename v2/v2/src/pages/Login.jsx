@@ -1,9 +1,9 @@
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Checkbox, Form, Input, Typography, Col, Row } from 'antd';
 import React,{useState} from 'react';
-import 'antd/dist/antd.css';
 import '../MyStyle/Login.css'
-import ColumnGroup from 'antd/lib/table/ColumnGroup';
 import { NavLink,useNavigate } from "react-router-dom";
+const { Title, Text } = Typography;
+
 const Login = ({setIsAuthenticated,setTypeUserId}) => {
     const history = useNavigate ();
     const [email, setEmail] = useState('');
@@ -67,80 +67,97 @@ const Login = ({setIsAuthenticated,setTypeUserId}) => {
         console.log('Failed:', errorInfo);
     };
     return (
-        <div class="login">
-            <Form class="formStyle" style={{marginLeft:"9%"}}
-                name="basic"
-                labelCol={{
-                    span: 8,
-                }}
-                wrapperCol={{
-                    span: 16,
-                }}
-                initialValues={{
-                    remember: true,
-                }}
-                onFinish={handleSubmit}
-                onFinishFailed={onFinishFailed}
-                autoComplete="off"
-            ><div class="background">
-
-            </div>
-                <h1 style={{marginTop:"20%"}}>Login</h1>
-                <Form.Item id="UserForm" 
+            
+       
+        <Row justify="start" style={{marginTop:"11%", marginBottom:"14.5%"}}>
+            <Col span={13} offset={9}>
+                <div class="login">
+                    <Form class="formStyle" style={{}}
+                        name="basic"
+                        labelCol={{span: 13}}
+                        wrapperCol={{span:11}}
+                        initialValues={{
+                        remember: true,
+                        }}
+                        onFinish={handleSubmit}
+                        onFinishFailed={onFinishFailed}
+                        autoComplete="off"
+                        ><div class="background"></div>
+                        <Row align='middle' style={{}} >
+                            <Col span={7} offset={1}>
+                                <Title style={{color:"black",fontSize:"20px",fontWeight:"bold",fontFamily:"Helvetica"}}>Login</Title>
+                            </Col>
+                        </Row>    
+                        
+                        <Row justify="start">
+                            <Col span={22} offset={0}>
+                                <Form.Item id="UserForm" 
                 
-                    label="Email"
-                    name="email"
-                    style={{color:"white"}}
+                                            label="Email"
+                                             name="email"
+                                            style={{color:"white"}}
                     
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please input your email!',
-                        },
-                    ]}
-                >
-                    <Input onChange={handleEmailChange} value={email}id="email"/>
-                </Form.Item>
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    message: 'Please input your email!',
+                                                },
+                                            ]}
+                                    >
+                                            <Input onChange={handleEmailChange} value={email}id="email"/>
+                                </Form.Item>
+                            </Col>
+                        </Row>
+                        
 
-                <Form.Item
-                    label="Password"
-                    name="password"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please input your password!',
-                        },
-                    ]}
-                >
-                    <Input  onChange={handlePasswordChange} value={password} type="password"id="password"/>
-                </Form.Item>
+                        <Row>
+                            <Col span={22} offset={0}>
+                             <Form.Item
+                                 label="Password"
+                                 name="password"
+                                   rules={[
+                                     {
+                                       required: true,
+                                       message: 'Please input your password!',
+                                     },
+                                      ]}
+                                    >
+                                    <Input  onChange={handlePasswordChange} value={password} type="password"id="password"/>
+                                </Form.Item>
+                            </Col>
+                        </Row>
 
-                <Form.Item
-                    name="remember"
-                    valuePropName="checked"
-                    wrapperCol={{
-                        offset: 8,
-                        span: 16,
-                    }}
-                >
-                    <Checkbox style={{color:"black"}}>Remember me</Checkbox>
-                </Form.Item>
+                        <Form.Item
+                            name="remember"
+                            valuePropName="checked"
+                            wrapperCol={{
+                                offset: 8,
+                                span: 16,
+                            }}
+                        >
+                            <Checkbox style={{color:"black"}}>Remember me</Checkbox>
+                        </Form.Item>
 
-                <Form.Item
-                    wrapperCol={{
-                        offset: 8,
-                        span: 16,
-                    }}
-                >
-                    <Button id="Submit"type="primary" htmlType="submit" >
-                        Submit
-                    </Button>
-                    <div><NavLink to="/register">or Register</NavLink></div>
+                        <Form.Item
+                            wrapperCol={{
+                                offset: 8,
+                                span: 16,
+                            }}
+                        >
+                            <Button id="Submit"type="primary" htmlType="submit" >
+                                Submit
+                            </Button>
+                            <div><NavLink to="/register">or Register</NavLink></div>
                     
-                </Form.Item>
+                        </Form.Item>
                 
-            </Form>
-        </div>
+                    </Form>
+                </div>
+            </Col>
+        </Row>
+
+
+       
     );
 };
 export default Login;

@@ -1,17 +1,13 @@
 .login{
+
     background-color:white;
+    width: 35em;
+    height: 24em;
+    border-radius: 0.7em;
     
-    display: flex;
-    width: 30em;
-    height: 40em;
-    position: static;
     
-    text-align:center;
-    float: center;
-    margin-top: 5%;
-    margin-left: 40%;
-    margin-bottom: 5%;
-    border-radius: 20px;
+   
+
     
 }
 [title="Username"] {
@@ -36,20 +32,18 @@
     border-radius: 5px;
 }
 .background{
-    position: relative;
+    
     
     background-color: gray;
-    opacity: 0.2;
+    opacity: 1;
 }
 
 .formStyle{
     
-    margin-top: 15%;
-    margin-left: 10%;
     color:white;
     
 }
 h1{
-    text-align: center;
+   
        
 }

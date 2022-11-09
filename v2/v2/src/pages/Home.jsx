@@ -13,34 +13,34 @@ const { Title, Text } = Typography;
 const Home= ({}) => {
 
   return (
-  <React.Fragment>
+  <>
     
-  <Row align="middle" style={{marginTop:"15%"}}>
+  <Row align="center" style={{marginTop:"15%"}}>
     
-    <Col span={5}></Col>
-    <Col span={14}><Title style={{color:"white",fontSize:"50px",fontWeight:"bold",fontFamily:"Helvetica"}}>Order your Trip!</Title></Col>
-    <Col span={5}></Col>
-   
+  
+    <Col span={15} offset={10}><Title style={{color:"white",fontSize:"55px",fontWeight:"bold",fontFamily:"Helvetica"}}>Order your Trip!</Title></Col>
+    
   </Row>
   <Row>
 
-    <Col span={5}></Col>
-    <Col span={14}>
-    <Title level={2} style={{color:"white",fontWeight:"normal",fontSize:"30px",textAlign:"center",fontFamily:"Helvetica"}}>Easy and free for all</Title>
-    </Col>
-    <Col span={5}></Col>
-  
-  </Row>
-  <Row align="middle" justify="center">
+    
+    <Col span={14} offset={5}>
+    <Title level={2} style={{color:"white",fontWeight:"normal",fontSize:"30px",textAlign:"center",fontFamily:"Helvetica"}}>Easy and free for all</Title></Col>
 
-    <Col span={12}></Col>
-    <Col span={4} >
-    <NavLink style={{flex: 1, display: "flex", alignItems: "center"}} to="/login" ><Button className='btn' shape="round" size='large'>Get Started</Button></NavLink>
-    </Col>
-    <Col span={8}></Col>
-  </Row>
   
-  </React.Fragment>
+  </Row>
+
+
+  <Row justify="center">
+
+  
+    <Col span={4} offset={2}>
+        <NavLink level={2} to="/login" ><Button align="center" className='ant-btn' shape="round" size='large'> Get Started Now</Button></NavLink></Col>
+   
+  
+  </Row>
+  <Row style={{marginBottom:"30%"}}></Row>
+  </>
   )
 }
 

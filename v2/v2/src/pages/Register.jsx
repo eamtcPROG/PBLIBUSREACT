@@ -7,11 +7,13 @@ import {
     Form,
     Input,
     Select,
-    DatePicker
+    DatePicker,
 } from "antd";
 import { NavLink } from "react-router-dom";
+import moment from "moment";
 
 
+const min = moment.now()
 
 
 const { Option } = Select;
@@ -174,7 +176,7 @@ const Register = ({ setIsAuthenticated,setTypeUserId }) => {
                 scrollToFirstError
                 class="formStyle"
             >
-                <h1 style={{ marginTop: "50px", marginBottom: "40px" }}>Register</h1>
+                <h1 style={{ marginTop: "50px",marginLeft: "35%", marginBottom: "40px" }}>Register</h1>
                 <Form.Item label="Nume">
                     <Input onChange={handleNameChange} value={name}/>
                 </Form.Item>
@@ -221,7 +223,7 @@ const Register = ({ setIsAuthenticated,setTypeUserId }) => {
                     rules={[
                         {
                             required: true,
-                            message: "Please confirm your password!"
+                            message: "Confirm your password!"
                         },
                         ({ getFieldValue }) => ({
                             validator(_, value) {
@@ -229,7 +231,7 @@ const Register = ({ setIsAuthenticated,setTypeUserId }) => {
                                     return Promise.resolve();
                                 }
                                 return Promise.reject(
-                                    new Error("The two passwords that you entered do not match!")
+                                    new Error("Wrong password")
                                 );
                             }
                         })
@@ -246,12 +248,13 @@ const Register = ({ setIsAuthenticated,setTypeUserId }) => {
             {
               required: true,
               message: "Please enter the date!",
+              
               type: "date",
             },
           ]}
         >
 
-          <DatePicker onChange={handleBirthdateChange} value={birhdate} />
+          <DatePicker onChange={handleBirthdateChange} value={birhdate}  disabledDate={(current) => current.isAfter(moment().subtract(18,"year"))}/>
         </Form.Item>
 
                 <Form.Item
@@ -265,16 +268,17 @@ const Register = ({ setIsAuthenticated,setTypeUserId }) => {
                     ]}
                 >
                     < Select onSelect={handleUserType} value={typeUserId} placeholder="select your user type">
-                        <Option value="1">Trasporter</Option>
-                        <Option value="2">Custemer</Option>
+                        <Option value="1">Transporter</Option>
+                        <Option value="2">Customer</Option>
                     </Select>
                 </Form.Item>
 
-                <Form.Item {...tailFormItemLayout} style={{ marginRight: "23%" }}>
+                <Form.Item {...tailFormItemLayout} style={{ marginLeft: "-55%" }}>
                     <Button style={{ marginLeft: "35%" }} type="submit" htmlType="submit" >
-                        Register
-                    </Button>
-                    <div><NavLink style={{ marginLeft: "35%" }} to="/login">or Login</NavLink></div>
+                        Register</Button>
+                        <NavLink style={{ marginTopmarginLeft: "5%", marginLeft:"5%" }} to="/login">or Login</NavLink>
+                    
+                    
                 </Form.Item>
             </Form>
         </div>
