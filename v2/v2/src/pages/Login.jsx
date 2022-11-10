@@ -1,4 +1,5 @@
 import { Button, Checkbox, Form, Input, Typography, Col, Row } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 import React,{useState} from 'react';
 import '../MyStyle/Login.css'
 import { NavLink,useNavigate } from "react-router-dom";
@@ -70,12 +71,12 @@ const Login = ({setIsAuthenticated,setTypeUserId}) => {
             
        
         <Row justify="start" style={{marginTop:"11%", marginBottom:"14.5%"}}>
-            <Col span={13} offset={9}>
+            <Col align="center" span={20} offset={2}>
                 <div class="login">
                     <Form class="formStyle" style={{}}
                         name="basic"
-                        labelCol={{span: 13}}
-                        wrapperCol={{span:11}}
+                        labelCol={{span: 8}}
+                        wrapperCol={{span:14}}
                         initialValues={{
                         remember: true,
                         }}
@@ -83,20 +84,19 @@ const Login = ({setIsAuthenticated,setTypeUserId}) => {
                         onFinishFailed={onFinishFailed}
                         autoComplete="off"
                         ><div class="background"></div>
-                        <Row align='middle' style={{}} >
-                            <Col span={7} offset={1}>
-                                <Title style={{color:"black",fontSize:"20px",fontWeight:"bold",fontFamily:"Helvetica"}}>Login</Title>
+                        <Row align='middle' >
+                            <Col align="center" span={10} offset={6}  push={1} >
+                                <Title style={{marginTop:"17%", align:'middle', color:"black",fontSize:"30px",fontFamily:"Helvetica"}} level={4} > Login</Title>
                             </Col>
                         </Row>    
                         
                         <Row justify="start">
-                            <Col span={22} offset={0}>
+                            <Col align="center" span={24} offset={0} pull={2} >
                                 <Form.Item id="UserForm" 
                 
                                             label="Email"
                                              name="email"
                                             style={{color:"white"}}
-                    
                                             rules={[
                                                 {
                                                     required: true,
@@ -104,14 +104,14 @@ const Login = ({setIsAuthenticated,setTypeUserId}) => {
                                                 },
                                             ]}
                                     >
-                                            <Input onChange={handleEmailChange} value={email}id="email"/>
+                                            <Input onChange={handleEmailChange} value={email}id="email" />
                                 </Form.Item>
                             </Col>
                         </Row>
                         
 
                         <Row>
-                            <Col span={22} offset={0}>
+                            <Col align="center" span={22} offset={2} pull={2}>
                              <Form.Item
                                  label="Password"
                                  name="password"
@@ -127,7 +127,9 @@ const Login = ({setIsAuthenticated,setTypeUserId}) => {
                             </Col>
                         </Row>
 
-                        <Form.Item
+                        <Row>
+                            <Col align="center" span={15} offset={2}>
+                            <Form.Item
                             name="remember"
                             valuePropName="checked"
                             wrapperCol={{
@@ -137,19 +139,23 @@ const Login = ({setIsAuthenticated,setTypeUserId}) => {
                         >
                             <Checkbox style={{color:"black"}}>Remember me</Checkbox>
                         </Form.Item>
-
-                        <Form.Item
-                            wrapperCol={{
-                                offset: 8,
-                                span: 16,
-                            }}
-                        >
-                            <Button id="Submit"type="primary" htmlType="submit" >
-                                Submit
-                            </Button>
-                            <div><NavLink to="/register">or Register</NavLink></div>
-                    
-                        </Form.Item>
+                            </Col>
+                        </Row>
+                        
+                         <Row>
+                             <Col align="center" span={5} offset={8} >
+                                <Form.Item>
+                                    <Button id="Submit"type="primary" htmlType="submit" >Submit</Button>
+                                </Form.Item>
+                            </Col>
+                       
+                             <Col align="center" span={10} offset={0} pull={1}>
+                                <Form.Item>
+                                <div><NavLink style={{marginTopMarginBottom:"22%"}} to="/register">or Register</NavLink></div>
+                                </Form.Item>
+                            </Col>
+                        </Row>   
+                            
                 
                     </Form>
                 </div>

@@ -1,7 +1,8 @@
 .site-layout-content {
   min-height: 390px;
   padding: 24px;
-  background: #001529;
+ 
+  background: white;
   
   
  
@@ -37,3 +38,12 @@
 .logoutbtn{
   margin-top: 1%;
 }
+
+.ant-layout-header{
+
+height: 64px;
+background: white;
+
+}
+
+

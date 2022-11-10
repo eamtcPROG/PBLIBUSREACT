@@ -15,31 +15,22 @@ const Home= ({}) => {
   return (
   <>
     
-  <Row align="center" style={{marginTop:"15%"}}>
+  <Row justify="center" style={{marginTop:"15%"}}>
     
   
-    <Col span={15} offset={10}><Title style={{color:"white",fontSize:"55px",fontWeight:"bold",fontFamily:"Helvetica"}}>Order your Trip!</Title></Col>
+    <Col align="center" span={20} offset={2} pull={1}><Title level={1}style={{color:"white",fontSize:"60px",fontWeight:"bold",fontFamily:"Helvetica"}}>Order your Trip!</Title></Col>
+    <Col align="center" span={20} offset={2} pull={1}><Title level={2} style={{align:"middle", color:"white",fontWeight:"normal",fontSize:"30px",textAlign:"center",fontFamily:"Helvetica"}}>Easy and free for all</Title></Col>
     
   </Row>
-  <Row>
 
-    
-    <Col span={14} offset={5}>
-    <Title level={2} style={{color:"white",fontWeight:"normal",fontSize:"30px",textAlign:"center",fontFamily:"Helvetica"}}>Easy and free for all</Title></Col>
-
-  
-  </Row>
-
-
+ 
   <Row justify="center">
-
   
-    <Col span={4} offset={2}>
-        <NavLink level={2} to="/login" ><Button align="center" className='ant-btn' shape="round" size='large'> Get Started Now</Button></NavLink></Col>
+    <Col align="center" span={24} offset={0}><NavLink level={2} to="/login" ><Button align="center" className='ant-btn' shape="round" size='large'> Get Started Now</Button></NavLink></Col>
    
   
   </Row>
-  <Row style={{marginBottom:"30%"}}></Row>
+  <Row style={{marginBottom:"17.62%"}}></Row>
   </>
   )
 }

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
+
 import "./App.css";
 import AddOrder from "./pages/Order/AddOrder";
 import AddOffer from "./pages/Offer/AddOffer";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import { Layout, Menu, Skeleton } from "antd";
+import { Layout, Menu, Skeleton,PageHeader } from "antd";
 import "antd/dist/antd.css";
 import MyNavBar from "./components/navbar";
 import PrivateRoute from "./components/PrivateRoute";
@@ -30,6 +31,9 @@ const App = () => {
   const [orderId, setOrderId] = useState(0);
   const [typeUserId, setTypeUserId] = useState(0);
   const [loading, setloading] = useState(true);
+
+
+  
   useEffect(() => {
 
     const token = localStorage.getItem('token');
@@ -194,6 +198,7 @@ const App = () => {
         {/* </Router> */}
 
       </Content>
+      
 <Footer style={{align:'middle', height:'55px'}}>Let's Go © 2022</Footer>
 
 

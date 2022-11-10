@@ -1,9 +1,11 @@
 .login{
 
     background-color:white;
-    width: 35em;
+    width: 34em;
     height: 24em;
-    border-radius: 0.7em;
+    border-radius: 1.7em;
+    
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 20px 50px;;
     
     
    
@@ -18,24 +20,36 @@
 
 }
 #UserForm__label{
-    
+    color: white;
+    border-radius: 17px;
 }
-#Username{
+#email{
+    color: white;
+    border-radius: 17px;
+    background-color: #f8f8f8;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 5px 9px;;
+    
 
     
 }
 #password{
+    color: white;
+    border-radius: 17px;
+    background-color: #f8f8f8;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 5px 9px;;
     
 }
 #Submit{
     color: white;
-    border-radius: 5px;
+    border-radius: 17px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 5px 9px;;
 }
 .background{
     
     
     background-color: gray;
     opacity: 1;
+   
 }
 
 .formStyle{

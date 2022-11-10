@@ -16,7 +16,7 @@
   .image {
     width: auto;
     height: auto;
-    border-radius: 10px;
+    
   }
   
   .right-arrow {
@@ -47,14 +47,12 @@
   }
   
   .slide.active {
-    opacity: 1;
-    transition-duration: 1s;
-    transform: scale(1.08);
+    
   }
 
   .btn{
 
-    background-color: #00ccff;
-    
+    background-color: #ffffff;
+    box-shadow: rgba(255, 0, 0, 0.52) 0px 5px 20px;;
     border: none;
   }
