@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { Form, Input, Button, Typography, Space, Row, Col } from "antd";
-
+import React, { useState,useEffect } from "react";
+import { Form, Input, Button, Typography, Space, Row, Col,Select } from "antd";
+import Axios from "axios";
 const AddresForm = ({ setIdAddress, setIsActive, setIsActiveSecond, formNumber }) => {
   const [form] = Form.useForm();
   const { Title, Text } = Typography;
@@ -9,7 +9,34 @@ const AddresForm = ({ setIdAddress, setIsActive, setIsActiveSecond, formNumber }
   const [addressname, setAddressName] = useState('');
   const [countryid, setCountryId] = useState(0);
   const [error, setError] = useState('');
+  const [loading, setloading] = useState(true);
+  const [state, setState] = useState([]);
+  useEffect(() => {
+    getData();
+   
+  }, [loading]);
+  const getData = async () => {
+    await Axios.get(
+      "http://localhost:8080/api/country/getall"
+    ).then(
+      res => {
 
+        setState(
+          res.data.map(row => ({
+            IdCountry: row.IdCountry,
+            Name: row.Name,
+          })
+          
+          )
+          
+        );
+        
+        console.log(state);
+        
+        setloading(false);
+      }
+    );
+  };
   const handleLocationNameChange = (e) => {
     setLocationName(e.target.value);
   };
@@ -19,8 +46,8 @@ const AddresForm = ({ setIdAddress, setIsActive, setIsActiveSecond, formNumber }
   const handleAddressNameChange = (e) => {
     setAddressName(e.target.value);
   };
-  const handleCountryIdChange = (e) => {
-    setCountryId(e.target.value);
+  const handleCountryIdChange = (value) => {
+    setCountryId(value);
 
   };
   const goBack = () => {
@@ -113,8 +140,18 @@ const AddresForm = ({ setIdAddress, setIsActive, setIsActiveSecond, formNumber }
             },
           ]}
         >
-          <Input placeholder="Country" onChange={handleCountryIdChange} value={countryid} />
-        </Form.Item>
+          < Select
+      defaultValue="Select model"
+      style={{
+        width: 120,
+      }}
+      onChange={handleCountryIdChange}
+      options={state.map((item)=>({
+        value:item.IdCountry,
+        label:`${item.Name}`
+      }))}
+    />
+    </Form.Item>
         <Form.Item
           label="Town"
           required

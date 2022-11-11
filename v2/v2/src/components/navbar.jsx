@@ -67,16 +67,27 @@ const MyNavBar = ({ setIsAuthenticated, typeUserId, isAuthenticated }) => {
                     label: (<NavLink to="/orderpage">My Order</NavLink>),
                     icon: <TagOutlined />
                 },
-                typeUserId == 1 ? {
-                    key: "Order",
-                    label: (<NavLink to="/order">Order</NavLink>),
-                    icon: <TagOutlined />
-                }
-                    : {
-                        key: "Offer",
-                        label: (<NavLink to="/offer">Offer</NavLink>),
-                        icon: <FormOutlined />
-                    },
+                
+                    typeUserId == 1 ? {
+                        key: "Order",
+                        label: (<NavLink to="/order">Order</NavLink>),
+                        icon: <TagOutlined />
+                    }
+                        : {
+                            key: "Offer",
+                            label: (<NavLink to="/offer">Offer</NavLink>),
+                            icon: <FormOutlined />
+                        },
+                        typeUserId == 1 ? {
+                            key: "PersonalCabinetT",
+                            label: (<NavLink to="/transporter">Personal cabinet</NavLink>),
+                            icon: <TagOutlined />
+                        }
+                            : {
+                                key: "PersonalCabinetC",
+                                label: "In development",
+                                icon: <FormOutlined />
+                            },
                 {
                     key: "Logout",
                     label: (<Button type="text" className='logoutbtn' icon={<PoweroffOutlined />} block={true} onClick={logout}

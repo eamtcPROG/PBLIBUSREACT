@@ -55,7 +55,7 @@ const Register = ({ setIsAuthenticated,setTypeUserId }) => {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
-    const [birhdate, setBirhdate] = useState(null);
+    const [birthdate, setBirhdate] = useState(null);
     const [typeUserId, setUserType] = useState(0);
 
     const handleNameChange = (e) => {
@@ -92,7 +92,7 @@ const Register = ({ setIsAuthenticated,setTypeUserId }) => {
             password,
             surname,
             email,
-            birhdate,
+            birthdate,
             typeUserId
           }),
           headers: {
@@ -254,7 +254,7 @@ const Register = ({ setIsAuthenticated,setTypeUserId }) => {
           ]}
         >
 
-          <DatePicker onChange={handleBirthdateChange} value={birhdate}  disabledDate={(current) => current.isAfter(moment().subtract(18,"year"))}/>
+          <DatePicker onChange={handleBirthdateChange} value={birthdate}  disabledDate={(current) => current.isAfter(moment().subtract(18,"year"))}/>
         </Form.Item>
 
                 <Form.Item

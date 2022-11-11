@@ -24,12 +24,15 @@ import Home from "./pages/Home";
 import Order from "./pages/Order/Order";
 import Offer from "./pages/Offer/Offer";
 import Axios from "axios";
+import TransporterPage from "./pages/Transporter/TransporterPage";
+import AddTransport from "./pages/Transporter/AddTransport";
 const { Header, Content, Footer } = Layout;
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [orderId, setOrderId] = useState(0);
   const [typeUserId, setTypeUserId] = useState(0);
+  const [userId, setUserId] = useState(0);
   const [loading, setloading] = useState(true);
 
 
@@ -62,7 +65,7 @@ const App = () => {
       .catch(console.error);
 
 
-  }, []);
+  }, [isAuthenticated]);
 
   useEffect(() => {
 
@@ -85,6 +88,7 @@ const App = () => {
 
       if (data) {
         setTypeUserId(data.TypeUserId);
+        setUserId(data.IdUser);
         setIsAuthenticated(true);
         setloading(false)
       }
@@ -92,7 +96,7 @@ const App = () => {
       .catch(console.error);
 
 
-  }, []);
+  }, [loading]);
 
   return loading ? (<Skeleton />) : (
     //Layout Component
@@ -178,7 +182,22 @@ const App = () => {
               {typeUserId == 1 ? <Order setOrderId={setOrderId} /> : <></>}
             </PrivateRoute>}
           />
-
+          <Route
+            path="/transporter"
+            element={<PrivateRoute
+              isAuthenticated={isAuthenticated}
+            >
+              {typeUserId == 1 ? <TransporterPage /> : <></>}
+            </PrivateRoute>}
+          />
+        <Route
+            path="/addtransporter"
+            element={<PrivateRoute
+              isAuthenticated={isAuthenticated}
+            >
+              {typeUserId == 1 ? <AddTransport userId={userId}/> : <></>}
+            </PrivateRoute>}
+          />
           <Route
             path="/offer"
             element={<PrivateRoute
