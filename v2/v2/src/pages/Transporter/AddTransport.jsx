@@ -62,7 +62,7 @@ const AddTransport = ({userId}) => {
     );
   };
   const getDataType = async () => {
-    setloading(true);
+    
     await Axios.get(
       "http://localhost:8080/api/typeTrasport/getall"
     ).then(
@@ -116,10 +116,10 @@ const addTransporter = ()=>{
     fetch(`http://localhost:8080/api/transport/add`, {
       method: 'POST',
       body: JSON.stringify({
-        NumberSeats:numberseats,
-        Plate:plate,
-        ModelId:modelid,
-        TypeTransportId:typetransportid
+        numberseats:numberseats,
+        plate:plate,
+        modelid:modelid,
+        typetransportid:typetransportid
       }),
       headers: {
         Accept: 'application/json',
