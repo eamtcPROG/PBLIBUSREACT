@@ -141,7 +141,7 @@ const AddresForm = ({ setIdAddress, setIsActive, setIsActiveSecond, formNumber }
           ]}
         >
           < Select
-      defaultValue="Select model"
+      defaultValue="Select Country"
       style={{
         width: 120,
       }}

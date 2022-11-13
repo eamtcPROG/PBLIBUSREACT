@@ -133,7 +133,7 @@ const App = () => {
             element={<PrivateRoute
               isAuthenticated={isAuthenticated}
             >
-              <AddOffer orderId={orderId} />
+              <AddOffer orderId={orderId} userId={userId}/>
             </PrivateRoute>}
           />
 

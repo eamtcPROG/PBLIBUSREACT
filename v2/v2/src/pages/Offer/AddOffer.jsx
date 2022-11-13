@@ -1,28 +1,60 @@
-import React,{useState}from "react";
-import { Form, Input, Button, Typography } from "antd";
+import React, { useState,useEffect } from "react";
+import { Form, Input, Button, Typography, Select } from "antd";
 import { useNavigate } from "react-router-dom";
-const AddOffer = ({orderId}) => {
+import Axios from "axios";
+const AddOffer = ({ orderId, userId }) => {
   const history = useNavigate();
   const [form] = Form.useForm();
   const { Title, Text } = Typography;
-  
+
   const [price, setPrice] = useState(0.0);
   const [orderid, setOrderId] = useState(0);
   const [trasporterid, settrasporterid] = useState(0);
-  
-
+  const [loading, setloading] = useState(true);
+  const [state, setState] = useState([]);
   const handlePriceChange = (e) => {
     setPrice(e.target.value);
-    
+
   };
   const handleOrderIdChange = (e) => {
     setOrderId(e.target.value);
   };
-  const handletrasporteridChange = (e) => {
-    settrasporterid(e.target.value);
+  const handletrasporteridChange = (value) => {
+    console.log(value);
+    settrasporterid(value);
     console.log(trasporterid);
   };
-  
+  useEffect(() => {
+    getData();
+
+  }, [loading]);
+  const getData = async () => {
+    console.log(userId)
+    await Axios.get(
+      `http://localhost:8080/api/transporter/getalltransport/${userId}`
+    ).then(
+      res => {
+        console.log()
+
+        setState(
+          res.data.map(row => ({
+            
+              IdTransporter: row.Transporters[0].IdTransporter ,
+              ModelName: row.Model.Name ,
+              NumberSeats: row.NumberSeats
+            
+          })
+
+          )
+
+        );
+
+        console.log(state);
+
+        setloading(false);
+      }
+    );
+  };
   const handleSubmit = (e) => {
     //e.preventDefault();
 
@@ -30,7 +62,7 @@ const AddOffer = ({orderId}) => {
       method: 'POST',
       body: JSON.stringify({
         price,
-        orderid:orderId,
+        orderid: orderId,
         trasporterid
       }),
       headers: {
@@ -45,7 +77,7 @@ const AddOffer = ({orderId}) => {
       }
 
     }).then((data) => {
-        console.log(data);
+      console.log(data);
       if (data != null) {
         return history('/offerpage');
       }
@@ -103,8 +135,8 @@ const AddOffer = ({orderId}) => {
         >
           <Input placeholder="Price" onChange={handlePriceChange} value={price} />
         </Form.Item>
-       
-        
+
+
         <Form.Item // Form Item (Email)
           label="Transport"
           name="transport"
@@ -117,7 +149,17 @@ const AddOffer = ({orderId}) => {
             },
           ]}
         >
-          <Input style={{ width: "150px" }} placeholder="Transport" onChange={handletrasporteridChange} value={trasporterid} />
+          < Select
+            defaultValue="Select model"
+            style={{
+              width: 300,
+            }}
+            onChange={handletrasporteridChange}
+            options={state.map((item) => ({
+              value: item.IdTransporter,
+              label: `${item.ModelName} - Number of seats ${item.NumberSeats}`
+            }))}
+          />
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit">Submit</Button>
