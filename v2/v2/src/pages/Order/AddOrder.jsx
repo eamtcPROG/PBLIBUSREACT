@@ -2,6 +2,7 @@ import React,{useState}from "react";
 import { Form, Input, Button, Typography, DatePicker, Space } from "antd";
 import { useNavigate } from "react-router-dom";
 import AddresForm from "../../components/AddresForm";
+
 const AddOrder = () => {
   const history = useNavigate();
   const [form] = Form.useForm();
@@ -142,7 +143,7 @@ const handleAddressSecond  =()=> {
           ]}
         >
 
-          <DatePicker onChange={handleDateChange} value={date} />
+<DatePicker />
         </Form.Item>
         <Form.Item // Form Item (Email)
           label="Number of people"
