@@ -5,7 +5,7 @@ import Axios from "axios";
 
 
 
-const AddTransport = ({userId}) => {
+const AddTransport = ({}) => {
   const history = useNavigate();
   const [form] = Form.useForm();
   const { Title, Text } = Typography;
@@ -17,6 +17,7 @@ const AddTransport = ({userId}) => {
   const [modelid, setModelId] = useState(0);
   const [state, setState] = useState([]);
   const [stateType, setStateType] = useState([]);
+  const [userId,setUserId] = useState(0);
   const [test, setTest] = useState(0);
   const handleNumberSeatsChange = (e) => {
     setNumberSeats(e.target.value);
@@ -60,6 +61,25 @@ const AddTransport = ({userId}) => {
         setloading(false);
       }
     );
+    const token = localStorage.getItem('token');
+    fetch(`http://localhost:8080/api/auth/getuser`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        token: token,
+      },
+    }).then((res) => {
+      return res.json();
+
+    }).then((data) => {
+
+      if (data) {
+        setUserId(data.IdUser);
+        setloading(false);
+      }
+    })
+      .catch(console.error);
+    
   };
   const getDataType = async () => {
     
