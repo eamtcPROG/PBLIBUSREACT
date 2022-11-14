@@ -88,6 +88,7 @@ const App = () => {
 
       if (data) {
         setTypeUserId(data.TypeUserId);
+        console.log(data.IdUser)
         setUserId(data.IdUser);
         setIsAuthenticated(true);
         setloading(false)
@@ -95,7 +96,7 @@ const App = () => {
     })
       .catch(console.error);
 
-
+console.log(userId)
   }, [loading]);
 
   return loading ? (<Skeleton />) : (
@@ -195,7 +196,7 @@ const App = () => {
             element={<PrivateRoute
               isAuthenticated={isAuthenticated}
             >
-              {typeUserId == 1 ? <AddTransport userId={userId}/> : <></>}
+              {typeUserId == 1 ? <AddTransport /> : <></>}
             </PrivateRoute>}
           />
           <Route
