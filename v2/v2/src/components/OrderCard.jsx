@@ -4,7 +4,7 @@ import { EditOutlined } from '@ant-design/icons';
 
 import { Button, Checkbox, Form, Input, Typography } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-
+import { format } from 'date-fns'
 import { NavLink,useNavigate } from "react-router-dom";
 const { Title, Text } = Typography;
 const OrderCard = ({ state,setOrderId }) => {
@@ -76,7 +76,7 @@ const OrderCard = ({ state,setOrderId }) => {
         {state != undefined ? state.AddressFullSecond : ""}
         </Col>
         <Col  span={8} align="center">
-        {state != undefined ? state.Date: ""}
+        {state != undefined ? format(new Date(state.Date), 'dd-MM-yyyy'): ""}
         </Col>
         <Col span={2} align="center">
         {state != undefined ? state.NumberPersons : ""}
