@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card } from "antd";
+import { Card,Row,Col } from "antd";
 import { EditOutlined } from '@ant-design/icons';
-import { useNavigate } from "react-router-dom";
+
+import { Button, Checkbox, Form, Input, Typography } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+
+import { NavLink,useNavigate } from "react-router-dom";
+const { Title, Text } = Typography;
 const OrderCard = ({ state,setOrderId }) => {
     const history = useNavigate();
     const handleMakeOffer = ()=>{
@@ -12,7 +17,7 @@ const OrderCard = ({ state,setOrderId }) => {
     return state != undefined ? (
         <>
 
-            <Card
+            {/* <Card title="Card title" bordered={false}
                 style={{
                     width: "90em",
                     marginTop: 16,
@@ -21,7 +26,8 @@ const OrderCard = ({ state,setOrderId }) => {
                     <Button onClick={handleMakeOffer}>Make an offer</Button>
                 ]}
             >
-                <Card.Grid hoverable={false} style={{
+                
+                <Card.Grid  hoverable={false} style={{
                     width: '20%',
                     textAlign: 'center',
 
@@ -34,7 +40,7 @@ const OrderCard = ({ state,setOrderId }) => {
                 }}>
                     {state != undefined ? state.EndPointAddressId : ""}
                 </Card.Grid>
-                <Card.Grid hoverable={false} style={{
+                <Card.Grid  hoverable={false} style={{
                     width: '20%',
                     textAlign: 'center',
                 }}>
@@ -52,7 +58,38 @@ const OrderCard = ({ state,setOrderId }) => {
                 }}>
                     {state != undefined ? state.MoreDetails : ""}
                 </Card.Grid>
-            </Card>
+            </Card> */}
+            <Card 
+      title="Card title"
+      bordered={false}
+      style={{
+        width: 600,
+      }}
+    >
+      <Row>
+        <Col span={2} align="center" offset={1}>
+        {state != undefined ? state.StartPointAddressId : ""}
+        </Col>
+        <Col span={2} align="center">
+        {state != undefined ? state.EndPointAddressId : ""}
+        </Col>
+        <Col  span={8} align="center">
+        {state != undefined ? state.Date: ""}
+        </Col>
+        <Col span={2} align="center">
+        {state != undefined ? state.NumberPersons : ""}
+        </Col>
+      </Row>
+      <Row>
+        <Col span={12} align="left" offset={1}>
+        <Text>Comment:</Text>    {state != undefined ? state.MoreDetails : ""}
+        </Col>
+        <Col span={8} offset={10}>
+        <Button onClick={handleMakeOffer}>Make an offer</Button>
+        </Col>
+      </Row>
+     
+    </Card>
         </>
     ):(<></>);
 };
