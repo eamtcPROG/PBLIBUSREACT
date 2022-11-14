@@ -52,7 +52,7 @@ const MyNavBar = ({ setIsAuthenticated, typeUserId, isAuthenticated }) => {
 
         })
             .catch(console.error);
-        console.log(isAuthenticated == true)
+        console.log(isAuthenticated)
         if (isAuthenticated == true) {
             setItems([
                 typeUserId == 1 ? {

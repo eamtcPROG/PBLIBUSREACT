@@ -2,7 +2,7 @@ import React, { useState,useEffect } from "react";
 import { Form, Input, Button, Typography, Select } from "antd";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
-const AddOffer = ({ orderId, userId }) => {
+const AddOffer = ({ orderId }) => {
   const history = useNavigate();
   const [form] = Form.useForm();
   const { Title, Text } = Typography;
@@ -25,10 +25,29 @@ const AddOffer = ({ orderId, userId }) => {
     console.log(trasporterid);
   };
   useEffect(() => {
-    getData();
+    const token = localStorage.getItem('token');
+    fetch(`http://localhost:8080/api/auth/getuser`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        token: token,
+      },
+    }).then((res) => {
+      return res.json();
+
+    }).then((data) => {
+
+      if (data) {
+        
+        getData(data.IdUser);
+        setloading(false);
+      }
+    })
+      .catch(console.error);
+    
 
   }, [loading]);
-  const getData = async () => {
+  const getData = async (userId) => {
     console.log(userId)
     await Axios.get(
       `http://localhost:8080/api/transporter/getalltransport/${userId}`

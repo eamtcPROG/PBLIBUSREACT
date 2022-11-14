@@ -1,4 +1,4 @@
-import React,{useState}from "react";
+import React,{useState,useEffect}from "react";
 import { Form, Input, Button, Typography, DatePicker, Space } from "antd";
 import { useNavigate } from "react-router-dom";
 import AddresForm from "../../components/AddresForm";
@@ -11,12 +11,32 @@ const AddOrder = () => {
   const [startpointaddressid, setStartPointAddressId] = useState(0);
   const [endpointaddressid, setEndPointAddressId] = useState(0);
   const [idaddress, setIdAddress] = useState(0);
-  
+  const [userId,setUserId] = useState(0);
+  const [loading, setloading] = useState(true);
   const [date, setDate] = useState(null);
   const [moredetails, setMoreDetails] = useState('');
   const [isActive, setIsActive] = useState(false);
   const [isActiveSecond, setIsActiveSecond] = useState(false);
-  
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    fetch(`http://localhost:8080/api/auth/getuser`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        token: token,
+      },
+    }).then((res) => {
+      return res.json();
+
+    }).then((data) => {
+
+      if (data) {
+        setUserId(data.IdUser);
+        setloading(false);
+      }
+    })
+      .catch(console.error);
+  }, [loading]);
   const handleNumberPersonsChange = (e) => {
     setNumberPersons(e.target.value);
     console.log(e.target.value);
@@ -70,7 +90,32 @@ const handleAddressSecond  =()=> {
     }).then((data) => {
 
       if (data != null) {
+
+
+         fetch(`http://localhost:8080/api/customer/add`, {
+      method: 'POST',
+      body: JSON.stringify({
+        orderid:data.IdOrder,
+        userid:userId
+      }),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then((res) => {
+      if (res.status === 200) {
+        return res.json();
+
+      }
+
+    }).then((data) => {
+
+      if (data != null) {
+
+        
         return history('/orderpage');
+      }
+    });
       }
     });
 
@@ -143,7 +188,7 @@ const handleAddressSecond  =()=> {
           ]}
         >
 
-<DatePicker />
+        <DatePicker onChange={handleDateChange} value={date}/>
         </Form.Item>
         <Form.Item // Form Item (Email)
           label="Number of people"
