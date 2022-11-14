@@ -23,18 +23,21 @@ const OrderPage = () => {
   };
   useEffect(() => {
     getData();
-  }, []);
+  }, [loading]);
   const getData = async () => {
     await Axios.get(
-      "http://localhost:8080/api/order/getall"
+      "http://localhost:8080/api/order/getallwithaddress"
     ).then(
+      
       res => {
-
+        console.log(res)
         setState(
           res.data.map(row => ({
+            
             NumberPersons: row.NumberPersons,
             StartPointAddressId: row.StartPointAddressId,
             EndPointAddressId: row.EndPointAddressId,
+            AddressFull:row.AddressStart.LocationName,
             Date: row.Date,
             MoreDetails: row.MoreDetails,
             IdOrder: row.IdOrder

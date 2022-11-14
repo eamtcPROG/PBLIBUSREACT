@@ -11,6 +11,7 @@ const OrderCard = ({ state,setOrderId }) => {
     const history = useNavigate();
     const handleMakeOffer = ()=>{
         if(state != undefined) setOrderId(state.IdOrder);
+        console.log(state)
         history("/addoffer");
     }
     
@@ -60,18 +61,19 @@ const OrderCard = ({ state,setOrderId }) => {
                 </Card.Grid>
             </Card> */}
             <Card 
-      title="Card title"
+      title={state.Title}
       bordered={false}
       style={{
         width: 600,
       }}
     >
       <Row>
-        <Col span={2} align="center" offset={1}>
-        {state != undefined ? state.StartPointAddressId : ""}
+        <Col span={4} align="center" offset={1}>
+        {state != undefined ? state.AddressFull : ""}
         </Col>
-        <Col span={2} align="center">
-        {state != undefined ? state.EndPointAddressId : ""}
+        
+        <Col span={4} offset={1} align="center">
+        {state != undefined ? state.AddressFullSecond : ""}
         </Col>
         <Col  span={8} align="center">
         {state != undefined ? state.Date: ""}

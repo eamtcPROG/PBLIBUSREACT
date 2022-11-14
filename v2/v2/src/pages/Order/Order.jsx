@@ -13,17 +13,20 @@ const Order = ({setOrderId}) => {
   const { Title, Text } = Typography;
   useEffect(() => {
     getData();
-  }, []);
+  }, [loading]);
   const getData = async () => {
     await Axios.get(
-      "http://localhost:8080/api/order/getall"
+      "http://localhost:8080/api/order/getallwithaddress"
     ).then(
       res => {
-
+        console.log(res.data)
         setState(
           res.data.map(row => ({
             NumberPersons: row.NumberPersons,
             StartPointAddressId: row.StartPointAddressId,
+            AddressFull:`str. ${row.AddressStart.AddressName},${row.AddressStart.AddressNumber},${row.AddressStart.LocationName}`,
+            AddressFullSecond:`str. ${row.AddressEnd.AddressName},${row.AddressEnd.AddressNumber},${row.AddressEnd.LocationName}`,
+            Title:`${row.AddressEnd.Country.Name} - ${row.AddressStart.Country.Name}`,
             EndPointAddressId: row.EndPointAddressId,
             Date: row.Date,
             MoreDetails: row.MoreDetails,
