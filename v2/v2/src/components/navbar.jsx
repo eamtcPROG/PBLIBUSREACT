@@ -80,8 +80,8 @@ const MyNavBar = ({ setIsAuthenticated, typeUserId, isAuthenticated }) => {
                         },
                         typeUserId == 1 ? {
                             key: "PersonalCabinetT",
-                            label: (<NavLink to="/transporter">Personal cabinet</NavLink>),
-                            icon: <TagOutlined />
+                            label: (<NavLink to="/transporter">My Profile</NavLink>),
+                            icon: <UserOutlined />
                         }
                             : {
                                 key: "PersonalCabinetC",
@@ -91,7 +91,7 @@ const MyNavBar = ({ setIsAuthenticated, typeUserId, isAuthenticated }) => {
                 {
                     key: "Logout",
                     label: (<Button type="text" className='logoutbtn' icon={<PoweroffOutlined />} block={true} onClick={logout}
-                    >Logout</Button>),
+                    > Logout</Button>),
                 }
             ])
         } else {
