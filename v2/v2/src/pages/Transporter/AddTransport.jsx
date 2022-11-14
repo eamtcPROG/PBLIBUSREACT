@@ -1,5 +1,5 @@
 import React,{useState,useEffect}from "react";
-import { Form, Input, Button, Typography,Select, Spin } from "antd";
+import { Form, Input, Button, Typography,Select, Spin,Row,Col } from "antd";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 
@@ -167,6 +167,8 @@ const addTransporter = ()=>{
   };
   return (
     <div>
+      <Row align='middle' >
+      <Col align="center" span={10} offset={6}  push={1} >
       <Title // Form's Title
         level={3}
         style={{
@@ -178,6 +180,8 @@ const addTransporter = ()=>{
       >
         Add Transport
       </Title>
+      </Col>
+      </Row>
       
       <Form // Ant Design's Form Component
         name="contact-us"
