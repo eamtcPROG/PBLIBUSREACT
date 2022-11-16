@@ -114,7 +114,7 @@ const OfferPage = () => {
         {/* <div className="site-card-border-less-wrapper"> */}
         
        { state ?state.map((item)=>{
-        return ( <Card className='offercard' title="Start Location - Destination"
+        return ( <Card className='offercard' title={item.TitleOffer}
         bordered={false}
         actions={[
           <Fragment>
@@ -126,7 +126,7 @@ const OfferPage = () => {
         
         <Row>
 
-          <Descriptions title={item.TitleOffer}  >
+          <Descriptions title="Order Info"  >
             <Descriptions.Item label="Location">{item.FullLocationStart}</Descriptions.Item>
             <Descriptions.Item label="Destination">{item.FullLocationEnd}</Descriptions.Item>
             <Descriptions.Item label="Number of people">{item.NumberPersons}</Descriptions.Item>
