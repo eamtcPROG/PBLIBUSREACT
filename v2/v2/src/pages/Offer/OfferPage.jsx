@@ -1,6 +1,6 @@
 import { Button, Space, Table, Card, Collapse, Typography, Descriptions, Row, Col,Skeleton } from 'antd';
 import React, { useState, useEffect, Fragment } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,NavLink } from 'react-router-dom';
 import { format } from 'date-fns'
 import Axios from "axios";
 const { Panel } = Collapse;
@@ -77,27 +77,6 @@ const OfferPage = () => {
   };
 
 
-
-  const handleAddOrder = () => {
-    history('/addoffer');
-  };
-  const columns = [
-    {
-      title: "Price",
-      dataIndex: "Price",
-      width: 150
-    },
-    {
-      title: "Order Id",
-      dataIndex: "OrderId",
-      width: 150
-    },
-    {
-      title: "Transporter Id",
-      dataIndex: "TrasporterId",
-      width: 150
-    }
-  ];
   return loading ? (<Skeleton />) :  (
     <>
       <Space
@@ -118,7 +97,7 @@ const OfferPage = () => {
         bordered={false}
         actions={[
           <Fragment>
-            <Button>Edit</Button>
+            <NavLink to={`/editoffer/${item.IdOffer}`} ><Button>Edit</Button></NavLink>
             <Button>Delete</Button>
           </Fragment>
         ]}

@@ -26,6 +26,7 @@ import Offer from "./pages/Offer/Offer";
 import Axios from "axios";
 import TransporterPage from "./pages/Transporter/TransporterPage";
 import AddTransport from "./pages/Transporter/AddTransport";
+import EditOffer from "./pages/Offer/EditOffer";
 const { Header, Content, Footer } = Layout;
 
 const App = () => {
@@ -137,7 +138,14 @@ console.log(userId)
               <AddOffer orderId={orderId} userId={userId}/>
             </PrivateRoute>}
           />
-
+<Route
+            path="/editoffer/:id"
+            element={<PrivateRoute
+              isAuthenticated={isAuthenticated}
+            >
+              <EditOffer />
+            </PrivateRoute>}
+          />
           <Route
             path="/login"
             element={<Login setIsAuthenticated={setIsAuthenticated} setTypeUserId={setTypeUserId} />}
