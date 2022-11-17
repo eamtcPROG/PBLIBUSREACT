@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from "react";
-import { Form, Input, Button, Typography, Select } from "antd";
+import { Form, Input, Button, Typography, Select,Card } from "antd";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 const AddOffer = ({ orderId }) => {
@@ -104,27 +104,14 @@ const AddOffer = ({ orderId }) => {
 
   };
   return (
-    <div>
-      <Title // Form's Title
-        level={3}
-        style={{
-          marginBottom: 0,
-          paddingTop: 20,
-          paddingLeft: 30,
-          paddingRight: 30,
-        }}
-      >
-        Add Offer
-      </Title>
-      <Text // Form's Description
-        type="secondary"
-        style={{
-          paddingLeft: 30,
-          paddingRight: 30,
-        }}
-      >
-
-      </Text>
+    <div className="site-card-border-less-wrapper">
+    <Card
+      title="Add Offer"
+      bordered={false}
+      style={{
+        width: 600,
+      }}
+    >
       <Form // Ant Design's Form Component
         name="contact-us"
         layout="vertical"
@@ -137,6 +124,7 @@ const AddOffer = ({ orderId }) => {
           paddingBottom: 10,
           paddingLeft: 30,
           paddingRight: 30,
+          
         }}
         onFinish={handleSubmit}
       >
@@ -184,7 +172,90 @@ const AddOffer = ({ orderId }) => {
           <Button type="primary" htmlType="submit">Submit</Button>
         </Form.Item>
       </Form>
-    </div>
+    </Card>
+  </div>
+    // <div>
+    //   <Title // Form's Title
+    //     level={3}
+    //     style={{
+    //       marginBottom: 0,
+    //       paddingTop: 20,
+    //       paddingLeft: 30,
+    //       paddingRight: 30,
+    //     }}
+    //   >
+    //     Add Offer
+    //   </Title>
+    //   <Text // Form's Description
+    //     type="secondary"
+    //     style={{
+    //       paddingLeft: 30,
+    //       paddingRight: 30,
+    //     }}
+    //   >
+
+    //   </Text>
+    //   <Form // Ant Design's Form Component
+    //     name="contact-us"
+    //     layout="vertical"
+    //     form={form}
+    //     wrapperCol={{
+    //       span: 6,
+    //     }}
+    //     style={{
+    //       marginTop: 20,
+    //       paddingBottom: 10,
+    //       paddingLeft: 30,
+    //       paddingRight: 30,
+    //     }}
+    //     onFinish={handleSubmit}
+    //   >
+    //     <Form.Item // Form Item (First Name)
+    //       label="Price"
+    //       name="price"
+    //       required
+    //       tooltip="This is a required field"
+    //       rules={[
+    //         {
+    //           required: true,
+    //           message: "Please enter price!",
+    //         },
+    //       ]}
+    //     >
+    //       <Input placeholder="Price" onChange={handlePriceChange} value={price} />
+    //     </Form.Item>
+
+
+    //     <Form.Item // Form Item (Email)
+    //       label="Transport"
+    //       name="transport"
+    //       required
+    //       tooltip="This is a required field"
+    //       rules={[
+    //         {
+    //           required: true,
+    //           message: "Please enter number of transport!"
+    //         },
+    //       ]}
+    //     >
+    //       < Select
+    //         defaultValue="Select model"
+    //         style={{
+    //           width: 300,
+    //         }}
+    //         onChange={handletrasporteridChange}
+    //         options={state.map((item) => ({
+    //           value: item.IdTransporter,
+    //           label: `${item.ModelName} - Number of seats ${item.NumberSeats}`
+    //         }))}
+    //       />
+    //     </Form.Item>
+    //     <Form.Item>
+    //       <Button type="primary" htmlType="submit">Submit</Button>
+    //     </Form.Item>
+    //   </Form>
+    // </div>
+    
   );
 };
 
