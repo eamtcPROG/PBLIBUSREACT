@@ -1,5 +1,5 @@
 import React,{useState,useEffect}from "react";
-import { Form, Input, Button, Typography, DatePicker, Space } from "antd";
+import { Form, Input, Button, Typography, DatePicker, Space,Card } from "antd";
 import { useNavigate } from "react-router-dom";
 import AddresForm from "../../components/AddresForm";
 
@@ -122,7 +122,7 @@ const handleAddressSecond  =()=> {
   };
   return (
     <div>
-      <Title // Form's Title
+      {/* <Title // Form's Title
         level={3}
         style={{
           marginBottom: 0,
@@ -141,7 +141,14 @@ const handleAddressSecond  =()=> {
         }}
       >
 
-      </Text>
+      </Text> */}
+      <Card
+      title="Add Order"
+      bordered={false}
+      style={{
+        width: 1000,
+      }}
+    >
       <Form // Ant Design's Form Component
         name="contact-us"
         layout="vertical"
@@ -218,6 +225,7 @@ const handleAddressSecond  =()=> {
           <Button type="primary" htmlType="submit">Submit</Button>
         </Form.Item>
       </Form>
+      </Card>
     </div>
   );
 };

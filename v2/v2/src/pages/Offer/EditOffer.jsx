@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form, Input, Button, Typography, Select, Skeleton } from "antd";
+import { Form, Input, Button, Typography, Select, Skeleton,Card } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import Axios from "axios";
 const EditOffer = ({ }) => {
@@ -133,7 +133,7 @@ const EditOffer = ({ }) => {
     };
     return loading != false || loadingData != false ? (<Skeleton />) : (
         <div>
-            <Title // Form's Title
+            {/* <Title // Form's Title
                 level={3}
                 style={{
                     marginBottom: 0,
@@ -152,7 +152,14 @@ const EditOffer = ({ }) => {
                 }}
             >
 
-            </Text>
+            </Text> */}
+        <Card
+        title="Edit Offer"
+        bordered={false}
+        style={{
+        width: 600,
+        }}
+        >
             <Form // Ant Design's Form Component
                 name="contact-us"
                 layout="vertical"
@@ -199,6 +206,7 @@ const EditOffer = ({ }) => {
                     <Button type="primary" htmlType="submit">Submit</Button>
                 </Form.Item>
             </Form>
+            </Card>
         </div>
     );
 };

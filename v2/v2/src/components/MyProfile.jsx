@@ -63,13 +63,13 @@ const MyProfile = () => {
 
                 <Row>
                     <Col span={4}>
-                        Email
+                        <Text>Email</Text>
                     </Col>
                     <Col push={1}>{state.Email}</Col>
                 </Row>
                 <Row>
                     <Col span={4}>
-                        Birthdate
+                        <Text>Birthdate</Text>
                     </Col>
                     {birthdate!= undefined?<Col push={1}>{ format(new Date(birthdate), 'dd-MM-yyyy')}</Col>:<Skeleton/>}
                 </Row>
