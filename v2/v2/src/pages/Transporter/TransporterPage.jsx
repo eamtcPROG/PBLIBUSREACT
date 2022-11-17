@@ -9,13 +9,38 @@ const TransporterPage = ({}) => {
   const { Panel } = Collapse;
   const [state, setState] = useState([]);
   
+  const [stateTransport, setStateTransport] = useState([]);
+
   const [loading, setloading] = useState(true);
   
   const { Title, Text } = Typography;
   useEffect(() => {
     getData();
-    console.log(state);
+    console.log(stateTransport);
   }, [loading]);
+
+  const getDataTransport = async (userId) => {
+    
+    fetch(`http://localhost:8080/api/transporter/gettransport/${userId}`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        
+      },
+    }).then((res) => {
+      return res.json();
+
+    }).then((data) => {
+
+      if (data) {
+        setStateTransport(data);
+        setloading(false);
+      }
+    })
+      .catch(console.error);
+    
+  };
+
   const getData = async () => {
     const token = localStorage.getItem('token');
     fetch(`http://localhost:8080/api/auth/getuser`, {
@@ -31,7 +56,8 @@ const TransporterPage = ({}) => {
 
       if (data) {
         setState(data);
-        setloading(false);
+        getDataTransport(data.IdUser);
+        
       }
     })
       .catch(console.error);
@@ -43,28 +69,45 @@ const TransporterPage = ({}) => {
     <>
     <MyProfile/>
     <Row>
-    <Card
-      title="Transport"
-      bordered={false}
-      style={{
-        width: 600,
-      }}
-    >
-    <Row>
-    <Collapse defaultActiveKey={['1']} ghost>
-    <Panel header="See all" key="1">
-    <Col><Collapse defaultActiveKey={['1']} ghost><Panel header="Transport 1" key="2"></Panel></Collapse></Col>
-    </Panel>
-    </Collapse>
-    </Row>
-    <Row>
-    <Col span={6}><Button onClick={()=>{history("/addtransporter")}}>Register Transport</Button></Col>
-    </Row>
-    
+        <Card
+        title="Transport"
+        bordered={false}
+        style={{
+            width: 600,
+        }}
+        >
             
-    
-    </Card>
+            <Row>
+
+                <Collapse ghost>
+                {stateTransport.map((item, i) => {
+                    return(
+                    <Panel header={`${item.Transport.Model.Brand.Name}, ${item.Transport.Model.Name}`} key={i}>
+                    
+                        
+                            <Collapse  ghost>
+                                
+                                <Panel header="Detail" key="1">Test</Panel>
+                                    
+                            </Collapse>
+                        
+                        
+                    
+                    </Panel>
+                    )
+                })}
+                </Collapse>
+            </Row>
+            
+            <Row>
+            
+            <Col span={12}><Button onClick={()=>{history("/addtransporter")}}>Register Transport</Button></Col>
+            </Row>
+        
+        
+        </Card>
     </Row>
+        
     {/* <div>
       
        <Row>
