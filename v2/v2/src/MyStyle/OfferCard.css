@@ -1,0 +1,26 @@
+/* .site-card-border-less-wrapper {
+    background-color:white;
+    width: 94em;
+    height: 44em;
+    border-radius: 2.7em;
+    padding: 13px;
+    background: #ffffff;
+    
+
+  } */
+
+  .offercard{
+    padding: 7px;
+    background: white;
+    width: 108em;
+ 
+    border-radius: 1.7em;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 20px 50px;;
+  }
+
+  .collapse{
+
+    background: red;
+    width: 108em;
+
+  }
