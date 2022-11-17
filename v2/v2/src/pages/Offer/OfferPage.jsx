@@ -44,7 +44,6 @@ const OfferPage = () => {
       .catch(console.error);
       console.log("My state:",state)
   }, [loading]);
-  
   const getData = async (userId) => {
     await Axios.get(
       `http://localhost:8080/api/offer/getallwithorder/${userId}`
@@ -99,14 +98,7 @@ const OfferPage = () => {
         actions={[
           <Fragment>
             <NavLink to={`/editoffer/${item.IdOffer}`} ><Button>Edit</Button></NavLink>
-            <Button onClick={()=>{
-              Axios.delete(`http://localhost:8080/api/offer/delete/${item.IdOffer}`).then(res => {
-                console.log(res);
-                if (res.status == 200) {
-                  setloading(true);
-                }
-            });
-            }}>Delete</Button>
+            <Button>Delete</Button>
           </Fragment>
         ]}
       >
@@ -119,7 +111,7 @@ const OfferPage = () => {
             <Descriptions.Item label="Number of people">{item.NumberPersons}</Descriptions.Item>
             <Descriptions.Item label="Date"> {format(new Date(item.Date), 'dd-MM-yyyy')}</Descriptions.Item>
             <Descriptions.Item label="Price">{item.Price}</Descriptions.Item>
-            <Descriptions.Item ><Collapse style={{ padding: "0" }} defaultActiveKey={['1']} ghost >
+            <Descriptions.Item ><Collapse style={{ padding: "0" }} ghost >
               <Panel header="More info" key="1">
                 <Col pull={24}>
                   <Descriptions title="Transport Info">
