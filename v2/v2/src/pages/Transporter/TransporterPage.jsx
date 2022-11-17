@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Axios from "axios";
 import OrderCard from '../../components/OrderCard';
+import MyProfile from '../../components/MyProfile';
 const TransporterPage = ({}) => {
   const history = useNavigate();
   
@@ -40,7 +41,9 @@ const TransporterPage = ({}) => {
   
   return (
     <>
-    <div>
+    <MyProfile/>
+    {/* <div>
+      
        <Row>
         <Col>
       <Title // Form's Title
@@ -77,7 +80,7 @@ const TransporterPage = ({}) => {
             <Col span={6}><Button onClick={()=>{history("/addtransporter")}}>Register Transport</Button></Col>
             <Col></Col>
         </Row>
-        </div>
+        </div> */}
     </>
   );
 };
