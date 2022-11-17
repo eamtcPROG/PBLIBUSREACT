@@ -1,4 +1,4 @@
-import { Button, Space, Typography,Row,Col } from 'antd';
+import { Button, Space, Typography,Row,Col,Card,Collapse } from 'antd';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Axios from "axios";
@@ -6,7 +6,7 @@ import OrderCard from '../../components/OrderCard';
 import MyProfile from '../../components/MyProfile';
 const TransporterPage = ({}) => {
   const history = useNavigate();
-  
+  const { Panel } = Collapse;
   const [state, setState] = useState([]);
   
   const [loading, setloading] = useState(true);
@@ -43,9 +43,28 @@ const TransporterPage = ({}) => {
     <>
     <MyProfile/>
     <Row>
-            <Col span={6}><Button onClick={()=>{history("/addtransporter")}}>Register Transport</Button></Col>
+    <Card
+      title="Transport"
+      bordered={false}
+      style={{
+        width: 600,
+      }}
+    >
+    <Row>
+    <Collapse defaultActiveKey={['1']} ghost>
+    <Panel header="See all" key="1">
+    <Col><Collapse defaultActiveKey={['1']} ghost><Panel header="Transport 1" key="2"></Panel></Collapse></Col>
+    </Panel>
+    </Collapse>
+    </Row>
+    <Row>
+    <Col span={6}><Button onClick={()=>{history("/addtransporter")}}>Register Transport</Button></Col>
+    </Row>
+    
             
-        </Row>
+    
+    </Card>
+    </Row>
     {/* <div>
       
        <Row>
