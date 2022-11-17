@@ -1,18 +1,18 @@
-import { Button, Space, Typography,Row,Col,Card,Collapse } from 'antd';
+import { Button, Space, Typography, Row, Col, Card, Collapse,Descriptions } from 'antd';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Axios from "axios";
 import OrderCard from '../../components/OrderCard';
 import MyProfile from '../../components/MyProfile';
-const TransporterPage = ({}) => {
+const TransporterPage = ({ }) => {
   const history = useNavigate();
   const { Panel } = Collapse;
   const [state, setState] = useState([]);
-  
+
   const [stateTransport, setStateTransport] = useState([]);
 
   const [loading, setloading] = useState(true);
-  
+
   const { Title, Text } = Typography;
   useEffect(() => {
     getData();
@@ -20,12 +20,12 @@ const TransporterPage = ({}) => {
   }, [loading]);
 
   const getDataTransport = async (userId) => {
-    
+
     fetch(`http://localhost:8080/api/transporter/gettransport/${userId}`, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        
+
       },
     }).then((res) => {
       return res.json();
@@ -38,7 +38,7 @@ const TransporterPage = ({}) => {
       }
     })
       .catch(console.error);
-    
+
   };
 
   const getData = async () => {
@@ -57,58 +57,66 @@ const TransporterPage = ({}) => {
       if (data) {
         setState(data);
         getDataTransport(data.IdUser);
-        
+
       }
     })
       .catch(console.error);
-    
+
   };
 
-  
+
   return (
     <>
-    <MyProfile/>
-    <Row>
+      <MyProfile />
+      <Row>
         <Card
-        title="Transport"
-        bordered={false}
-        style={{
+          title="Transport"
+          bordered={false}
+          style={{
             width: 600,
-        }}
+          }}
         >
-            
-            <Row>
 
-                <Collapse ghost>
-                {stateTransport.map((item, i) => {
-                    return(
-                    <Panel header={`${item.Transport.Model.Brand.Name}, ${item.Transport.Model.Name}`} key={i}>
-                    
-                        
-                            <Collapse  ghost>
-                                
-                                <Panel header="Detail" key="1">Test</Panel>
-                                    
-                            </Collapse>
-                        
-                        
-                    
-                    </Panel>
-                    )
-                })}
-                </Collapse>
-            </Row>
-            
-            <Row>
-            
-            <Col span={12}><Button onClick={()=>{history("/addtransporter")}}>Register Transport</Button></Col>
-            </Row>
-        
-        
+          <Row>
+
+            <Collapse ghost>
+              {stateTransport.map((item, i) => {
+                return (
+                  <Panel header={`${item.Transport.Model.Brand.Name}, ${item.Transport.Model.Name}`} key={i}>
+
+
+                    <Collapse ghost>
+
+                      <Panel header="Detail" key="1">
+                        <Descriptions title="Transport Info">
+                          
+                          <Descriptions.Item label="Transport type">{item.Transport.TypeTrasport.Name}</Descriptions.Item>
+                          <Descriptions.Item label="Plate">{item.Transport.Plate}</Descriptions.Item>
+                          <Descriptions.Item label="Number of seats">{item.Transport.NumberSeats}</Descriptions.Item>
+                        </Descriptions>
+
+                      </Panel>
+
+                    </Collapse>
+
+
+
+                  </Panel>
+                )
+              })}
+            </Collapse>
+          </Row>
+
+          <Row>
+
+            <Col span={12}><Button onClick={() => { history("/addtransporter") }}>Register Transport</Button></Col>
+          </Row>
+
+
         </Card>
-    </Row>
-        
-    {/* <div>
+      </Row>
+
+      {/* <div>
       
        <Row>
         <Col>

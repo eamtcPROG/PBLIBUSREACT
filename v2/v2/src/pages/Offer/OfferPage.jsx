@@ -1,10 +1,13 @@
-import { Button, Space, Table, Card, Collapse, Typography, Descriptions, Row, Col,Skeleton } from 'antd';
+import { Button, Space, Table, Card, Collapse, Typography, Descriptions, Row, Col,Skeleton,Modal } from 'antd';
 import React, { useState, useEffect, Fragment } from 'react';
 import { useNavigate,NavLink } from 'react-router-dom';
 import { format } from 'date-fns'
 import Axios from "axios";
+import { ExclamationCircleOutlined } from '@ant-design/icons';
+
 const { Title, Text } = Typography;
 const { Panel } = Collapse;
+
 const OfferPage = () => {
   const history = useNavigate();
   const [filteredInfo, setFilteredInfo] = useState({});
@@ -76,8 +79,8 @@ const OfferPage = () => {
 
 
   };
-
-
+  
+  
   return loading ? (<Skeleton />) :  (
     <>
       <Space
@@ -100,7 +103,24 @@ const OfferPage = () => {
           <Row>
             <Fragment>
               <Col span={2} offset={16}><NavLink to={`/editoffer/${item.IdOffer}`} ><Button type="primary" className='editbutton' >Edit</Button></NavLink></Col>
-              <Col span={2} offset={1} push={1}><Button type="danger" className='deletebutton' >Delete</Button></Col>
+              <Col span={2} offset={1} push={1}><Button type="danger" className='deletebutton'onClick={()=>{
+                 Modal.confirm({
+                  title: 'Confirm',
+                  icon: <ExclamationCircleOutlined />,
+                  content: 'Do you want to delete this offer ?',
+                  okText: 'Confirm',
+                  cancelText: 'Cancel',
+                  onOk() {
+                    Axios.delete(`http://localhost:8080/api/offer/delete/${item.IdOffer}`).then(res => {
+                      console.log(res);
+                      if (res.status == 200) {
+                        setloading(true);
+                      }
+                  });
+                  },
+                });
+              }} >Delete</Button></Col>
+              
             </Fragment></Row>
         ]}
       >
