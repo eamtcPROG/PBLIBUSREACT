@@ -2,6 +2,7 @@ import { Button, Space, Table } from 'antd';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Axios from "axios";
+import '../../MyStyle/OfferCard.css'
 const OrderPage = () => {
   const history = useNavigate();
   const [filteredInfo, setFilteredInfo] = useState({});
