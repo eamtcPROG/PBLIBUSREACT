@@ -29,3 +29,15 @@
   .ant-collapse  .ant-collapse-item  .ant-collapse-header {
     padding: 0;
   }
+
+  .ant-collapse-content .ant-collapse-content-active {
+
+   width: 800px;
+
+
+  }
+
+  .ant-btn {
+
+    width: 110px;
+  }

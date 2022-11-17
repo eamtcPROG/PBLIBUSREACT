@@ -3,6 +3,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { useNavigate,NavLink } from 'react-router-dom';
 import { format } from 'date-fns'
 import Axios from "axios";
+const { Title, Text } = Typography;
 const { Panel } = Collapse;
 const OfferPage = () => {
   const history = useNavigate();
@@ -96,10 +97,11 @@ const OfferPage = () => {
         return ( <Card className='offercard' title={item.TitleOffer}
         bordered={false}
         actions={[
-          <Fragment>
-            <NavLink to={`/editoffer/${item.IdOffer}`} ><Button>Edit</Button></NavLink>
-            <Button>Delete</Button>
-          </Fragment>
+          <Row>
+            <Fragment>
+              <Col span={2} offset={17}><NavLink to={`/editoffer/${item.IdOffer}`} ><Button type="primary">Edit</Button></NavLink></Col>
+              <Col span={2} offset={1} push={1}><Button type="danger">Delete</Button></Col>
+            </Fragment></Row>
         ]}
       >
         
@@ -109,19 +111,19 @@ const OfferPage = () => {
             <Descriptions.Item label="Location">{item.FullLocationStart}</Descriptions.Item>
             <Descriptions.Item label="Destination">{item.FullLocationEnd}</Descriptions.Item>
             <Descriptions.Item label="Number of people">{item.NumberPersons}</Descriptions.Item>
-            <Col pull={0} span={1}> <Descriptions.Item >
-              <Collapse id="CollapsePadding"style={{ padding: "0", align:"top" }} ghost className='ant-collapse-header' >
-              <Panel id="CollapsePadding" style={{ padding:'0' }} header="Transport Info"  >
-                  <Descriptions  title="Transport Info">
-                    <Descriptions.Item label="Car Model">{item.TransporterCar}</Descriptions.Item>
-                    <Descriptions.Item label="Car type">{item.TransporterCarType}</Descriptions.Item>
-                    <Descriptions.Item label="Nr o seats">{item.TransporterCarNumberSeats}</Descriptions.Item>
-                  </Descriptions>
-              </Panel>
-            </Collapse></Descriptions.Item></Col>
             <Descriptions.Item label="Date"> {format(new Date(item.Date), 'dd-MM-yyyy')}</Descriptions.Item>
             <Descriptions.Item label="Price">{item.Price}</Descriptions.Item>
           </Descriptions>
+          <Col> <Descriptions.Item >
+              <Collapse id="CollapsePadding"style={{ padding: "0"}} ghost className='ant-collapse-header' >
+                <Panel id="CollapsePadding" style={{ padding:'0' }} header="Transport Info"  >
+                  <Col>{<Descriptions  title="Transport Info">
+                    <Descriptions.Item label="Car Model">{item.TransporterCar}</Descriptions.Item>
+                    <Descriptions.Item label="Car type">{item.TransporterCarType}</Descriptions.Item>
+                    <Descriptions.Item label="Nr o seats">{item.TransporterCarNumberSeats}</Descriptions.Item>
+                  </Descriptions> }</Col>
+              </Panel>
+            </Collapse></Descriptions.Item></Col>
 
 
         </Row>
