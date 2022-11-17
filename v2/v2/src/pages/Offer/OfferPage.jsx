@@ -44,6 +44,7 @@ const OfferPage = () => {
       .catch(console.error);
       console.log("My state:",state)
   }, [loading]);
+  
   const getData = async (userId) => {
     await Axios.get(
       `http://localhost:8080/api/offer/getallwithorder/${userId}`
@@ -98,7 +99,14 @@ const OfferPage = () => {
         actions={[
           <Fragment>
             <NavLink to={`/editoffer/${item.IdOffer}`} ><Button>Edit</Button></NavLink>
-            <Button>Delete</Button>
+            <Button onClick={()=>{
+              Axios.delete(`http://localhost:8080/api/offer/delete/${item.IdOffer}`).then(res => {
+                console.log(res);
+                if (res.status == 200) {
+                  setloading(true);
+                }
+            });
+            }}>Delete</Button>
           </Fragment>
         ]}
       >
