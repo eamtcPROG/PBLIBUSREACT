@@ -59,13 +59,13 @@ const MyProfile = () => {
 
                 <Row>
                     <Col span={4}>
-                        Email
+                        <Text>Email</Text>
                     </Col>
                     <Col push={1}>{state.Email}</Col>
                 </Row>
                 <Row>
                     <Col span={4}>
-                        Birthdate
+                        <Text>Birthdate</Text>
                     </Col>
                     <Col push={1}>{ format(new Date(state.Birthdate), 'dd-MM-yyyy')}</Col>
                 </Row>
