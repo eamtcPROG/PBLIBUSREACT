@@ -99,8 +99,8 @@ const OfferPage = () => {
         actions={[
           <Row>
             <Fragment>
-              <Col span={2} offset={17}><NavLink to={`/editoffer/${item.IdOffer}`} ><Button type="primary">Edit</Button></NavLink></Col>
-              <Col span={2} offset={1} push={1}><Button type="danger">Delete</Button></Col>
+              <Col span={2} offset={16}><NavLink to={`/editoffer/${item.IdOffer}`} ><Button type="primary" className='editbutton' >Edit</Button></NavLink></Col>
+              <Col span={2} offset={1} push={1}><Button type="danger" className='deletebutton' >Delete</Button></Col>
             </Fragment></Row>
         ]}
       >
