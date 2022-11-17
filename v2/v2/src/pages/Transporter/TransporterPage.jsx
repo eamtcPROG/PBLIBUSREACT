@@ -42,6 +42,10 @@ const TransporterPage = ({}) => {
   return (
     <>
     <MyProfile/>
+    <Row>
+            <Col span={6}><Button onClick={()=>{history("/addtransporter")}}>Register Transport</Button></Col>
+            
+        </Row>
     {/* <div>
       
        <Row>
