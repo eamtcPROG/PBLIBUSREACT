@@ -109,25 +109,21 @@ const OfferPage = () => {
             <Descriptions.Item label="Location">{item.FullLocationStart}</Descriptions.Item>
             <Descriptions.Item label="Destination">{item.FullLocationEnd}</Descriptions.Item>
             <Descriptions.Item label="Number of people">{item.NumberPersons}</Descriptions.Item>
-            <Descriptions.Item label="Date"> {format(new Date(item.Date), 'dd-MM-yyyy')}</Descriptions.Item>
-            <Descriptions.Item label="Price">{item.Price}</Descriptions.Item>
-            <Descriptions.Item ><Collapse style={{ padding: "0" }} ghost >
-              <Panel header="More info" key="1">
-                <Col pull={24}>
-                  <Descriptions title="Transport Info">
+            <Col pull={0} span={1}> <Descriptions.Item >
+              <Collapse id="CollapsePadding"style={{ padding: "0", align:"top" }} ghost className='ant-collapse-header' >
+              <Panel id="CollapsePadding" style={{ padding:'0' }} header="Transport Info"  >
+                  <Descriptions  title="Transport Info">
                     <Descriptions.Item label="Car Model">{item.TransporterCar}</Descriptions.Item>
                     <Descriptions.Item label="Car type">{item.TransporterCarType}</Descriptions.Item>
                     <Descriptions.Item label="Nr o seats">{item.TransporterCarNumberSeats}</Descriptions.Item>
-
                   </Descriptions>
-                </Col>
               </Panel>
-            </Collapse></Descriptions.Item>
+            </Collapse></Descriptions.Item></Col>
+            <Descriptions.Item label="Date"> {format(new Date(item.Date), 'dd-MM-yyyy')}</Descriptions.Item>
+            <Descriptions.Item label="Price">{item.Price}</Descriptions.Item>
           </Descriptions>
 
-          <Col span={20} offset={0} push={8} >
 
-          </Col>
         </Row>
       </Card>)
        }):<></>}

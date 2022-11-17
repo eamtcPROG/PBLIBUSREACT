@@ -21,6 +21,11 @@
   .collapse{
 
     background: red;
-    width: 108em;
+    width: 70%;
 
+  }
+
+
+  .ant-collapse  .ant-collapse-item  .ant-collapse-header {
+    padding: 0;
   }
