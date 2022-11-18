@@ -97,7 +97,7 @@ const OfferPage = () => {
         {/* <div className="site-card-border-less-wrapper"> */}
         
        { state ?state.map((item)=>{
-        return ( <Card className='offercard' title={item.TitleOffer}
+        return ( <Card style={{marginBottom:"2%"}} className='offercard' title={item.TitleOffer}
         bordered={false}
         actions={[
           <Row>

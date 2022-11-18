@@ -34,6 +34,7 @@ const MyOfferCard = ({ orderId }) => {
         state.map(row => {
             return row != undefined ? (
                 <Card
+                style={{marginBottom:"1%"}}
                     actions={[
                         <Fragment>
                             <Button>Accept</Button>
