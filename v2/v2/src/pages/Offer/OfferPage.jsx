@@ -103,8 +103,8 @@ const OfferPage = () => {
           <Row>
             <Fragment>
 
-              <Col span={2} offset={16}><NavLink to={`/editoffer/${item.IdOffer}`} ><Button type="primary" className='editbutton' >Edit</Button></NavLink></Col>
-              <Col span={2} offset={1} push={1}><Button type="danger" className='deletebutton'onClick={()=>{
+              <Col xs={{ span: 9, offset: 12 }} sm={{ span: 5, offset: 10 }} md={{ span: 4, offset: 14 }} lg={{ span: 4, offset: 14 }} xl={{ span: 3, offset: 16 }} xxl={{ span: 2, offset: 18 }}><NavLink to={`/editoffer/${item.IdOffer}`} ><Button type="primary" className='editbutton' >Edit</Button></NavLink></Col>
+              <Col  xs={{ span: 9, offset: 12 }} sm={{ span: 5, offset: 2 }} md={{ span: 4, offset: 1 }} lg={{ span: 4, offset: 1 }} xl={{ span: 3, offset: 1 }} xxl={{ span: 2, offset: 1 }}><Button type="danger" className='deletebutton'onClick={()=>{
                  Modal.confirm({
                   title: 'Confirm',
                   icon: <ExclamationCircleOutlined />,

@@ -12,7 +12,8 @@
   .offercard{
     padding: 7px;
     background: white;
-    width: 5    0%;
+    width: 70%;
+    
  
     border-radius: 1.7em;
     box-shadow: rgba(0, 0, 0, 0.45) 0px 20px 50px;;
@@ -31,22 +32,15 @@
   }
 
   .ant-collapse-content .ant-collapse-content-active {
-
    width: 800px;
-
-
   }
-
-
 
   .editbutton {
     color: #1890ff;
-    
     background-color: #1890ff;
     color: #ffffff;
-    width: 6.875em;
+    width: 90%;
     border-radius: 17px;
-
     display: inline-block;
     cursor: pointer;
     box-shadow: inset 0 0 0 0 rgb(255, 255, 255);
@@ -65,7 +59,7 @@
     border: 2px solid #ff4d4f;
     background-color: #FFF;
     color: #ff4d4f;
-    width: 6.875em;
+    width: 90%;
     border-radius: 17px;
 
     display: inline-block;
