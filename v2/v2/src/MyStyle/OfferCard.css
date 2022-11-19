@@ -80,4 +80,20 @@
   .deletebutton:hover {
     box-shadow: inset 170px 0 0 0 #ff4d4f;
   }
+
+  .FixedHeightContainer
+{
+  height: 700px;
+  width: 100%;
+
+
+}
+.Content
+{
+  height: 81.7vh;
+
+   overflow:auto;
+   
+   /* box-shadow: rgba(0, 0, 0, 0.45) 0px 20px 50px;; */
+}
   

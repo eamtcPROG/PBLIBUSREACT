@@ -9,6 +9,7 @@ const { Title, Text } = Typography;
 const { Panel } = Collapse;
 
 const OfferPage = () => {
+  const [container, setContainer] = useState({});
   const history = useNavigate();
   const [filteredInfo, setFilteredInfo] = useState({});
   const [sortedInfo, setSortedInfo] = useState({});
@@ -91,69 +92,74 @@ const OfferPage = () => {
 
 
       </Space>
-      {/* <Table columns={columns} dataSource={state} onChange={handleChange} /> */}
-      <Row align="center" style={{marginTop:"5vh", marginBottom: "10.5vh"  }}>
-        {/* <Table columns={columns} dataSource={state} onChange={handleChange} /> */}
-        {/* <div className="site-card-border-less-wrapper"> */}
-        
-       { state ?state.map((item)=>{
-        return ( <Card style={{marginBottom:"2%"}} className='offercard' title={item.TitleOffer}
-        bordered={false}
-        actions={[
-          <Row>
-            <Fragment>
+      <Col align="center" span={22} offset={1} style={{marginTop:"5vh", marginBottom:"0vh" }}><div class="FixedHeightContainer">
+        <div class="Content">
 
-              <Col xs={{ span: 9, offset: 12 }} sm={{ span: 5, offset: 10 }} md={{ span: 4, offset: 14 }} lg={{ span: 4, offset: 14 }} xl={{ span: 3, offset: 16 }} xxl={{ span: 2, offset: 18 }}><NavLink to={`/editoffer/${item.IdOffer}`} ><Button type="primary" className='editbutton' >Edit</Button></NavLink></Col>
-              <Col  xs={{ span: 9, offset: 12 }} sm={{ span: 5, offset: 2 }} md={{ span: 4, offset: 1 }} lg={{ span: 4, offset: 1 }} xl={{ span: 3, offset: 1 }} xxl={{ span: 2, offset: 1 }}><Button type="danger" className='deletebutton'onClick={()=>{
-                 Modal.confirm({
-                  title: 'Confirm',
-                  icon: <ExclamationCircleOutlined />,
-                  content: 'Do you want to delete this offer ?',
-                  okText: 'Confirm',
-                  cancelText: 'Cancel',
-                  onOk() {
-                    Axios.delete(`http://localhost:8080/api/offer/delete/${item.IdOffer}`).then(res => {
-                      console.log(res);
-                      if (res.status == 200) {
-                        setloading(true);
-                      }
-                  });
-                  },
-                });
-              }} >Delete</Button></Col>
+          
+              {/* <Table columns={columns} dataSource={state} onChange={handleChange} /> */}
+              <Row align="center" style={{marginTop:"3vh"  }}>
+                {/* <Table columns={columns} dataSource={state} onChange={handleChange} /> */}
+                {/* <div className="site-card-border-less-wrapper"> */}
+                
+              { state ?state.map((item)=>{
+                return ( <Card style={{marginBottom:"2%"}} className='offercard' title={item.TitleOffer}
+                bordered={false}
+                actions={[
+                  <Row>
+                    <Fragment>
+
+                      <Col xs={{ span: 9, offset: 12 }} sm={{ span: 5, offset: 10 }} md={{ span: 4, offset: 14 }} lg={{ span: 4, offset: 14 }} xl={{ span: 3, offset: 16 }} xxl={{ span: 2, offset: 18 }}><NavLink to={`/editoffer/${item.IdOffer}`} ><Button type="primary" className='editbutton' >Edit</Button></NavLink></Col>
+                      <Col  xs={{ span: 9, offset: 12 }} sm={{ span: 5, offset: 2 }} md={{ span: 4, offset: 1 }} lg={{ span: 4, offset: 1 }} xl={{ span: 3, offset: 1 }} xxl={{ span: 2, offset: 1 }}><Button type="danger" className='deletebutton'onClick={()=>{
+                        Modal.confirm({
+                          title: 'Confirm',
+                          icon: <ExclamationCircleOutlined />,
+                          content: 'Do you want to delete this offer ?',
+                          okText: 'Confirm',
+                          cancelText: 'Cancel',
+                          onOk() {
+                            Axios.delete(`http://localhost:8080/api/offer/delete/${item.IdOffer}`).then(res => {
+                              console.log(res);
+                              if (res.status == 200) {
+                                setloading(true);
+                              }
+                          });
+                          },
+                        });
+                      }} >Delete</Button></Col>
+                      
+
+                    </Fragment></Row>
+                ]}
+              >
+                
+                <Row >
+
+                  <Descriptions title="Order Info"  >
+                    <Descriptions.Item label="Location">{item.FullLocationStart}</Descriptions.Item>
+                    <Descriptions.Item label="Destination">{item.FullLocationEnd}</Descriptions.Item>
+                    <Descriptions.Item label="Number of people">{item.NumberPersons}</Descriptions.Item>
+                    <Descriptions.Item label="Date"> {format(new Date(item.Date), 'dd-MM-yyyy')}</Descriptions.Item>
+                    <Descriptions.Item label="Price">{item.Price}</Descriptions.Item>
+                  </Descriptions>
+                  <Col> <Descriptions.Item >
+                      <Collapse id="CollapsePadding"style={{ padding: "0"}} ghost className='ant-collapse-header' >
+                        <Panel id="CollapsePadding" style={{ padding:'0' }} header="Transport Info"  >
+                          <Col>{<Descriptions  title="Transport Info">
+                            <Descriptions.Item label="Car Model">{item.TransporterCar}</Descriptions.Item>
+                            <Descriptions.Item label="Car type">{item.TransporterCarType}</Descriptions.Item>
+                            <Descriptions.Item label="Nr o seats">{item.TransporterCarNumberSeats}</Descriptions.Item>
+                          </Descriptions> }</Col>
+                      </Panel>
+                    </Collapse></Descriptions.Item></Col>
+
+
+                </Row>
+              </Card>)
+              }):<></>}
               
-
-            </Fragment></Row>
-        ]}
-      >
-        
-        <Row >
-
-          <Descriptions title="Order Info"  >
-            <Descriptions.Item label="Location">{item.FullLocationStart}</Descriptions.Item>
-            <Descriptions.Item label="Destination">{item.FullLocationEnd}</Descriptions.Item>
-            <Descriptions.Item label="Number of people">{item.NumberPersons}</Descriptions.Item>
-            <Descriptions.Item label="Date"> {format(new Date(item.Date), 'dd-MM-yyyy')}</Descriptions.Item>
-            <Descriptions.Item label="Price">{item.Price}</Descriptions.Item>
-          </Descriptions>
-          <Col> <Descriptions.Item >
-              <Collapse id="CollapsePadding"style={{ padding: "0"}} ghost className='ant-collapse-header' >
-                <Panel id="CollapsePadding" style={{ padding:'0' }} header="Transport Info"  >
-                  <Col>{<Descriptions  title="Transport Info">
-                    <Descriptions.Item label="Car Model">{item.TransporterCar}</Descriptions.Item>
-                    <Descriptions.Item label="Car type">{item.TransporterCarType}</Descriptions.Item>
-                    <Descriptions.Item label="Nr o seats">{item.TransporterCarNumberSeats}</Descriptions.Item>
-                  </Descriptions> }</Col>
-              </Panel>
-            </Collapse></Descriptions.Item></Col>
-
-
-        </Row>
-      </Card>)
-       }):<></>}
-       
       </Row>
-    </>
+      </div></div></Col></>
+  
   );
 };
 export default OfferPage;
