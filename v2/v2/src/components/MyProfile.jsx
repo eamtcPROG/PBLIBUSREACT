@@ -41,8 +41,8 @@ const MyProfile = () => {
     };
     return(
 
-      <Row justify="center" style={{marginTop:"11%"}}><Col align span={3} offset={2} push={10}><div className="myprofilecard">
-        <Card span={2} offset={4} 
+      <Row style={{marginTop:"100px"}}><Col align span={3} offset={2} push={0}><div className="myprofilecard">
+        <Card span={2} offset={0} 
           title="Profile Info" 
             bordered={false}
             style={{ level:"2",

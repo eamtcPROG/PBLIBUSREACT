@@ -69,7 +69,7 @@ const TransporterPage = ({ }) => {
   return (
     <>
       <MyProfile />
-      <Row>
+      <Row offset={12} span={10}>
         <Card  className='TransportCard'
           title="Transport"
           bordered={false}
@@ -78,7 +78,7 @@ const TransporterPage = ({ }) => {
           }}
         >
 
-          <Row>
+          <Row >
 
             <Collapse ghost>
               {stateTransport.map((item, i) => {
@@ -110,7 +110,7 @@ const TransporterPage = ({ }) => {
 
           <Row>
 
-            <Col span={12}><Button onClick={() => { history("/addtransporter") }}>Register Transport</Button></Col>
+            <Col span={22}><Button onClick={() => { history("/addtransporter") }}>Register Transport</Button></Col>
           </Row>
 
 
