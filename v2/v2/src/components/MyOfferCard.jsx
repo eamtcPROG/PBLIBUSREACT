@@ -42,7 +42,7 @@ const MyOfferCard = ({ orderId }) => {
                         </Fragment>
                     ]}
                 >
-                    <Descriptions title="Offer">
+                    <Descriptions title={`Offer - Status ${row.Status.Name}`}>
                         <Descriptions.Item label="Price">{row.Price}</Descriptions.Item>
                         <Descriptions.Item label="Number seats">{row.Transporter.Transport.NumberSeats}</Descriptions.Item>
                         <Descriptions.Item label="Plate">{row.Transporter.Transport.Plate}</Descriptions.Item>

@@ -69,7 +69,7 @@ const OfferPage = () => {
             TransporterCar: `${row.Transporter.Transport.Model.Name} - ${row.Transporter.Transport.Model.Brand.Name}`,
             TransporterCarType: row.Transporter.Transport.TypeTrasport.Name,
             TransporterCarNumberSeats: row.Transporter.Transport.NumberSeats,
-
+            Status:row.Status.Name
           
         }))
         )
@@ -140,6 +140,7 @@ const OfferPage = () => {
                     <Descriptions.Item label="Number of people">{item.NumberPersons}</Descriptions.Item>
                     <Descriptions.Item label="Date"> {format(new Date(item.Date), 'dd-MM-yyyy')}</Descriptions.Item>
                     <Descriptions.Item label="Price">{item.Price}</Descriptions.Item>
+                    <Descriptions.Item label="Status">{item.Status}</Descriptions.Item>
                   </Descriptions>
                   <Col> <Descriptions.Item >
                       <Collapse id="CollapsePadding"style={{ padding: "0"}} ghost className='ant-collapse-header' >
