@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import 'antd/dist/antd.css';
 import '../MyStyle/MyNavBarStyle.css'
 import { NavLink, useNavigate } from 'react-router-dom';
-import { HomeOutlined, TagOutlined, FormOutlined, PoweroffOutlined, UserOutlined} from "@ant-design/icons/lib/icons"
+import { HomeOutlined, TagOutlined, FormOutlined, PoweroffOutlined, UserOutlined } from "@ant-design/icons/lib/icons"
 const MyNavBar = ({ setIsAuthenticated, typeUserId, isAuthenticated }) => {
     const history = useNavigate();
     const logout = () => {
@@ -67,27 +67,23 @@ const MyNavBar = ({ setIsAuthenticated, typeUserId, isAuthenticated }) => {
                     label: (<NavLink to="/orderpage">My Order</NavLink>),
                     icon: <TagOutlined />
                 },
-                
-                    typeUserId == 1 ? {
-                        key: "Order",
-                        label: (<NavLink to="/order">Order</NavLink>),
-                        icon: <TagOutlined />
-                    }
-                        : {
-                            key: "Offer",
-                            label: (<NavLink to="/offer">Offer</NavLink>),
-                            icon: <FormOutlined />
-                        },
-                        typeUserId == 1 ? {
-                            key: "PersonalCabinetT",
-                            label: (<NavLink to="/transporter">My Profile</NavLink>),
-                            icon: <UserOutlined />
-                        }
-                            : {
-                                key: "PersonalCabinetC",
-                                label: "My Profile",
-                                icon: <UserOutlined />
-                            },
+
+                typeUserId == 1 ? {
+                    key: "Order",
+                    label: (<NavLink to="/order">Order</NavLink>),
+                    icon: <TagOutlined />
+                }
+                    : null,
+                typeUserId == 1 ? {
+                    key: "PersonalCabinetT",
+                    label: (<NavLink to="/transporter">My Profile</NavLink>),
+                    icon: <UserOutlined />
+                }
+                    : {
+                        key: "PersonalCabinetC",
+                        label: (<NavLink to="/customer">My Profile</NavLink>),
+                        icon: <UserOutlined />
+                    },
                 {
                     key: "Logout",
                     label: (<Button type="text" className='logoutbtn' icon={<PoweroffOutlined />} block={true} onClick={logout}
@@ -96,7 +92,7 @@ const MyNavBar = ({ setIsAuthenticated, typeUserId, isAuthenticated }) => {
             ])
         } else {
             setItems([{
-                
+
                 key: "OfferPage",
                 label: (<NavLink align="middle" to="/login">Sign in</NavLink>),
                 icon: <FormOutlined />

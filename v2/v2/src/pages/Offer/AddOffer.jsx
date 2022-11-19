@@ -2,8 +2,10 @@ import React, { useState,useEffect } from "react";
 import { Form, Input, Button, Typography, Select,Card,notification } from "antd";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
+import MyNotifications from "../../notifications/MyNotifications";
 const AddOffer = ({ orderId }) => {
   const history = useNavigate();
+  const mynotification = new MyNotifications();
   const [form] = Form.useForm();
   const { Title, Text } = Typography;
 
@@ -12,15 +14,7 @@ const AddOffer = ({ orderId }) => {
   const [trasporterid, settrasporterid] = useState(0);
   const [loading, setloading] = useState(true);
   const [state, setState] = useState([]);
-  const succesNotification = () => {
-    notification.success({
-      message: `Succes`,
-      description:
-        'Offer was added with succes',
-      placement:`bottomRight`,
-      duration:3
-    });
-  };
+  
   const handlePriceChange = (e) => {
     setPrice(e.target.value);
 
@@ -107,7 +101,7 @@ const AddOffer = ({ orderId }) => {
     }).then((data) => {
       console.log(data);
       if (data != null) {
-        succesNotification();
+        mynotification.succesNotification("Offer");
         return history('/offerpage');
       }
     });

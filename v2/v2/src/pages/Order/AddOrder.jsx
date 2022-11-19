@@ -2,9 +2,10 @@ import React,{useState,useEffect}from "react";
 import { Form, Input, Button, Typography, DatePicker, Space,Card } from "antd";
 import { useNavigate } from "react-router-dom";
 import AddresForm from "../../components/AddresForm";
-
+import MyNotifications from "../../notifications/MyNotifications";
 const AddOrder = () => {
   const history = useNavigate();
+  const mynotification = new MyNotifications();
   const [form] = Form.useForm();
   const { Title, Text } = Typography;
   const [numberpersons, setNumberPersons] = useState(0);
@@ -112,7 +113,7 @@ const handleAddressSecond  =()=> {
 
       if (data != null) {
 
-        
+        mynotification.succesNotification("Order");
         return history('/orderpage');
       }
     });

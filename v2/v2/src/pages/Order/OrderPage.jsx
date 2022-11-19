@@ -1,53 +1,59 @@
-import { Button, Space, Card, Collapse, Descriptions, Row, } from 'antd';
+import { Button, Space, Card, Collapse, Descriptions, Row,Modal } from 'antd';
 import React, { useState, useEffect, Fragment } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
 import Axios from "axios";
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 import '../../MyStyle/OfferCard.css'
 import { format } from 'date-fns'
 import MyOfferCard from '../../components/MyOfferCard';
 const { Panel } = Collapse;
 const OrderPage = () => {
   const history = useNavigate();
-  const [filteredInfo, setFilteredInfo] = useState({});
-  const [sortedInfo, setSortedInfo] = useState({});
+
   const [state, setState] = useState([]);
   const [stateIds, setStateIds] = useState([]);
   const [loading, setloading] = useState(true);
   const [dataloading, setdataloading] = useState(false);
-  const handleChange = (pagination, filters, sorter) => {
-    console.log('Various parameters', pagination, filters, sorter);
-    setFilteredInfo(filters);
-    setSortedInfo(sorter);
-  };
-  const clearFilters = () => {
-    setFilteredInfo({});
-  };
-  const clearAll = () => {
-    setFilteredInfo({});
-    setSortedInfo({});
-  };
+
   useEffect(() => {
-    getData();
+    const token = localStorage.getItem('token');
+    fetch(`http://localhost:8080/api/auth/getuser`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        token: token,
+      },
+    }).then((res) => {
+      return res.json();
+
+    }).then((data) => {
+
+      if (data) {
+
+        getData(data.IdUser);
+      }
+    })
+      .catch(console.error);
     setdataloading(true);
   }, [loading, dataloading]);
-  const getData = async () => {
+  const getData = async (userId) => {
     await Axios.get(
-      "http://localhost:8080/api/order/getallwithaddress"
+      `http://localhost:8080/api/customer/getorders/${userId}`
     ).then(
 
       res => {
-        console.log(res)
+        console.log(res.data)
         setState(
           res.data.map(row => ({
 
-            NumberPersons: row.NumberPersons,
-            AddressFullStart: `str. ${row.AddressStart.AddressName} ${row.AddressStart.AddressNumber
-              }, ${row.AddressStart.LocationName}, ${row.AddressStart.Country.Name}`,
-            AddressFullEnd: `str. ${row.AddressEnd.AddressName} ${row.AddressEnd.AddressNumber
-              }, ${row.AddressEnd.LocationName}, ${row.AddressEnd.Country.Name}`,
-            Date: row.Date,
-            MoreDetails: row.MoreDetails,
-            IdOrder: row.IdOrder
+            NumberPersons: row.Order.NumberPersons,
+            AddressFullStart: `str. ${row.Order.AddressStart.AddressName} ${row.Order.AddressStart.AddressNumber
+              }, ${row.Order.AddressStart.LocationName}, ${row.Order.AddressStart.Country.Name}`,
+            AddressFullEnd: `str. ${row.Order.AddressEnd.AddressName} ${row.Order.AddressEnd.AddressNumber
+              }, ${row.Order.AddressEnd.LocationName}, ${row.Order.AddressEnd.Country.Name}`,
+            Date: row.Order.Date,
+            MoreDetails: row.Order.MoreDetails,
+            IdOrder: row.Order.IdOrder
           })
 
           )
@@ -85,12 +91,30 @@ const OrderPage = () => {
         {/* <div className="site-card-border-less-wrapper"> */}
 
         {state ? state.map((item) => {
-          return (<Card className='offercard' title={item.TitleOffer}
+          return (<Card style={{ marginBottom: "2%" }} className='offercard' title={item.TitleOffer}
             bordered={false}
             actions={[
               <Fragment>
                 <NavLink ><Button>Edit</Button></NavLink>
-                <Button>Delete</Button>
+                <Button
+                  onClick={() => {
+                    Modal.confirm({
+                      title: 'Confirm',
+                      icon: <ExclamationCircleOutlined />,
+                      content: 'Do you want to delete this offer ?',
+                      okText: 'Confirm',
+                      cancelText: 'Cancel',
+                      onOk() {
+                        Axios.delete(`http://localhost:8080/api/order/delete/${item.IdOrder}`).then(res => {
+                          console.log(res);
+                          if (res.status == 200) {
+                            setloading(true);
+                          }
+                        });
+                      },
+                    });
+                  }}
+                >Delete</Button>
               </Fragment>
             ]}
           >

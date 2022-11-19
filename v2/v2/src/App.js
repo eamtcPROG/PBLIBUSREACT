@@ -27,6 +27,7 @@ import Axios from "axios";
 import TransporterPage from "./pages/Transporter/TransporterPage";
 import AddTransport from "./pages/Transporter/AddTransport";
 import EditOffer from "./pages/Offer/EditOffer";
+import CustomerPage from "./Customer/CustomerPage";
 const { Header, Content, Footer } = Layout;
 
 const App = () => {
@@ -199,6 +200,14 @@ console.log(userId)
               {typeUserId == 1 ? <TransporterPage /> : <></>}
             </PrivateRoute>}
           />
+          <Route
+            path="/customer"
+            element={<PrivateRoute
+              isAuthenticated={isAuthenticated}
+            >
+              {typeUserId == 2 ? <CustomerPage/> : <></>}
+            </PrivateRoute>}
+          />
         <Route
             path="/addtransporter"
             element={<PrivateRoute
@@ -207,15 +216,7 @@ console.log(userId)
               {typeUserId == 1 ? <AddTransport /> : <></>}
             </PrivateRoute>}
           />
-          <Route
-            path="/offer"
-            element={<PrivateRoute
-              isAuthenticated={isAuthenticated}
-            >
-              {typeUserId == 2 ? <Offer /> : <></>}
-            </PrivateRoute>}
-          />
-
+          
           <Route
             path="/"
             element={<Home />}
