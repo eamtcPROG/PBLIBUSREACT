@@ -127,7 +127,7 @@ const OfferPage = () => {
         ]}
       >
         
-        <Row align={center}>
+        <Row >
 
           <Descriptions title="Order Info"  >
             <Descriptions.Item label="Location">{item.FullLocationStart}</Descriptions.Item>
