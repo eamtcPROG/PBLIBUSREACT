@@ -3,6 +3,7 @@ import { Form, Input, Button, Typography, DatePicker, Space,Card } from "antd";
 import { useNavigate } from "react-router-dom";
 import AddresForm from "../../components/AddresForm";
 import MyNotifications from "../../notifications/MyNotifications";
+import AddForm from "../../components/AddForm";
 const AddOrder = () => {
   const history = useNavigate();
   const mynotification = new MyNotifications();
@@ -122,112 +123,113 @@ const handleAddressSecond  =()=> {
 
   };
   return (
-    <div>
-      {/* <Title // Form's Title
-        level={3}
-        style={{
-          marginBottom: 0,
-          paddingTop: 20,
-          paddingLeft: 30,
-          paddingRight: 30,
-        }}
-      >
-        Add Order
-      </Title>
-      <Text // Form's Description
-        type="secondary"
-        style={{
-          paddingLeft: 30,
-          paddingRight: 30,
-        }}
-      >
+    // <div>
+    //   {/* <Title // Form's Title
+    //     level={3}
+    //     style={{
+    //       marginBottom: 0,
+    //       paddingTop: 20,
+    //       paddingLeft: 30,
+    //       paddingRight: 30,
+    //     }}
+    //   >
+    //     Add Order
+    //   </Title>
+    //   <Text // Form's Description
+    //     type="secondary"
+    //     style={{
+    //       paddingLeft: 30,
+    //       paddingRight: 30,
+    //     }}
+    //   >
 
-      </Text> */}
-      <Card
-      title="Add Order"
-      bordered={false}
-      style={{
-        width: 1000,
-      }}
-    >
-      <Form // Ant Design's Form Component
-        name="contact-us"
-        layout="vertical"
-        form={form}
-        wrapperCol={{
-          span: 6,
-        }}
-        style={{
-          marginTop: 20,
-          paddingBottom: 10,
-          paddingLeft: 30,
-          paddingRight: 30,
-        }}
-        onFinish={handleSubmit}
-      >
-        <Form.Item // Form Item (First Name)
-          label="Start Location"
-          name="firstName"
+    //   </Text> */}
+    //   <Card
+    //   title="Add Order"
+    //   bordered={false}
+    //   style={{
+    //     width: 1000,
+    //   }}
+    // >
+    //   <Form // Ant Design's Form Component
+    //     name="contact-us"
+    //     layout="vertical"
+    //     form={form}
+    //     wrapperCol={{
+    //       span: 6,
+    //     }}
+    //     style={{
+    //       marginTop: 20,
+    //       paddingBottom: 10,
+    //       paddingLeft: 30,
+    //       paddingRight: 30,
+    //     }}
+    //     onFinish={handleSubmit}
+    //   >
+    //     {/* <Form.Item // Form Item (First Name)
+    //       label="Start Location"
+    //       name="firstName" */}
           
-        >
-          {/* <Input placeholder="From" onChange={handleStartPointAddressIdChange} value={startpointaddressid} /> */}
-          <Button onClick={handleAddress} >Add address</Button>
-          {isActive ? <AddresForm setIdAddress={setIdAddress} setIsActive={setIsActive} formNumber={1}/> : <></>}
-        </Form.Item>
-        <Form.Item // Form Item (Last Name)
-          label="Destination"
-          name="destination"
+    //     {/* > */}
+    //       {/* <Input placeholder="From" onChange={handleStartPointAddressIdChange} value={startpointaddressid} /> */}
+    //       {/* <Button onClick={handleAddress} >Add address</Button> */}
+    //       {isActive ? <AddresForm setIdAddress={setIdAddress} setIsActive={setIsActive} formNumber={1}/> : <></>}
+    //     {/* </Form.Item> */}
+    //     {/* <Form.Item // Form Item (Last Name)
+    //       label="Destination"
+    //       name="destination"
           
-        >
-          {/* <Input placeholder="To" onChange={handleEndPointAddressIdChange} value={endpointaddressid} /> */}
-          <Button onClick={handleAddressSecond} >Add address</Button>
-          {isActiveSecond ? <AddresForm setIdAddress={setIdAddress} setIsActiveSecond={setIsActiveSecond} formNumber={2}/> : <></>}
-        </Form.Item>
-        <Form.Item label="Date"
-          name="date"
-          required
-          tooltip="This is a required field"
-          rules={[
-            {
-              required: true,
-              message: "Please enter the date!",
-              type: "date",
-            },
-          ]}
-        >
+    //     > */}
+    //       {/* <Input placeholder="To" onChange={handleEndPointAddressIdChange} value={endpointaddressid} /> */}
+    //       {/* <Button onClick={handleAddressSecond} >Add address</Button> */}
+    //       {isActiveSecond ? <AddresForm setIdAddress={setIdAddress} setIsActiveSecond={setIsActiveSecond} formNumber={2}/> : <></>}
+    //     {/* </Form.Item> */}
+    //     <Form.Item label="Date"
+    //       name="date"
+    //       required
+    //       tooltip="This is a required field"
+    //       rules={[
+    //         {
+    //           required: true,
+    //           message: "Please enter the date!",
+    //           type: "date",
+    //         },
+    //       ]}
+    //     >
 
-        <DatePicker onChange={handleDateChange} value={date}/>
-        </Form.Item>
-        <Form.Item // Form Item (Email)
-          label="Number of people"
-          name="nrPeople"
-          required
-          tooltip="This is a required field"
-          rules={[
-            {
-              required: true,
-              message: "Please enter number of people!"
-            },
-          ]}
-        >
-          <Input style={{ width: "150px" }} placeholder="Number of people" onChange={handleNumberPersonsChange} value={numberpersons} />
-        </Form.Item>
-        <Form.Item // Form Item (Message)
-          label="Preferences"
-          name="message"
-        >
-          <Input.TextArea
-            placeholder="Type here.."
-            autoSize={{ minRows: 4, maxRows: 6 }}
-            onChange={handleMoreDetailsChange} value={moredetails}
-          />
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit">Submit</Button>
-        </Form.Item>
-      </Form>
-      </Card>
-    </div>
+    //     <DatePicker onChange={handleDateChange} value={date}/>
+    //     </Form.Item>
+    //     <Form.Item // Form Item (Email)
+    //       label="Number of people"
+    //       name="nrPeople"
+    //       required
+    //       tooltip="This is a required field"
+    //       rules={[
+    //         {
+    //           required: true,
+    //           message: "Please enter number of people!"
+    //         },
+    //       ]}
+    //     >
+    //       <Input style={{ width: "150px" }} placeholder="Number of people" onChange={handleNumberPersonsChange} value={numberpersons} />
+    //     </Form.Item>
+    //     <Form.Item // Form Item (Message)
+    //       label="Preferences"
+    //       name="message"
+    //     >
+    //       <Input.TextArea
+    //         placeholder="Type here.."
+    //         autoSize={{ minRows: 4, maxRows: 6 }}
+    //         onChange={handleMoreDetailsChange} value={moredetails}
+    //       />
+    //     </Form.Item>
+    //     <Form.Item>
+    //       <Button type="primary" htmlType="submit">Submit</Button>
+    //     </Form.Item>
+    //   </Form>
+    //   </Card>
+      <AddForm/>
+    // </div>
   );
 };
 
