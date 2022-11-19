@@ -122,7 +122,7 @@ const OfferPage = () => {
                 });
               }} >Delete</Button></Col>
               
->>>>>>> b87fd3370ae4450a6087251388e92864d4d26569
+
             </Fragment></Row>
         ]}
       >
