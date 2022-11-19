@@ -1,4 +1,12 @@
 .App {
     font-family: sans-serif;
     text-align: center;
+    min-height: 90vh;
+  }
+
+  .ant-layout-content {
+
+    min-height: 90vh;
+  
+  
   }

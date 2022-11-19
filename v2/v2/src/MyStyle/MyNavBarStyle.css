@@ -8,6 +8,14 @@
  
   
 }
+
+.ant-layout-content {
+
+  min-height: 90vh;
+
+
+}
+
 #components-layout-demo-top .logo {
   float: left;
   width: 120px;

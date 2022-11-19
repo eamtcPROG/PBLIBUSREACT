@@ -28,3 +28,10 @@
     margin-top: 10%;
     
 }
+
+.ant-layout-content {
+
+    min-height: 90vh;
+  
+  
+  }

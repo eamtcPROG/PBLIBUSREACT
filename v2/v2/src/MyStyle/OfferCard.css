@@ -54,6 +54,13 @@
     color: #1890ff;
   }
 
+  .ant-layout-content {
+
+    min-height: 90vh;
+  
+  
+  }
+
   .deletebutton {
     color: #FFF;
     border: 2px solid #ff4d4f;

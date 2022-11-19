@@ -92,7 +92,7 @@ const OfferPage = () => {
 
       </Space>
       {/* <Table columns={columns} dataSource={state} onChange={handleChange} /> */}
-      <Row align="center" style={{ marginTop: "2%", marginBottom: "14.5%" }}>
+      <Row align="center" style={{marginTop:"5vh", marginBottom: "10.5vh"  }}>
         {/* <Table columns={columns} dataSource={state} onChange={handleChange} /> */}
         {/* <div className="site-card-border-less-wrapper"> */}
         

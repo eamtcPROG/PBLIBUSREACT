@@ -228,7 +228,7 @@ console.log(userId)
 
       </Content>
       
-<Footer style={{align:'middle', height:'55px'}}>Let's Go © 2022</Footer>
+<Footer className='footer' >Let's Go © 2022</Footer>
 
 
     </Layout>

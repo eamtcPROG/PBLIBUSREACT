@@ -29,3 +29,10 @@
 .sizes {
     width:250px;
 }
+
+.ant-layout-content {
+
+    min-height: 90vh;
+  
+  
+  }
