@@ -26,7 +26,7 @@ const Home= ({}) => {
  
   <Row justify="center">
   
-    <Col align="center" span={24} offset={0}><NavLink level={2} to="/login" ><Button align="center" className='ant-btn' shape="round" size='large'> Get Started Now</Button></NavLink></Col>
+    <Col align="center" span={24} offset={0}><NavLink level={2} to="/register" ><Button align="center" className='ant-btn' shape="round" size='large'> Get Started Now</Button></NavLink></Col>
    
   
   </Row>
