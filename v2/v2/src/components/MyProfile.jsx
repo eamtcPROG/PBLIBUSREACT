@@ -2,6 +2,8 @@
 import { Card, Space, Typography,Row,Col, Skeleton } from 'antd';
 import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns'
+import './../MyStyle/MyProfilePage.css'
+
 const MyProfile = () => {
     const [state, setState] = useState([]);
     const [userid, setUserId] = useState(0);
@@ -38,9 +40,9 @@ const MyProfile = () => {
       
     };
     return(
-    <div className="site-card-border-less-wrapper">
+      <Col offset={2}><div className="myprofilecard">
         <Card
-            title="Profile Info"
+          title="Profile Info"
             bordered={false}
             style={{
                 width: 600,
@@ -78,9 +80,9 @@ const MyProfile = () => {
 
           
 
-
+               
         </Card>
-    </div>
+    </div></Col>
     )
         }
 export default MyProfile;
