@@ -40,13 +40,17 @@ const MyProfile = () => {
       
     };
     return(
-      <Col offset={2}><div className="myprofilecard">
-        <Card
-          title="Profile Info"
+
+      <Row justify="center" style={{marginTop:"11%"}}><Col align span={3} offset={2} push={10}><div className="myprofilecard">
+        <Card span={2} offset={4} 
+          title="Profile Info" 
             bordered={false}
-            style={{
-                width: 600,
+            style={{ level:"2",
+              width: "32vh",
+              marginTop:"0", 
+             marginLeft:"5%",
             }}
+            
         >
 
             
@@ -82,7 +86,7 @@ const MyProfile = () => {
 
                
         </Card>
-    </div></Col>
+    </div></Col></Row>
     )
         }
 export default MyProfile;

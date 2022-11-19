@@ -1,11 +1,26 @@
 .myprofilecard {
     
     background-color:white;
-    width: 44em;
+    width: 54em;
     height: 16em;
-    border-radius: 1.7em;
+    border-radius: 2.7em;
+    
     
     box-shadow: rgba(0, 0, 0, 0.45) 0px 20px 50px;;
     
+
+}
+
+
+.TransportCard {
+
+    background-color:white;
+    width: 54em;
+    height: 16em;
+    border-radius: 2.7em;
+    
+    
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 20px 50px;;
+
 
 }
