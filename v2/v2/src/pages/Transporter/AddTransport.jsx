@@ -1,5 +1,5 @@
 import React,{useState,useEffect}from "react";
-import { Form, Input, Button, Typography,Select, Spin,Row,Col } from "antd";
+import { Form, Input, Button, Typography,Select, Spin,Row,Col ,Card} from "antd";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 
@@ -189,20 +189,16 @@ const addTransporter = ()=>{
     <div>
       <Row align='middle' >
       <Col align="center" span={10} offset={6}  push={1} >
-      <Title // Form's Title
-        level={3}
-        style={{
-          marginBottom: 0,
-          paddingTop: 20,
-          paddingLeft: 30,
-          paddingRight: 30,
-        }}
-      >
-        Add Transport
-      </Title>
+      
       </Col>
       </Row>
-      
+      <Card
+      title="Add Transport"
+      bordered={false}
+      style={{
+        width: 600,
+      }}
+    >
       <Form // Ant Design's Form Component
         name="contact-us"
         layout="vertical"
@@ -304,6 +300,7 @@ const addTransporter = ()=>{
           <Button type="primary" htmlType="submit">Submit</Button>
         </Form.Item>
       </Form>
+      </Card>
     </div>
   );
 };
