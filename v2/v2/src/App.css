@@ -72,8 +72,14 @@
   margin: 16px 0 16px 24px;
 }
 .site-layout{
+  background:
+  linear-gradient(
+    rgba(2, 2, 100, 0.2), 
+    rgba(255, 120, 120, 0.6)
+  ),
 
-  background-image: url(/public/Slide1.png);
+  url(/public/Background.png);
+  
   background-position: center center;
   align-items: center;
   background-size: cover;

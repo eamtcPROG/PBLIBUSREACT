@@ -52,7 +52,7 @@ const MyProfile = () => {
             
         >
             <Row><Col align="center" span={24}><Title style={{align:'center', color:"black",fontSize:"21px",fontFamily:"Helvetica"}} level={5} > My Profile</Title></Col></Row>
-              <Space><UserOutlined className='User' width='10em' height='10em' style={{fontSize: '17vh', opacity:'90%'}}/></Space>
+              <Space><UserOutlined className='User' width='10em' height='10em' style={{fontSize: '17vh'}}/></Space>
                 <Row style={{marginTop:"2vh"}}>
                     <Col offset={1} span={6} align="left" >
                         <Text style={{fontSize:"18px"}}>Name:</Text>

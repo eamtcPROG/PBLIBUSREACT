@@ -25,16 +25,39 @@
 
 }
 
-.AddCrasButton{
+.AddCarsButton{
+    
     width: 37vh;
     height: 9vh;
     border-radius: 2.7em;
+    background: linear-gradient(122deg,
+        rgba(2, 2, 100, 0.4), 
+        rgba(255, 120, 120, 1)
+      );
+      margin: 10px;
+      padding: 15px 45px;
+      text-align: center;
+      text-transform: uppercase;
+      transition: 0.5s;
+      background-size: 200% auto;
+      color: white;            
+      
+      display: block;  
     
-    
+    border-width: 0;
     box-shadow: rgba(0, 0, 0, 0.45) 0px 20px 50px;;
+    text-shadow: rgba(0, 0, 0, 0.45) 0px 20px 50px;;
 
     
 }
+
+.AddCarsButton:hover {
+    background: linear-gradient(122deg,
+    rgba(2, 2, 192, 0.4), 
+    rgba(255, 120, 120, 1)
+  );
+    color: #fafafa;
+  }
 
 
 .Container
@@ -51,4 +74,10 @@
    overflow:auto;
    
    /* box-shadow: rgba(0, 0, 0, 0.45) 0px 20px 50px;;  */
+}
+
+.User{
+
+    opacity: 75%;
+
 }

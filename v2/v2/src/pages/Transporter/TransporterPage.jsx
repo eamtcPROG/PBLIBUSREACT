@@ -71,7 +71,7 @@ const TransporterPage = ({ }) => {
     <>
       
       <Row >
-        <Col align="center" alspan={4} offset={7}><MyProfile /></Col>
+        <Col align="center" span={5} offset={6}><MyProfile /></Col>
         <Col offset={1} span={4} style={{marginTop:"20vh"}}>
           <Card  className='TransportCard' bordered={false} style={{}}>
             <Row>
@@ -104,7 +104,7 @@ const TransporterPage = ({ }) => {
 
           </Card>
           
-        <NavLink to="/addtransporter" ><Button className='AddCrasButton' style={{marginTop:"2.1vh"}} type="primary"><PlusOutlined className='plus' style={{fontSize: '2.8vh', opacity:'90%'}} /><Text style={{color:"white",fontSize:"2.8vh"}}>Add Vehicle</Text></Button></NavLink>
+        <NavLink to="/addtransporter" ><Button className='AddCarsButton' style={{marginTop:"2.1vh"}} ><PlusOutlined className='plus' style={{fontSize: '2.8vh', opacity:'90%'}} /><Text style={{color:"white",fontSize:"2.8vh"}}>Add Vehicle</Text></Button></NavLink>
          
         </Col>
       </Row>
