@@ -98,3 +98,18 @@
    /* box-shadow: rgba(0, 0, 0, 0.45) 0px 20px 50px;; */
 }
 
+.ContainerOrderPage
+{
+  height: 30vh;
+  width: 140vh;
+
+
+}
+.ContentOrderPage
+{
+  height: 76.7vh;
+
+   overflow:auto;
+   
+   /* box-shadow: rgba(0, 0, 0, 0.45) 0px 20px 50px;;  */
+} 

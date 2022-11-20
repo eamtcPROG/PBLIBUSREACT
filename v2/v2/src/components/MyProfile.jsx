@@ -42,7 +42,7 @@ const MyProfile = () => {
     };
     return(
 
-      <Col align span={3} offset={0} pull={7} style={{marginTop:"20vh"}}><div className="myprofilecard">
+      <Col><div className="myprofilecard">
         <Card 
             bordered={false}
             style={{ 

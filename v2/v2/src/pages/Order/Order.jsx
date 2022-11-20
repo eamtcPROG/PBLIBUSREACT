@@ -1,4 +1,4 @@
-import { Button, Space, Typography } from 'antd';
+import { Button, Space, Typography,Row,Col } from 'antd';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Axios from "axios";
@@ -47,25 +47,21 @@ const Order = ({setOrderId}) => {
   
   return (
     <>
+    <Row style={{marginTop:"2vh", align:"middle"}}><Col span={24} align="center"><Title level={3} style={{  color:"white",fontSize:"40px",fontFamily:"Helvetica", align:"middle"}}>New Orders</Title></Col></Row>
+
+  <Row style={{marginTop:"1vh"}}><Col span={6 }offset={7}><div class="ContainerOrder">
+    <div class="ContentOrder">
        
-      <Title // Form's Title
-        level={3}
-        style={{
-          marginBottom: 0,
-          paddingTop: 20,
-          paddingLeft: 30,
-          paddingRight: 30,
-        }}
-      >
-        Orders
-      </Title>
+      
       <OrderCard/>
       {
           state ?
             state.map((item) => {
-              return <OrderCard state={item} setOrderId={setOrderId}/>;
+              return <Row style={{marginTop:"4vh"}}><Col offset={3} span={20}><OrderCard state={item} setOrderId={setOrderId}/></Col></Row>;
             }) : <></>
         }
+
+     </div></div></Col></Row>   
     </>
   );
 };

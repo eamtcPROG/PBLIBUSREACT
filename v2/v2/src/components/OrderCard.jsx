@@ -6,6 +6,7 @@ import { Button, Checkbox, Form, Input, Typography } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { format } from 'date-fns'
 import { NavLink,useNavigate } from "react-router-dom";
+import '././../MyStyle/OrderCard.css'
 const { Title, Text } = Typography;
 const OrderCard = ({ state,setOrderId }) => {
     const history = useNavigate();
@@ -18,49 +19,7 @@ const OrderCard = ({ state,setOrderId }) => {
     return state != undefined ? (
         <>
 
-            {/* <Card title="Card title" bordered={false}
-                style={{
-                    width: "90em",
-                    marginTop: 16,
-                }}
-                actions={[
-                    <Button onClick={handleMakeOffer}>Make an offer</Button>
-                ]}
-            >
-                
-                <Card.Grid  hoverable={false} style={{
-                    width: '20%',
-                    textAlign: 'center',
-
-                }}>
-                    {state != undefined ? state.StartPointAddressId : ""}
-                </Card.Grid>
-                <Card.Grid hoverable={false} style={{
-                    width: '20%',
-                    textAlign: 'center',
-                }}>
-                    {state != undefined ? state.EndPointAddressId : ""}
-                </Card.Grid>
-                <Card.Grid  hoverable={false} style={{
-                    width: '20%',
-                    textAlign: 'center',
-                }}>
-                    {state != undefined ? state.Date: ""}
-                </Card.Grid>
-                <Card.Grid hoverable={false} style={{
-                    width: '5%',
-                    textAlign: 'center',
-                }}>
-                    {state != undefined ? state.NumberPersons : ""}
-                </Card.Grid>
-                <Card.Grid hoverable={false} style={{
-                    width: '35%',
-                    textAlign: 'center',
-                }}>
-                    {state != undefined ? state.MoreDetails : ""}
-                </Card.Grid>
-            </Card> */}
-            <Card 
+            <Card className="ordercard"
       title={state.Title}
       bordered={false}
       style={{

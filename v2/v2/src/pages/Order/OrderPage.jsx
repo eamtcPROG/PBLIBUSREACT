@@ -1,4 +1,4 @@
-import { Button, Space, Card, Collapse, Descriptions, Row,Modal } from 'antd';
+import { Button, Space, Card, Collapse, Descriptions, Row,Modal, Col,Typography } from 'antd';
 import React, { useState, useEffect, Fragment } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
 import Axios from "axios";
@@ -6,6 +6,7 @@ import { ExclamationCircleOutlined } from '@ant-design/icons';
 import '../../MyStyle/OfferCard.css'
 import { format } from 'date-fns'
 import MyOfferCard from '../../components/MyOfferCard';
+const { Title, Text } = Typography;
 const { Panel } = Collapse;
 const OrderPage = () => {
   const history = useNavigate();
@@ -77,6 +78,11 @@ const OrderPage = () => {
 
   return (
     <>
+
+    <Row style={{marginTop:"2vh", align:"middle"}}><Col span={24} align="center"><Title level={3} style={{  color:"white",fontSize:"40px",fontFamily:"Helvetica", align:"middle"}}>New Orders</Title></Col></Row>
+
+      <Row style={{marginTop:"1vh"}}><Col span={20} offset={4} pull={0}><div class="ContainerOrderPage">
+        <div class="ContentOrderPage">
       <Space
         style={{
           marginBottom: 16,
@@ -91,56 +97,59 @@ const OrderPage = () => {
         {/* <div className="site-card-border-less-wrapper"> */}
 
         {state ? state.map((item) => {
-          return (<Card style={{ marginBottom: "2%" }} className='offercard' title={item.TitleOffer}
-            bordered={false}
-            actions={[
-              <Fragment>
-                <NavLink ><Button>Edit</Button></NavLink>
-                <Button
-                  onClick={() => {
-                    Modal.confirm({
-                      title: 'Confirm',
-                      icon: <ExclamationCircleOutlined />,
-                      content: 'Do you want to delete this offer ?',
-                      okText: 'Confirm',
-                      cancelText: 'Cancel',
-                      onOk() {
-                        Axios.delete(`http://localhost:8080/api/order/delete/${item.IdOrder}`).then(res => {
-                          console.log(res);
-                          if (res.status == 200) {
-                            setloading(true);
-                          }
-                        });
-                      },
-                    });
-                  }}
-                >Delete</Button>
-              </Fragment>
-            ]}
-          >
+          return (       
+          
+          
+                                    <Card style={{ marginBottom: "2%" }} className='offercard' title={item.TitleOffer}
+                                      bordered={false}
+                                      actions={[
+                                        <Fragment>
+                                          <NavLink ><Button>Edit</Button></NavLink>
+                                          <Button
+                                            onClick={() => {
+                                              Modal.confirm({
+                                                title: 'Confirm',
+                                                icon: <ExclamationCircleOutlined />,
+                                                content: 'Do you want to delete this offer ?',
+                                                okText: 'Confirm',
+                                                cancelText: 'Cancel',
+                                                onOk() {
+                                                  Axios.delete(`http://localhost:8080/api/order/delete/${item.IdOrder}`).then(res => {
+                                                    console.log(res);
+                                                    if (res.status == 200) {
+                                                      setloading(true);
+                                                    }
+                                                  });
+                                                },
+                                              });
+                                            }}
+                                          >Delete</Button>
+                                        </Fragment>
+                                      ]}
+                                    >
 
-            <Row>
+                                      <Row>
 
-              <Descriptions title="My Order "  >
-                <Descriptions.Item label="Location">{item.AddressFullStart}</Descriptions.Item>
-                <Descriptions.Item label="Destination">{item.AddressFullEnd}</Descriptions.Item>
-                <Descriptions.Item label="Number of people">{item.NumberPersons}</Descriptions.Item>
-                <Descriptions.Item label="Date">{format(new Date(item.Date), 'dd-MM-yyyy')} </Descriptions.Item>
-                <Descriptions.Item label="Details">{item.MoreDetails} </Descriptions.Item>
+                                        <Descriptions title="My Order "  >
+                                          <Descriptions.Item label="Location">{item.AddressFullStart}</Descriptions.Item>
+                                          <Descriptions.Item label="Destination">{item.AddressFullEnd}</Descriptions.Item>
+                                          <Descriptions.Item label="Number of people">{item.NumberPersons}</Descriptions.Item>
+                                          <Descriptions.Item label="Date">{format(new Date(item.Date), 'dd-MM-yyyy')} </Descriptions.Item>
+                                          <Descriptions.Item label="Details">{item.MoreDetails} </Descriptions.Item>
 
-              </Descriptions>
+                                        </Descriptions>
 
 
-            </Row>
-            <Row>
-              <Collapse id="CollapsePadding" style={{ padding: "0", align: "top" }} ghost className='ant-collapse-header' >
-                <Panel id="CollapsePadding" style={{ padding: '0' }} header="Offers"  >
-                  <MyOfferCard orderId={item.IdOrder} />
-                </Panel>
-              </Collapse>
-            </Row>
+                                      </Row>
+                                      <Row>
+                                        <Collapse id="CollapsePadding" style={{ padding: "0", align: "top" }} ghost className='ant-collapse-header' >
+                                          <Panel id="CollapsePadding" style={{ padding: '0' }} header="Offers"  >
+                                            <MyOfferCard orderId={item.IdOrder} />
+                                          </Panel>
+                                        </Collapse>
+                                      </Row>
 
-          </Card>)
+                                    </Card> )
         }) : <></>}
 
       </Row>
@@ -152,7 +161,7 @@ const OrderPage = () => {
         <Button onClick={handleAddOrder}>Add order</Button>
 
       </Space>
-    </>
+    </div></div></Col></Row></>
 
   );
 };

@@ -4,3 +4,32 @@
   
   
   }
+
+  .ordercard {
+
+    padding: 7px;
+    background: white;
+    width: 70%;
+    font-weight: "bold";
+    
+ 
+    border-radius: 1.7em;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 20px 50px;;
+
+  }
+
+  .ContainerOrder
+{
+  height: 20vh;
+  width: 90vh;
+
+
+}
+.ContentOrder
+{
+  height: 76.7vh;
+
+   overflow:auto;
+   
+   /* box-shadow: rgba(0, 0, 0, 0.45) 0px 20px 50px;; */
+} 
