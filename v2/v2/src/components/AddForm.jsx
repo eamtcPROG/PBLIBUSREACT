@@ -2,12 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Form, Input, Button, Typography, DatePicker, Space, Card, Row, Select, Col } from "antd";
 import { useNavigate } from "react-router-dom";
 import AddresForm from "./AddresForm";
-<<<<<<< HEAD
-import '../MyStyle/AddForm.css'
-=======
 import Axios from "axios";
 import '.././MyStyle/AddForm.css'
->>>>>>> 2fef2423d9cc92d99dbce6f22f86d521517503bd
 import MyNotifications from "../notifications/MyNotifications";
 const AddForm = () => {
   const history = useNavigate();
