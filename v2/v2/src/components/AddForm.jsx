@@ -2,7 +2,7 @@ import React,{useState,useEffect}from "react";
 import { Form, Input, Button, Typography, DatePicker, Space,Card,Row,Select,Col } from "antd";
 import { useNavigate } from "react-router-dom";
 import AddresForm from "./AddresForm";
-import '.././MyStyle/AddForm.css'
+import '../MyStyle/AddForm.css'
 import MyNotifications from "../notifications/MyNotifications";
 const AddForm = () => {
   const history = useNavigate();

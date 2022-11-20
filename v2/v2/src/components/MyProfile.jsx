@@ -3,6 +3,7 @@ import { Card, Space, Typography,Row,Col, Skeleton } from 'antd';
 import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns'
 import './../MyStyle/MyProfilePage.css'
+import { UserOutlined } from '@ant-design/icons';
 
 const MyProfile = () => {
     const [state, setState] = useState([]);
@@ -41,43 +42,41 @@ const MyProfile = () => {
     };
     return(
 
-      <Row style={{marginTop:"100px"}}><Col align span={3} offset={2} push={0}><div className="myprofilecard">
-        <Card span={2} offset={0} 
-          title="Profile Info" 
+      <Col align span={3} offset={0} pull={7} style={{marginTop:"20vh"}}><div className="myprofilecard">
+        <Card 
             bordered={false}
-            style={{ level:"2",
-              width: "32vh",
-              marginTop:"0", 
-             marginLeft:"5%",
+            style={{ 
+            backgroundColor:"transparent",
+             
             }}
             
         >
+            <Row><Col align="center" span={24}><Title style={{align:'center', color:"black",fontSize:"21px",fontFamily:"Helvetica"}} level={5} > My Profile</Title></Col></Row>
+              <Space><UserOutlined className='User' width='10em' height='10em' style={{fontSize: '17vh', opacity:'90%'}}/></Space>
+                <Row style={{marginTop:"2vh"}}>
+                    <Col offset={1} span={6} align="left" >
+                        <Text style={{fontSize:"18px"}}>Name:</Text>
+                    </Col>
+                    <Col push={1} style={{fontSize:"18px", fontWeight:"bold"}}>{state.Name}</Col>
+                </Row>
+                <Row>
+                <Col offset={1} span={6} align="left" >
+                <Text style={{fontSize:"18px"}}>Surname:</Text>
+                    </Col>
+                    <Col push={1} style={{fontSize:"18px", fontWeight:"bold"}}>{state.Surname}</Col>
+                </Row>
 
-            
                 <Row>
-                    <Col span={4}>
-                        <Text>Name</Text>
+                <Col offset={1} span={6} align="left" >
+                <Text style={{fontSize:"18px"}}>Email:</Text>
                     </Col>
-                    <Col push={1}>{state.Name}</Col>
+                    <Col push={1} style={{fontSize:"18px", fontWeight:"bold"}}>{state.Email}</Col>
                 </Row>
                 <Row>
-                    <Col span={4}>
-                        <Text>Surname</Text>
+                <Col offset={1} span={6} align="left" >
+                <Text style={{fontSize:"18px"}} >Birthdate:</Text>
                     </Col>
-                    <Col push={1}>{state.Surname}</Col>
-                </Row>
-
-                <Row>
-                    <Col span={4}>
-                        <Text>Email</Text>
-                    </Col>
-                    <Col push={1}>{state.Email}</Col>
-                </Row>
-                <Row>
-                    <Col span={4}>
-                        <Text>Birthdate</Text>
-                    </Col>
-                    {birthdate!= undefined?<Col push={1}>{ format(new Date(birthdate), 'dd-MM-yyyy')}</Col>:<Skeleton/>}
+                    {birthdate!= undefined?<Col push={1} style={{fontSize:"18px", fontWeight:"bold"}}>{ format(new Date(birthdate), 'dd-MM-yyyy')}</Col>:<Skeleton/>}
                 </Row>
 
 
@@ -86,7 +85,7 @@ const MyProfile = () => {
 
                
         </Card>
-    </div></Col></Row>
+    </div></Col>
     )
         }
 export default MyProfile;

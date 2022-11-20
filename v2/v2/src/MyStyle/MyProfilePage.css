@@ -1,8 +1,8 @@
 .myprofilecard {
     
     background-color:white;
-    width: 54em;
-    height: 16em;
+    width: 42vh;
+    height: 46vh;
     border-radius: 2.7em;
     
     
@@ -15,12 +15,40 @@
 .TransportCard {
 
     background-color:white;
-    width: 54em;
-    height: 16em;
+    width: 37vh;
+    height: 34.9vh;
     border-radius: 2.7em;
     
     
     box-shadow: rgba(0, 0, 0, 0.45) 0px 20px 50px;;
 
 
+}
+
+.AddCrasButton{
+    width: 37vh;
+    height: 9vh;
+    border-radius: 2.7em;
+    
+    
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 20px 50px;;
+
+    
+}
+
+
+.Container
+{
+  height: 700px;
+  width: 100%;
+
+
+}
+.Content1
+{
+  height: 24.7vh;
+
+   overflow:auto;
+   
+   /* box-shadow: rgba(0, 0, 0, 0.45) 0px 20px 50px;;  */
 }
