@@ -1,15 +1,16 @@
-import React, { useEffect, useState,Fragment } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { Button, Card, Row, Col, Collapse, Descriptions, Skeleton } from "antd";
 import { EditOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
-
+import MyNotifications from "../notifications/MyNotifications";
 const { Panel } = Collapse;
 const MyOfferCard = ({ orderId }) => {
     const history = useNavigate();
     const [state, setState] = useState([]);
     const [loading, setloading] = useState(true);
     const [dataloading, setdataloading] = useState(false);
+    const mynotification = new MyNotifications();
     useEffect(() => {
         getData();
         setloading(false);
@@ -34,11 +35,61 @@ const MyOfferCard = ({ orderId }) => {
         state.map(row => {
             return row != undefined ? (
                 <Card
-                style={{marginBottom:"1%"}}
+                    style={{ marginBottom: "1%" }}
                     actions={[
                         <Fragment>
-                            <Button>Accept</Button>
-                            <Button>Decline</Button>
+                            <Button onClick={() => {
+                                fetch(`http://localhost:8080/api/offer/updateaccepted/${row.IdOffer}`, {
+                                    method: 'PUT',
+                                    headers: {
+                                        Accept: 'application/json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                }).then((res) => {
+                                    console.log(res);
+                                    if (res.status === 200) {
+                                        fetch(`http://localhost:8080/api/offer/updatepending/${row.OrderId}`, {
+                                            method: 'PUT',
+                                            headers: {
+                                                Accept: 'application/json',
+                                                'Content-Type': 'application/json',
+                                            },
+                                        }).then((res) => {
+                                            console.log(res);
+                                            if (res.status === 200) {
+                                                mynotification.succesNotification("Offer", "accepted");
+                                                setloading(true);
+
+                                            }
+
+                                        });
+
+                                    }
+
+                                });
+                            }}>Accept</Button>
+                            <Button onClick={() => {
+                                fetch(`http://localhost:8080/api/offer/updatedicline/${row.IdOffer}`, {
+                                    method: 'PUT',
+                                    headers: {
+                                        Accept: 'application/json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                }).then((res) => {
+                                    console.log(res);
+                                    if (res.status === 200) {
+                                        return res.json();
+
+                                    }
+
+                                }).then((data) => {
+                                    console.log(data);
+                                    if (data != null) {
+                                        mynotification.succesNotification("Offer", "decline");
+                                        setloading(true);
+                                    }
+                                });
+                            }}>Decline</Button>
                         </Fragment>
                     ]}
                 >

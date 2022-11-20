@@ -5,7 +5,7 @@ import AddOrder from "./pages/Order/AddOrder";
 import AddOffer from "./pages/Offer/AddOffer";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import { Layout, Menu, Skeleton,PageHeader } from "antd";
+import { Layout, Menu, Skeleton, PageHeader } from "antd";
 import "antd/dist/antd.css";
 import MyNavBar from "./components/navbar";
 import PrivateRoute from "./components/PrivateRoute";
@@ -38,7 +38,7 @@ const App = () => {
   const [loading, setloading] = useState(true);
 
 
-  
+
   useEffect(() => {
 
     const token = localStorage.getItem('token');
@@ -98,14 +98,14 @@ const App = () => {
     })
       .catch(console.error);
 
-console.log(userId)
+    console.log(userId)
   }, [loading]);
 
   return loading ? (<Skeleton />) : (
     //Layout Component
     <Layout className="layout">
       <Header // Header Component
-
+        className="header"
       >
 
         <MyNavBar setIsAuthenticated={setIsAuthenticated} typeUserId={typeUserId} isAuthenticated={isAuthenticated} />
@@ -136,10 +136,10 @@ console.log(userId)
             element={<PrivateRoute
               isAuthenticated={isAuthenticated}
             >
-              <AddOffer orderId={orderId} userId={userId}/>
+              <AddOffer orderId={orderId} userId={userId} />
             </PrivateRoute>}
           />
-<Route
+          <Route
             path="/editoffer/:id"
             element={<PrivateRoute
               isAuthenticated={isAuthenticated}
@@ -205,10 +205,10 @@ console.log(userId)
             element={<PrivateRoute
               isAuthenticated={isAuthenticated}
             >
-              {typeUserId == 2 ? <CustomerPage/> : <></>}
+              {typeUserId == 2 ? <CustomerPage /> : <></>}
             </PrivateRoute>}
           />
-        <Route
+          <Route
             path="/addtransporter"
             element={<PrivateRoute
               isAuthenticated={isAuthenticated}
@@ -216,7 +216,7 @@ console.log(userId)
               {typeUserId == 1 ? <AddTransport /> : <></>}
             </PrivateRoute>}
           />
-          
+
           <Route
             path="/"
             element={<Home />}
@@ -227,8 +227,8 @@ console.log(userId)
         {/* </Router> */}
 
       </Content>
-      
-<Footer className='footer' >Let's Go © 2022</Footer>
+
+      <Footer className='footer' >Let's Go © 2022</Footer>
 
 
     </Layout>
