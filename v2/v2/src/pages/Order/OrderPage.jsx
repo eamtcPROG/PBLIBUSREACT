@@ -79,6 +79,15 @@ const OrderPage = () => {
   return (
     <>
 
+    <Row><Col> <Space
+        style={{
+          marginBottom: 16,
+        }}
+      >
+        <Button onClick={handleAddOrder}>Add order</Button>
+
+      </Space></Col></Row>
+
     <Row style={{marginTop:"2vh", align:"middle"}}><Col span={24} align="center"><Title level={3} style={{  color:"white",fontSize:"40px",fontFamily:"Helvetica", align:"middle"}}>New Orders</Title></Col></Row>
 
       <Row style={{marginTop:"1vh"}}><Col span={20} offset={4} pull={0}><div class="ContainerOrderPage">
@@ -153,14 +162,7 @@ const OrderPage = () => {
         }) : <></>}
 
       </Row>
-      <Space
-        style={{
-          marginBottom: 16,
-        }}
-      >
-        <Button onClick={handleAddOrder}>Add order</Button>
-
-      </Space>
+     
     </div></div></Col></Row></>
 
   );

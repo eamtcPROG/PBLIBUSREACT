@@ -235,9 +235,9 @@ const AddForm = () => {
 
   return (
 
-    <Card
+    <Row style={{marginTop:'2.5vh'}} >
+      <Col align="center" span={24}><Card id="AddFormCard"
       title="Add Order"
-      bordered={false}
       style={{
         width: "50%"
       }}
@@ -253,7 +253,7 @@ const AddForm = () => {
           <Title>Set Starting Location</Title>
         </Row>
         <Row>
-          <Col span={10}>
+          <Col span={10} style={{marginLeft:"2vm"}}>
             <Form.Item
               label="Country"
               required
@@ -296,7 +296,7 @@ const AddForm = () => {
           </Col>
         </Row>
         <Row>
-          <Col span={10}>
+          <Col span={10} style={{marginLeft:"2vm"}}>
             <Form.Item
               label="Street"
               required
@@ -334,7 +334,7 @@ const AddForm = () => {
           <Title>Set Destination</Title>
         </Row>
         <Row>
-          <Col span={10}>
+          <Col span={10} style={{marginLeft:"2vm"}}>
             <Form.Item
               label="Country"
               required
@@ -376,7 +376,7 @@ const AddForm = () => {
           </Col>
         </Row>
         <Row>
-          <Col span={10}>
+          <Col span={10} style={{marginLeft:"2vm"}}>
             <Form.Item
               label="Street"
               required
@@ -410,7 +410,7 @@ const AddForm = () => {
           </Col>
         </Row>
         <Row>
-          <Col span={10}>
+          <Col span={10} style={{marginLeft:"2vm"}}>
             <Form.Item label="Date"
               name="date"
               required
@@ -429,7 +429,7 @@ const AddForm = () => {
           </Col>
         </Row>
         <Row>
-          <Col span={10}>
+          <Col span={10} style={{marginLeft:"2vm"}}>
             <Form.Item // Form Item (Email)
               label="Number of people"
               name="nrPeople"
@@ -447,7 +447,7 @@ const AddForm = () => {
           </Col>
         </Row>
         <Row>
-          <Col span={10}>
+          <Col span={10} style={{marginLeft:"vm"}}>
             <Form.Item 
               label="Preferences"
               name="message"
@@ -469,7 +469,7 @@ const AddForm = () => {
           </Col>
         </Row>
       </Form>
-    </Card>
+    </Card></Col></Row>
 
   );
 };

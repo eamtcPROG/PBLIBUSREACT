@@ -2,6 +2,7 @@ import React,{useState,useEffect}from "react";
 import { Form, Input, Button, Typography,Select, Spin,Row,Col ,Card} from "antd";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
+import '../../MyStyle/AddTransport.css'
 
 
 
@@ -192,7 +193,7 @@ const addTransporter = ()=>{
       
       </Col>
       </Row>
-      <Card
+      <Row style={{marginTop:'20vh'}}><Col span={24} align="center" ><Card className="AddTransport"
       title="Add Transport"
       bordered={false}
       style={{
@@ -300,7 +301,7 @@ const addTransporter = ()=>{
           <Button type="primary" htmlType="submit">Submit</Button>
         </Form.Item>
       </Form>
-      </Card>
+      </Card></Col></Row>
     </div>
   );
 };
