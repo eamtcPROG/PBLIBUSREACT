@@ -1,8 +1,8 @@
-import { Button, Space, Card, Collapse, Descriptions, Row, Modal, Col, Typography } from 'antd';
+import { Button, Space, Card, Collapse, Descriptions, Row, Modal, Col, Typography,FloatButton  } from 'antd';
 import React, { useState, useEffect, Fragment } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
 import Axios from "axios";
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { ExclamationCircleOutlined,PlusOutlined } from '@ant-design/icons';
 import '../../MyStyle/OfferCard.css'
 import { format } from 'date-fns'
 import MyOfferCard from '../../components/MyOfferCard';
@@ -84,7 +84,7 @@ const OrderPage = () => {
           marginBottom: 16,
         }}
       >
-        <Button onClick={handleAddOrder}>Add order</Button>
+        {/* <Button onClick={handleAddOrder}>Add order</Button> */}
 
       </Space></Col></Row>
 
@@ -165,12 +165,19 @@ const OrderPage = () => {
                     </Collapse>
                   </Row>
 
-                </Card>)
+                </Card>
+                
+                )
+
             }) : <></>}
 
           </Row>
 
-        </div></div></Col></Row></>
+        </div></div></Col>
+        
+        </Row>
+        <FloatButton icon={<PlusOutlined />} onClick={handleAddOrder} />
+        </>
 
   );
 };

@@ -1,6 +1,6 @@
 import { Form, Menu, Tabs, Button, Col,Row } from 'antd';
 import React, { useEffect, useState } from 'react';
-import 'antd/dist/antd.css';
+//import 'antd/dist/antd.css';
 import '../MyStyle/MyNavBarStyle.css'
 import { NavLink, useNavigate } from 'react-router-dom';
 import { HomeOutlined, TagOutlined, FormOutlined, PoweroffOutlined, UserOutlined } from "@ant-design/icons/lib/icons"
