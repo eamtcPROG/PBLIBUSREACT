@@ -38,7 +38,7 @@ const MyOfferCard = ({ orderId }) => {
                     style={{ marginBottom: "1%" }}
                     actions={[
                         <Fragment>
-                            <Button onClick={() => {
+                            {row.Status.Name == 'Pending' && row.Status.Name != 'Decline' && row.Status.Name != 'Accepted' ? <Button onClick={() => {
                                 fetch(`http://localhost:8080/api/offer/updateaccepted/${row.IdOffer}`, {
                                     method: 'PUT',
                                     headers: {
@@ -67,8 +67,8 @@ const MyOfferCard = ({ orderId }) => {
                                     }
 
                                 });
-                            }}>Accept</Button>
-                            <Button onClick={() => {
+                            }}>Accept</Button> : null}
+                            {(row.Status.Name == 'Pending' && row.Status.Name != 'Decline' && row.Status.Name != 'Accepted') ? (<Button onClick={() => {
                                 fetch(`http://localhost:8080/api/offer/updatedicline/${row.IdOffer}`, {
                                     method: 'PUT',
                                     headers: {
@@ -89,7 +89,29 @@ const MyOfferCard = ({ orderId }) => {
                                         setloading(true);
                                     }
                                 });
-                            }}>Decline</Button>
+                            }}>Decline</Button>) : null
+
+                            }
+                            {(row.Status.Name == 'Accepted') ? ((
+                                <Button onClick={() => {
+                                    fetch(`http://localhost:8080/api/offer/updatecancel/${row.OrderId}`, {
+                                        method: 'PUT',
+                                        headers: {
+                                            Accept: 'application/json',
+                                            'Content-Type': 'application/json',
+                                        },
+                                    }).then((res) => {
+                                        console.log(res)
+                                        if(res.status==200){
+                                            setloading(true);
+                                            setdataloading(false);
+                                        }
+
+                                    });
+                                }}>Cancel</Button>
+                            )) : null
+
+                            }
                         </Fragment>
                     ]}
                 >
