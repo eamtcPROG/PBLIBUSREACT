@@ -1,4 +1,4 @@
-import { Button, Space, Card, Collapse, Descriptions, Row,Modal, Col,Typography } from 'antd';
+import { Button, Space, Card, Collapse, Descriptions, Row, Modal, Col, Typography } from 'antd';
 import React, { useState, useEffect, Fragment } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
 import Axios from "axios";
@@ -79,7 +79,7 @@ const OrderPage = () => {
   return (
     <>
 
-    <Row><Col> <Space
+      <Row><Col> <Space
         style={{
           marginBottom: 16,
         }}
@@ -88,82 +88,89 @@ const OrderPage = () => {
 
       </Space></Col></Row>
 
-    <Row style={{marginTop:"2vh", align:"middle"}}><Col span={24} align="center"><Title level={3} style={{  color:"white",fontSize:"40px",fontFamily:"Helvetica", align:"middle"}}>New Orders</Title></Col></Row>
+      <Row style={{ marginTop: "2vh", align: "middle" }}><Col span={24} align="center"><Title level={3} style={{ color: "white", fontSize: "40px", fontFamily: "Helvetica", align: "middle" }}>New Orders</Title></Col></Row>
 
-      <Row style={{marginTop:"1vh"}}><Col span={20} offset={4} pull={0}><div class="ContainerOrderPage">
+      <Row style={{ marginTop: "1vh" }}><Col span={20} offset={4} pull={0}><div class="ContainerOrderPage">
         <div class="ContentOrderPage">
-      <Space
-        style={{
-          marginBottom: 16,
-        }}
-      >
+          <Space
+            style={{
+              marginBottom: 16,
+            }}
+          >
 
 
-      </Space>
-      {/* <Table columns={columns} dataSource={state} onChange={handleChange} /> */}
-      <Row align="center" style={{ marginTop: "2%", marginBottom: "14.5%" }}>
-        {/* <Table columns={columns} dataSource={state} onChange={handleChange} /> */}
-        {/* <div className="site-card-border-less-wrapper"> */}
+          </Space>
+          {/* <Table columns={columns} dataSource={state} onChange={handleChange} /> */}
+          <Row align="center" style={{ marginTop: "2%", marginBottom: "14.5%" }}>
+            {/* <Table columns={columns} dataSource={state} onChange={handleChange} /> */}
+            {/* <div className="site-card-border-less-wrapper"> */}
 
-        {state ? state.map((item) => {
-          return (       
-          
-          
-                                    <Card style={{ marginBottom: "2%" }} className='offercard' title={item.TitleOffer}
-                                      bordered={false}
-                                      actions={[
-                                        <Fragment>
-                                          <NavLink ><Button>Edit</Button></NavLink>
-                                          <Button
-                                            onClick={() => {
-                                              Modal.confirm({
-                                                title: 'Confirm',
-                                                icon: <ExclamationCircleOutlined />,
-                                                content: 'Do you want to delete this offer ?',
-                                                okText: 'Confirm',
-                                                cancelText: 'Cancel',
-                                                onOk() {
-                                                  Axios.delete(`http://localhost:8080/api/order/delete/${item.IdOrder}`).then(res => {
-                                                    console.log(res);
-                                                    if (res.status == 200) {
-                                                      setloading(true);
-                                                    }
-                                                  });
-                                                },
-                                              });
-                                            }}
-                                          >Delete</Button>
-                                        </Fragment>
-                                      ]}
-                                    >
-
-                                      <Row>
-
-                                        <Descriptions title="My Order "  >
-                                          <Descriptions.Item label="Location">{item.AddressFullStart}</Descriptions.Item>
-                                          <Descriptions.Item label="Destination">{item.AddressFullEnd}</Descriptions.Item>
-                                          <Descriptions.Item label="Number of people">{item.NumberPersons}</Descriptions.Item>
-                                          <Descriptions.Item label="Date">{format(new Date(item.Date), 'dd-MM-yyyy')} </Descriptions.Item>
-                                          <Descriptions.Item label="Details">{item.MoreDetails} </Descriptions.Item>
-
-                                        </Descriptions>
+            {state ? state.map((item) => {
+              return (
 
 
-                                      </Row>
-                                      <Row>
-                                        <Collapse id="CollapsePadding" style={{ padding: "0", align: "top" }} ghost className='ant-collapse-header' >
-                                          <Panel id="CollapsePadding" style={{ padding: '0' }} header="Offers"  >
-                                            <MyOfferCard orderId={item.IdOrder} />
-                                          </Panel>
-                                        </Collapse>
-                                      </Row>
+                <Card style={{ marginBottom: "2%" }} className='offercard' title={item.TitleOffer}
+                  bordered={false}
+                  actions={[
+                    <Fragment>
+                      <NavLink to={`/editorder/${item.IdOrder}`} ><Button>Edit</Button></NavLink>
+                      <Button
+                        onClick={() => {
+                          Modal.confirm({
+                            title: 'Confirm',
+                            icon: <ExclamationCircleOutlined />,
+                            content: 'Do you want to delete this order with its offers ?',
+                            okText: 'Confirm',
+                            cancelText: 'Cancel',
+                            onOk() {
+                              Axios.delete(`http://localhost:8080/api/offer/deletefororder/${item.IdOrder}`).then(res => {
+                                console.log(res);
+                                if (res.status == 200) {
+                                  Axios.delete(`http://localhost:8080/api/order/delete/${item.IdOrder}`).then(res => {
+                                    console.log(res);
+                                    if (res.status == 200) {
+                                      setloading(true);
+                                      setdataloading(false);
+                                    }
+                                  });
+                                }
+                              });
 
-                                    </Card> )
-        }) : <></>}
+                            },
+                          });
+                        }}
+                      >Delete</Button>
+                    </Fragment>
+                  ]}
+                >
 
-      </Row>
-     
-    </div></div></Col></Row></>
+                  <Row>
+
+                    <Descriptions title="My Order "  >
+                      <Descriptions.Item label="Location">{item.AddressFullStart}</Descriptions.Item>
+                      <Descriptions.Item label="Destination">{item.AddressFullEnd}</Descriptions.Item>
+                      <Descriptions.Item label="Number of people">{item.NumberPersons}</Descriptions.Item>
+                      <Descriptions.Item label="Date">{format(new Date(item.Date), 'dd-MM-yyyy')} </Descriptions.Item>
+                      <Descriptions.Item label="Details">{item.MoreDetails} </Descriptions.Item>
+
+                    </Descriptions>
+
+
+                  </Row>
+                  <Row>
+                    <Collapse id="CollapsePadding" style={{ padding: "0", align: "top" }} ghost className='ant-collapse-header' >
+                      <Panel id="CollapsePadding" style={{ padding: '0' }} header="Offers"  >
+                        <MyOfferCard orderId={item.IdOrder} />
+                      </Panel>
+                    </Collapse>
+                  </Row>
+
+                </Card>)
+            }) : <></>}
+
+          </Row>
+
+        </div></div></Col></Row></>
 
   );
 };

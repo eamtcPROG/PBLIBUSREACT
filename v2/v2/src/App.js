@@ -148,6 +148,14 @@ const App = () => {
             </PrivateRoute>}
           />
           <Route
+            path="/editorder/:id"
+            element={<PrivateRoute
+              isAuthenticated={isAuthenticated}
+            >
+              <EditOrder/>
+            </PrivateRoute>}
+          />
+          <Route
             path="/login"
             element={<Login setIsAuthenticated={setIsAuthenticated} setTypeUserId={setTypeUserId} />}
           />
