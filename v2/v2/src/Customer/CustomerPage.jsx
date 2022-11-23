@@ -7,9 +7,9 @@ const CustomerPage = ({ }) => {
 
   return (
       <Row>
-        <Col span={9}/>
-        <Col span={6} style={{marginTop:"10%" }} align="center" ><MyProfile/></Col>
-        <Col span={9}/>
+        <Col xs={2} sm={2} md={9}/>
+        <Col xs={20} md={20} style={{marginTop:"10%" }} align="center" ><MyProfile/></Col>
+        <Col xs={2} sm={2} md={9}/>
         </Row>
   );
 };

@@ -145,24 +145,26 @@ const OrderPage = () => {
                 >
 
                   <Row>
-
+                  
                     <Descriptions title="My Order "  >
                       <Descriptions.Item label="Location">{item.AddressFullStart}</Descriptions.Item>
                       <Descriptions.Item label="Destination">{item.AddressFullEnd}</Descriptions.Item>
                       <Descriptions.Item label="Number of people">{item.NumberPersons}</Descriptions.Item>
                       <Descriptions.Item label="Date">{format(new Date(item.Date), 'dd-MM-yyyy')} </Descriptions.Item>
                       <Descriptions.Item label="Details">{item.MoreDetails} </Descriptions.Item>
-
+                      
                     </Descriptions>
-
+                   
 
                   </Row>
                   <Row>
+                    <Col span={24}>
                     <Collapse id="CollapsePadding" style={{ padding: "0", align: "top" }} ghost className='ant-collapse-header' >
                       <Panel id="CollapsePadding" style={{ padding: '0' }} header="Offers"  >
                         <MyOfferCard orderId={item.IdOrder} />
                       </Panel>
                     </Collapse>
+                    </Col>
                   </Row>
 
                 </Card>

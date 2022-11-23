@@ -61,7 +61,7 @@ const Order = ({ setOrderId }) => {
               {
                 state ?
                   state.map((item) => {
-                    return <Row style={{ marginTop: "2%" }}><Col span={4} /><Col span={16}><OrderCard state={item} setOrderId={setOrderId} /></Col><Col span={4} /></Row>;
+                    return <Row style={{ marginTop: "2%" }}><Col xs={2}sm={2}md={4} /><Col xs={20}sm={20}md={16}><OrderCard state={item} setOrderId={setOrderId} /></Col><Col xs={2}sm={2}md={4} /></Row>;
                   }) : <></>
               }
 
