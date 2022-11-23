@@ -23,21 +23,21 @@ const OrderCard = ({ state,setOrderId }) => {
       title={state.Title}
       bordered={false}
       style={{
-        width: 900,
+        width: "100%",
       }}
     >
       <Row>
-        <Col span={4} align="center" offset={1}>
+        <Col span={4} align="left" offset={1}>
         <Text>Start Location: </Text> {state != undefined ? state.AddressFull : ""}
         </Col>
         
-        <Col span={4} offset={1} align="center">
+        <Col span={4} offset={1} align="left">
         <Text>Destination: </Text> {state != undefined ? state.AddressFullSecond : ""}
         </Col>
-        <Col  span={8} align="center">
+        <Col  span={8} align="left">
         <Text>Travel Date: </Text> {state != undefined ? format(new Date(state.Date), 'dd-MM-yyyy'): ""}
         </Col>
-        <Col span={2} align="center">
+        <Col span={2} align="left">
         <Text>Number of people: </Text> {state != undefined ? state.NumberPersons : ""}
         </Col>
       </Row>

@@ -9,7 +9,10 @@ body {
   
 
 }
-
+:where(.css-dev-only-do-not-override-5j5ugb).ant-layout .ant-layout-content {
+  flex: auto;
+  min-height: 110vh;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -18,7 +21,7 @@ code {
 
 .ant-layout-content {
 
-  min-height: 90vh;
+  min-height: 110vh;
 
 
 }

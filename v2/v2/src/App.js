@@ -106,8 +106,11 @@ const App = () => {
       <Header // Header Component
         className="header"
         style={
-          {background:"#FFFF"}
+          {background:"#FFFF",
+          position: 'sticky', top: 0, zIndex: 1, width: '100%'
         }
+        }
+        
       >
 
         <MyNavBar setIsAuthenticated={setIsAuthenticated} typeUserId={typeUserId} isAuthenticated={isAuthenticated} />

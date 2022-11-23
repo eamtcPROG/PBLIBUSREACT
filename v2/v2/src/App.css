@@ -27,7 +27,7 @@
   background-position: center center;
   background-repeat: no-repeat;
   height: cover;
-  min-height: 90vh;
+  min-height: 110vh;
 }
   
 
@@ -84,38 +84,52 @@
   align-items: center;
   background-size: cover;
   background-repeat: no-repeat;
-  min-height: 90vh;
+  min-height: 110vh;
 }
 
 
  .ant-layout-content .site-layout{
 
 
-  min-height: 90vh;
+  min-height: 110vh;
 
 
   }
 
   .ant-layout-content {
 
-    min-height: 90vh;
+    min-height: 110vh;
   
   
   }
-
- 
-
+  :where(.css-dev-only-do-not-override-t98trl).ant-layout .ant-layout-header{
+    padding: 0;
+  }
 
 .layout{
   background-image: url(/public/Slide1.png);
  
   background-position: center center;
   background-repeat: no-repeat;
-  min-height: 90vh;
+  min-height: 110vh;
 
 }
-
-
+.css-1lqxvai {
+  position: relative;
+  z-index: 10;
+  max-width: 100%;
+  background: #ffffff;
+  
+}
+ header{
+  margin: 0;
+  padding: 0;
+ }
+ :where(.css-1wismvm).ant-row {
+  display: flex;
+  flex-flow: row wrap;
+  min-width: 0;
+}
 /* .footer{
   position: relative;
   top: 10%;

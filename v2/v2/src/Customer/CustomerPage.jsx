@@ -6,7 +6,11 @@ import { Button, Space, Typography, Row, Col, Card, Collapse,Descriptions } from
 const CustomerPage = ({ }) => {
 
   return (
-      <Row><Col span={20} style={{marginTop:"20vh" }} align="center" offset={2} push={0}><MyProfile/></Col></Row>
+      <Row>
+        <Col span={9}/>
+        <Col span={6} style={{marginTop:"10%" }} align="center" ><MyProfile/></Col>
+        <Col span={9}/>
+        </Row>
   );
 };
 export default CustomerPage;

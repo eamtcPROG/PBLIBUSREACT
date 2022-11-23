@@ -88,9 +88,9 @@ const OrderPage = () => {
 
       </Space></Col></Row>
 
-      <Row style={{ marginTop: "2vh", align: "middle" }}><Col span={24} align="center"><Title level={3} style={{ color: "white", fontSize: "40px", fontFamily: "Helvetica", align: "middle" }}>New Orders</Title></Col></Row>
+      <Row style={{ marginTop: "2vh", align: "middle" }}><Col span={24} align="center"><Title level={3} style={{ color: "white", fontSize: "40px", fontFamily: "Helvetica", align: "middle" }}>Orders</Title></Col></Row>
 
-      <Row style={{ marginTop: "1vh" }}><Col span={20} offset={4} pull={0}><div class="ContainerOrderPage">
+      <Row style={{ marginTop: "1vh" }}><Col span={16} push={4} ><div class="ContainerOrderPage">
         <div class="ContentOrderPage">
           <Space
             style={{

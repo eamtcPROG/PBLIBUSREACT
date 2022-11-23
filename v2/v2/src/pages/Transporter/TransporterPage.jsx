@@ -70,10 +70,13 @@ const TransporterPage = ({ }) => {
   return (
     <>
       
-      <Row >
-        <Col style={{marginTop:"20vh" }} align="center" offset={6} push={1}><MyProfile /></Col>
-        <Col offset={1} span={4} style={{marginTop:"20vh"}}>
-          <Card  className='TransportCard' bordered={false} style={{marginLeft:"2.1vh"}}>
+      <Row style={{marginTop:"10%"}}>
+        <Col xs={2}sm={2} md={7}/>
+        <Col  align="center" xs={20} sm={20} md={5} ><MyProfile /></Col>
+        <Col xs={2} sm={2} md={1}/>
+        <Col xs={2} sm={2} md={0}/>
+        <Col xs={20} sm={20} md={5} >
+          <Card  className='TransportCard' bordered={false} >
             <Row>
               <Col align="center" span={24}><Title style={{align:'center', color:"black",fontSize:"21px",fontFamily:"Helvetica"}} level={5} > Transport Info</Title></Col>
             </Row>
@@ -104,7 +107,7 @@ const TransporterPage = ({ }) => {
 
           </Card>
           
-        <NavLink to="/addtransporter" ><Button className='AddCarsButton' style={{marginTop:"2.1vh", marginLeft:"2.1vh"}} ><PlusOutlined className='plus' style={{fontSize: '2.8vh', opacity:'90%'}} /><Text style={{color:"white",fontSize:"2.8vh"}}>Add Vehicle</Text></Button></NavLink>
+        <NavLink to="/addtransporter" ><Button className='AddCarsButton' style={{marginTop:"3%",marginBottom:"3%"}} ><PlusOutlined className='plus' style={{fontSize: '2.8vh', opacity:'90%'}} /><Text style={{color:"white",fontSize:"2.8vh"}}>Add Vehicle</Text></Button></NavLink>
          
         </Col>
       </Row>

@@ -42,14 +42,11 @@ const MyProfile = () => {
     };
     return(
 
-      <Col><div className="myprofilecard">
+      
         <Card 
             bordered={false}
-            style={{ 
-            backgroundColor:"transparent",
-             
-            }}
-            
+            id="myprofilecard"
+            style={{marginBottom:"1%"}}
         >
             <Row><Col align="center" span={24}><Title style={{align:'center', color:"black",fontSize:"21px",fontFamily:"Helvetica"}} level={5} > My Profile</Title></Col></Row>
               <Space><UserOutlined className='User' width='10em' height='10em' style={{fontSize: '17vh'}}/></Space>
@@ -84,8 +81,8 @@ const MyProfile = () => {
           
 
                
-        </Card>
-    </div></Col>
+      </Card>
+    
     )
         }
 export default MyProfile;
