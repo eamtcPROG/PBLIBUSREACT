@@ -17,9 +17,12 @@
     
  
     border-radius: 1.7em;
-    box-shadow: rgba(0, 0, 0, 0.45) 0px 20px 50px;;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 20px 50px;
   }
-
+.addOffer{
+  border-radius: 1.7em;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 20px 50px;
+}
   .collapse{
 
     background: red;

@@ -111,7 +111,7 @@ const Login = ({setIsAuthenticated,setTypeUserId}) => {
                         
 
                         <Row>
-                            <Col align="center" span={22} offset={2} pull={2}>
+                            <Col align="center" span={24} pull={2}>
                              <Form.Item
                                  label="Password"
                                  name="password"

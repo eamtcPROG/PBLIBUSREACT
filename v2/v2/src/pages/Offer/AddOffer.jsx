@@ -1,8 +1,9 @@
 import React, { useState,useEffect } from "react";
-import { Form, Input, Button, Typography, Select,Card,notification } from "antd";
+import { Form, Input, Button, Typography, Select,Card,notification, Col ,Row} from "antd";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 import MyNotifications from "../../notifications/MyNotifications";
+import "../../MyStyle/OfferCard.css"
 const AddOffer = ({ orderId }) => {
   const history = useNavigate();
   const mynotification = new MyNotifications();
@@ -108,28 +109,22 @@ const AddOffer = ({ orderId }) => {
 
   };
   return (
-    <div className="site-card-border-less-wrapper">
+    <Row style={{marginTop:"10%",marginBottom:"10%"}}>
+      <Col xs={2} sm={2} md={8}/>
+      <Col xs={20} sm={20} md={8}>
     <Card
       title="Add Offer"
       bordered={false}
+      className="addOffer"
       style={{
-        width: 600,
+        width: "100%",
       }}
     >
       <Form // Ant Design's Form Component
         name="contact-us"
         layout="vertical"
         form={form}
-        wrapperCol={{
-          span: 6,
-        }}
-        style={{
-          marginTop: 20,
-          paddingBottom: 10,
-          paddingLeft: 30,
-          paddingRight: 30,
-          
-        }}
+        
         onFinish={handleSubmit}
       >
         <Form.Item // Form Item (First Name)
@@ -163,7 +158,7 @@ const AddOffer = ({ orderId }) => {
           < Select
             defaultValue="Select model"
             style={{
-              width: 300,
+              width: "100%",
             }}
             onChange={handletrasporteridChange}
             options={state.map((item) => ({
@@ -177,7 +172,9 @@ const AddOffer = ({ orderId }) => {
         </Form.Item>
       </Form>
     </Card>
-  </div>
+    </Col>
+    <Col xs={2} sm={2} md={8}/>
+    </Row>
     // <div>
     //   <Title // Form's Title
     //     level={3}

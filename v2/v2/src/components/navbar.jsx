@@ -112,8 +112,9 @@ const MyNavBar = ({ setIsAuthenticated, typeUserId, isAuthenticated }) => {
                         },
                     {
                         key: "Logout",
-                        label: (<Button type="link" className='logoutbtn' icon={<LogoutOutlined />}  onClick={logout}
+                        label: (<Button type="link" className='logoutbtn'  style={{padding:0}} onClick={logout}
                         > Logout</Button>),
+                        icon:<LogoutOutlined />
                     }])
             }
             else {

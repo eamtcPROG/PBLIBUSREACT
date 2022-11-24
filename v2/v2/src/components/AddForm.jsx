@@ -235,11 +235,13 @@ const AddForm = () => {
 
   return (
 
-    <Row style={{marginTop:'2.5vh'}} >
-      <Col align="center" span={24}><Card id="AddFormCard"
+    <Row style={{marginTop:'2%',marginBottom:"2%"}} >
+      <Col xs={2} sm={2} md={5}/>
+      <Col align="center" xs={20} sm={20} md={14}><Card id="AddFormCard"
       title="Add Order"
       style={{
-        width: "50%"
+        width: "100%",
+        height:"auto"
       }}
     >
       <Form
@@ -253,7 +255,7 @@ const AddForm = () => {
           <Title>Set Starting Location</Title>
         </Row>
         <Row>
-          <Col span={10} style={{marginLeft:"2vm"}}>
+          <Col xs={24} sm={24} md={10} style={{marginLeft:"2vm"}}>
             <Form.Item
               label="Country"
               required
@@ -279,7 +281,7 @@ const AddForm = () => {
             </Form.Item>
           </Col>
 
-          <Col span={10} push={2}>
+          <Col xs={24} sm={24} md={{push:2,span:10}} >
             <Form.Item
               label="Town"
               required
@@ -296,7 +298,7 @@ const AddForm = () => {
           </Col>
         </Row>
         <Row>
-          <Col span={10} style={{marginLeft:"2vm"}}>
+          <Col xs={24} sm={24} md={10} style={{marginLeft:"2vm"}}>
             <Form.Item
               label="Street"
               required
@@ -312,7 +314,7 @@ const AddForm = () => {
               <Input className="InputAddForm" placeholder="Street Name" onChange={handleAddressNameChange} value={addressname} />
             </Form.Item>
           </Col>
-          <Col span={10} push={2}>
+          <Col xs={24} sm={24} md={{push:2,span:10}}>
             <Form.Item
               label="Street Number"
               required
@@ -334,7 +336,7 @@ const AddForm = () => {
           <Title>Set Destination</Title>
         </Row>
         <Row>
-          <Col span={10} style={{marginLeft:"2vm"}}>
+          <Col xs={24} sm={24} md={10} style={{marginLeft:"2vm"}}>
             <Form.Item
               label="Country"
               required
@@ -359,7 +361,7 @@ const AddForm = () => {
               />
             </Form.Item>
           </Col>
-          <Col span={10} push={2}>
+          <Col xs={24} sm={24} md={{push:2,span:10}}>
             <Form.Item
               label="Town"
               required
@@ -376,7 +378,7 @@ const AddForm = () => {
           </Col>
         </Row>
         <Row>
-          <Col span={10} style={{marginLeft:"2vm"}}>
+          <Col xs={24} sm={24}  md={10} style={{marginLeft:"2vm"}}>
             <Form.Item
               label="Street"
               required
@@ -392,7 +394,7 @@ const AddForm = () => {
               <Input className="InputAddForm" placeholder="Street Name" onChange={handleAddressNameDChange} value={addressnameD} />
             </Form.Item>
           </Col>
-          <Col span={10} push={2}>
+          <Col xs={24} sm={24} md={{push:2,span:10}}>
             <Form.Item
               label="Street Number"
               required
@@ -410,7 +412,7 @@ const AddForm = () => {
           </Col>
         </Row>
         <Row>
-          <Col span={10} style={{marginLeft:"2vm"}}>
+          <Col xs={24} sm={24} md={10} style={{marginLeft:"2vm"}}>
             <Form.Item label="Date"
               name="date"
               required
@@ -429,7 +431,7 @@ const AddForm = () => {
           </Col>
         </Row>
         <Row>
-          <Col span={10} style={{marginLeft:"2vm"}}>
+          <Col xs={24} sm={24} md={10} style={{marginLeft:"2vm"}}>
             <Form.Item // Form Item (Email)
               label="Number of people"
               name="nrPeople"
@@ -447,29 +449,31 @@ const AddForm = () => {
           </Col>
         </Row>
         <Row>
-          <Col span={10} style={{marginLeft:"vm"}}>
+          <Col span={24} >
             <Form.Item 
               label="Preferences"
               name="message"
             >
               <Input.TextArea
                 placeholder="Type here.."
-                autoSize={{ minRows: 8, maxRows: 10 }}
+                autoSize={true}
                 onChange={handleMoreDetailsChange} value={moredetails}
 
               />
             </Form.Item>
           </Col>
         </Row>
-        <Row>
-          <Col>
+        <Row >
+          <Col xs={{push:4,span:16,pull:4}}sm={{push:4,span:16,pull:4}} md={{push:20,span:4}}>
             <Form.Item>
               <Button type="primary" htmlType="submit">Submit</Button>
             </Form.Item>
           </Col>
         </Row>
       </Form>
-    </Card></Col></Row>
+    </Card></Col>
+    <Col xs={2} sm={2} md={5}/>
+    </Row>
 
   );
 };
