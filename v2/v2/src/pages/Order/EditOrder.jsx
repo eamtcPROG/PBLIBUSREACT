@@ -144,7 +144,8 @@ const getDataAddress = async (id,type) => {
   };
 
   const handleDateChange = (e, value) => {
-    setDate(value);
+    var date = Date(value)
+    setDate(date);
   };
   const handleMoreDetailsChange = (e) => {
     setMoreDetails(e.target.value);
@@ -181,7 +182,7 @@ const getDataAddress = async (id,type) => {
   const handleSubmit = () => {
 
 
-
+    console.log(startpointaddressid)
     fetch(`http://localhost:8080/api/address/update/${startpointaddressid}`, {
       method: 'PUT',
       body: JSON.stringify({
@@ -198,6 +199,7 @@ const getDataAddress = async (id,type) => {
     }).then((res) => {
 
       if (res.status === 200) {
+        console.log(endpointaddressid)
         fetch(`http://localhost:8080/api/address/update/${endpointaddressid}`, {
         method: 'PUT',
         body: JSON.stringify({
@@ -214,6 +216,11 @@ const getDataAddress = async (id,type) => {
 
         if (res.status === 200) {
           if (startpointaddressid!= undefined && endpointaddressid != undefined) {
+            console.log(date)
+            console.log(numberpersons)
+            console.log(moredetails)
+            console.log(startpointaddressid)
+            console.log(endpointaddressid)
             fetch(`http://localhost:8080/api/order/update/${idOrder.id}`, {
               method: 'PUT',
               body: JSON.stringify({
@@ -232,6 +239,10 @@ const getDataAddress = async (id,type) => {
                 Axios.delete(`http://localhost:8080/api/offer/deletefororder/${idOrder.id}`).then(
                   res=>{
                     if (res.status === 200) {
+                      mynotification.succesNotification("Order","edited");
+                      return history('/orderpage');
+                    }
+                    else{
                       mynotification.succesNotification("Order","edited");
                       return history('/orderpage');
                     }
@@ -256,11 +267,13 @@ const getDataAddress = async (id,type) => {
 
   return loading != false || loadingData != false || countryid == undefined || countryidD == undefined || date == undefined? (<Skeleton/>) :(
 
-    <Row style={{marginTop:'2.5vh'}} >
-      <Col align="center" span={24}><Card id="AddFormCard"
+    <Row style={{marginTop:'2%',marginBottom:"2%"}} >
+     <Col xs={2} sm={2} md={5}/>
+      <Col align="center" xs={20} sm={20} md={14}><Card id="AddFormCard"
       title="Edit Order"
       style={{
-        width: "50%"
+        width: "100%",
+        height:"auto"
       }}
     >
       <Form
@@ -274,7 +287,7 @@ const getDataAddress = async (id,type) => {
           <Title>Set Starting Location</Title>
         </Row>
         <Row>
-          <Col span={10} style={{marginLeft:"2vm"}}>
+          <Col xs={24} sm={24} md={10} style={{marginLeft:"2vm"}}>
             <Form.Item
               label="Country"
             >
@@ -292,7 +305,7 @@ const getDataAddress = async (id,type) => {
             </Form.Item>
           </Col>
 
-          <Col span={10} push={2}>
+          <Col xs={24} sm={24} md={{push:2,span:10}}>
             <Form.Item
               label="Town"
               
@@ -304,7 +317,7 @@ const getDataAddress = async (id,type) => {
           </Col>
         </Row>
         <Row>
-          <Col span={10} style={{marginLeft:"2vm"}}>
+          <Col xs={24} sm={24} md={10} style={{marginLeft:"2vm"}}>
             <Form.Item
               label="Street"
               
@@ -314,7 +327,7 @@ const getDataAddress = async (id,type) => {
               <Input className="InputAddForm" placeholder="Street Name" onChange={handleAddressNameChange} value={addressname} />
             </Form.Item>
           </Col>
-          <Col span={10} push={2}>
+          <Col xs={24} sm={24} md={{push:2,span:10}}>
             <Form.Item
               label="Street Number"
               
@@ -330,7 +343,7 @@ const getDataAddress = async (id,type) => {
           <Title>Set Destination</Title>
         </Row>
         <Row>
-          <Col span={10} style={{marginLeft:"2vm"}}>
+          <Col xs={24} sm={24} md={10} style={{marginLeft:"2vm"}}>
             <Form.Item
               label="Country"
             >
@@ -347,7 +360,7 @@ const getDataAddress = async (id,type) => {
               />
             </Form.Item>
           </Col>
-          <Col span={10} push={2}>
+          <Col xs={24} sm={24} md={{push:2,span:10}}>
             <Form.Item
               label="Town"
               initialValue={locationnameD}
@@ -358,7 +371,7 @@ const getDataAddress = async (id,type) => {
           </Col>
         </Row>
         <Row>
-          <Col span={10} style={{marginLeft:"2vm"}}>
+          <Col xs={24} sm={24}  md={10} style={{marginLeft:"2vm"}}>
             <Form.Item
               label="Street"
               initialValue={addressnameD}
@@ -366,7 +379,7 @@ const getDataAddress = async (id,type) => {
               <Input className="InputAddForm" placeholder="Street Name" onChange={handleAddressNameDChange} value={addressnameD} />
             </Form.Item>
           </Col>
-          <Col span={10} push={2}>
+          <Col xs={24} sm={24} md={{push:2,span:10}}>
             <Form.Item
               label="Street Number"
               
@@ -378,7 +391,7 @@ const getDataAddress = async (id,type) => {
           </Col>
         </Row>
         <Row>
-          <Col span={10} style={{marginLeft:"2vm"}}>
+          <Col xs={24} sm={24} md={10} style={{marginLeft:"2vm"}}>
             <Form.Item label="Date"
               name="date"
               initialValue={date}
@@ -389,7 +402,7 @@ const getDataAddress = async (id,type) => {
           </Col>
         </Row>
         <Row>
-          <Col span={10} style={{marginLeft:"2vm"}}>
+          <Col xs={24} sm={24} md={10}>
             <Form.Item // Form Item (Email)
               label="Number of people"
               name="nrPeople"
@@ -401,7 +414,7 @@ const getDataAddress = async (id,type) => {
           </Col>
         </Row>
         <Row>
-          <Col span={10} style={{marginLeft:"vm"}}>
+          <Col span={24} style={{marginLeft:"vm"}}>
             <Form.Item 
               label="Preferences"
               name="message"
@@ -409,7 +422,7 @@ const getDataAddress = async (id,type) => {
             >
               <Input.TextArea
                 placeholder="Type here.."
-                autoSize={{ minRows: 8, maxRows: 10 }}
+                autoSize={true}
                 onChange={handleMoreDetailsChange} value={moredetails}
 
               />
@@ -417,14 +430,16 @@ const getDataAddress = async (id,type) => {
           </Col>
         </Row>
         <Row>
-          <Col>
+          <Col xs={{push:4,span:16,pull:4}}sm={{push:4,span:16,pull:4}} md={{push:20,span:4}}>
             <Form.Item>
               <Button type="primary" htmlType="submit">Submit</Button>
             </Form.Item>
           </Col>
         </Row>
       </Form>
-    </Card></Col></Row>
+    </Card></Col>
+    <Col xs={2} sm={2} md={5}/>
+    </Row>
 
   );
 };

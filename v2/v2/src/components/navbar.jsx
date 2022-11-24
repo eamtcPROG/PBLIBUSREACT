@@ -159,7 +159,7 @@ const MyNavBar = ({ setIsAuthenticated, typeUserId, isAuthenticated }) => {
                     </Col>
                     <Col xs={8} sm={9} md={7} lg={5} xl={4} align={"right"}>
                         {isAuthenticated ? <Button type="link" className='logoutbtn' icon={<LoginOutlined />}  onClick={logout}
-                        > Logout</Button> : <NavLink align="middle" to="/login">Sign in</NavLink>}
+                        > Logout</Button> : <NavLink align="middle" style={{color:"black"}} to="/login"><LoginOutlined style={{marginRight:8}}/>Sign in</NavLink>}
                     </Col>
                 </Row>
             </MediaQuery>
