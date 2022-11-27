@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Form, Input, Button, Typography, DatePicker, Space, Card, Row, Select, Col, Skeleton } from "antd";
 import { useNavigate,useParams } from "react-router-dom";
+
 import Axios from "axios";
 import '../../MyStyle/AddForm.css'
 import MyNotifications from "../../notifications/MyNotifications";
 import moment from "moment";
+
+
 const EditOrder = () => {
   const history = useNavigate();
   const mynotification = new MyNotifications();
@@ -86,25 +89,24 @@ const EditOrder = () => {
     getData();
 }, [loading,loadingData,damy]);
 
+
   const getDataOrder = async () => {
-    await Axios.get(
-        `http://localhost:8080/api/order/${idOrder.id}`
-    ).then(
-        res => {
-            console.log(res.data);
-            if (res.data != undefined) {
-              setStartPointAddressId(res.data.StartPointAddressId);
-              setEndPointAddressId(res.data.EndPointAddressId);
-              setNumberPersons(res.data.NumberPersons);
-              setDate(moment(res.data.Date));
-              
-              setMoreDetails(res.data.MoreDetails);
-              getDataAddress(res.data.StartPointAddressId,1);
-              getDataAddress(res.data.EndPointAddressId,2);
-            }
-        }
-    );
-    console.log(countryid)
+    try {
+       const res = await Axios.get(`http://localhost:8080/api/order/${idOrder.id}`)
+      if (res.data != undefined) {
+        setStartPointAddressId(res.data.StartPointAddressId);
+        setEndPointAddressId(res.data.EndPointAddressId);
+        setNumberPersons(res.data.NumberPersons);
+        setDate(moment(res.data.Date));
+        
+        setMoreDetails(res.data.MoreDetails);
+        getDataAddress(res.data.StartPointAddressId,1);
+        getDataAddress(res.data.EndPointAddressId,2);
+      }
+    } catch (e) {
+        console.error(e);
+    }
+
     if (moredetails != undefined ) {
         setloadingData(false);
     }
