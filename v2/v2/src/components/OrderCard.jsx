@@ -7,6 +7,7 @@ import { UserOutlined } from '@ant-design/icons';
 import { format } from 'date-fns'
 import { NavLink, useNavigate } from "react-router-dom";
 import '././../MyStyle/OrderCard.css'
+import '././../MyStyle/Buttons.css'
 const { Title, Text } = Typography;
 const OrderCard = ({ state, setOrderId }) => {
   const history = useNavigate();
@@ -20,7 +21,7 @@ const OrderCard = ({ state, setOrderId }) => {
     <>
 
       <Card className="ordercard"
-        actions={[<Button onClick={handleMakeOffer}>Make an offer</Button>]}
+        actions={[<Button type="primary" shape="round" className="makeofferbutton" onClick={handleMakeOffer}>Make an offer</Button>]}
         title={state.Title}
         bordered={false}
         style={{

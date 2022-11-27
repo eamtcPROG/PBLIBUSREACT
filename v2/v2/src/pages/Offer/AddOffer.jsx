@@ -109,7 +109,7 @@ const AddOffer = ({ orderId }) => {
 
   };
   return (
-    <Row style={{marginTop:"10%",marginBottom:"10%"}}>
+    <Row style={{marginTop:"10%",marginBottom:"10%"}} >
       <Col xs={2} sm={2} md={8}/>
       <Col xs={20} sm={20} md={8}>
     <Card
@@ -118,6 +118,7 @@ const AddOffer = ({ orderId }) => {
       className="addOffer"
       style={{
         width: "100%",
+        textAlign:"center"
       }}
     >
       <Form // Ant Design's Form Component
@@ -167,7 +168,7 @@ const AddOffer = ({ orderId }) => {
             }))}
           />
         </Form.Item>
-        <Form.Item>
+        <Form.Item >
           <Button type="primary" htmlType="submit">Submit</Button>
         </Form.Item>
       </Form>
@@ -175,87 +176,7 @@ const AddOffer = ({ orderId }) => {
     </Col>
     <Col xs={2} sm={2} md={8}/>
     </Row>
-    // <div>
-    //   <Title // Form's Title
-    //     level={3}
-    //     style={{
-    //       marginBottom: 0,
-    //       paddingTop: 20,
-    //       paddingLeft: 30,
-    //       paddingRight: 30,
-    //     }}
-    //   >
-    //     Add Offer
-    //   </Title>
-    //   <Text // Form's Description
-    //     type="secondary"
-    //     style={{
-    //       paddingLeft: 30,
-    //       paddingRight: 30,
-    //     }}
-    //   >
-
-    //   </Text>
-    //   <Form // Ant Design's Form Component
-    //     name="contact-us"
-    //     layout="vertical"
-    //     form={form}
-    //     wrapperCol={{
-    //       span: 6,
-    //     }}
-    //     style={{
-    //       marginTop: 20,
-    //       paddingBottom: 10,
-    //       paddingLeft: 30,
-    //       paddingRight: 30,
-    //     }}
-    //     onFinish={handleSubmit}
-    //   >
-    //     <Form.Item // Form Item (First Name)
-    //       label="Price"
-    //       name="price"
-    //       required
-    //       tooltip="This is a required field"
-    //       rules={[
-    //         {
-    //           required: true,
-    //           message: "Please enter price!",
-    //         },
-    //       ]}
-    //     >
-    //       <Input placeholder="Price" onChange={handlePriceChange} value={price} />
-    //     </Form.Item>
-
-
-    //     <Form.Item // Form Item (Email)
-    //       label="Transport"
-    //       name="transport"
-    //       required
-    //       tooltip="This is a required field"
-    //       rules={[
-    //         {
-    //           required: true,
-    //           message: "Please enter number of transport!"
-    //         },
-    //       ]}
-    //     >
-    //       < Select
-    //         defaultValue="Select model"
-    //         style={{
-    //           width: 300,
-    //         }}
-    //         onChange={handletrasporteridChange}
-    //         options={state.map((item) => ({
-    //           value: item.IdTransporter,
-    //           label: `${item.ModelName} - Number of seats ${item.NumberSeats}`
-    //         }))}
-    //       />
-    //     </Form.Item>
-    //     <Form.Item>
-    //       <Button type="primary" htmlType="submit">Submit</Button>
-    //     </Form.Item>
-    //   </Form>
-    // </div>
+    
     
   );
 };

@@ -237,7 +237,8 @@ const AddForm = () => {
 
     <Row style={{marginTop:'2%',marginBottom:"2%"}} >
       <Col xs={2} sm={2} md={5}/>
-      <Col align="center" xs={20} sm={20} md={14}><Card id="AddFormCard"
+      <Col align="center" xs={20} sm={20} md={14}>
+        <Card id="AddFormCard"
       title="Add Order"
       style={{
         width: "100%",

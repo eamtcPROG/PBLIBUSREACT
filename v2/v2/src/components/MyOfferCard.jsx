@@ -1,9 +1,11 @@
 import React, { useEffect, useState, Fragment } from "react";
-import { Button, Card, Row, Col, Collapse, Descriptions, Skeleton } from "antd";
-import { EditOutlined } from '@ant-design/icons';
+import { Button, Card, Row, Col, Collapse, Descriptions, Skeleton,Empty } from "antd";
+import { EditOutlined,CloseOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 import MyNotifications from "../notifications/MyNotifications";
+import "../MyStyle/Buttons.css"
+import "../MyStyle/Cards.css"
 const { Panel } = Collapse;
 const MyOfferCard = ({ orderId }) => {
     const history = useNavigate();
@@ -30,89 +32,108 @@ const MyOfferCard = ({ orderId }) => {
     };
 
 
-    return state != undefined ? (
+    return state.length != 0 ? (
 
         state.map(row => {
             return row != undefined ? (
                 <Card
                     style={{ marginBottom: "1%" }}
+                    className={row.Status.Name == 'Accepted'  ?"acceptedcard":  (row.Status.Name == 'Decline'  )?"declinecard":null}
                     actions={[
-                        <Fragment>
-                            {row.Status.Name == 'Pending' && row.Status.Name != 'Decline' && row.Status.Name != 'Accepted' ? <Button onClick={() => {
-                                fetch(`http://localhost:8080/api/offer/updateaccepted/${row.IdOffer}`, {
-                                    method: 'PUT',
-                                    headers: {
-                                        Accept: 'application/json',
-                                        'Content-Type': 'application/json',
-                                    },
-                                }).then((res) => {
-                                    console.log(res);
-                                    if (res.status === 200) {
-                                        fetch(`http://localhost:8080/api/offer/updatepending/${row.OrderId}`, {
+                        <Row style={{marginTop:"1%"}} >
+                            <Fragment>
+                                {row.Status.Name == 'Pending' && row.Status.Name != 'Decline' && row.Status.Name != 'Accepted' ?
+                                    <Col style={{marginBottom:"1%"}} xs={{ span: 20, offset: 2 }} sm={{ span: 20, offset: 2 }} md={{span: 8, offset: 3}} lg={{span: 6, offset: 5}} xl={{ span: 4, offset: 8 }}>
+                                        <Button  className="acceptbutton" onClick={() => {
+                                            fetch(`http://localhost:8080/api/offer/updateaccepted/${row.IdOffer}`, {
+                                                method: 'PUT',
+                                                headers: {
+                                                    Accept: 'application/json',
+                                                    'Content-Type': 'application/json',
+                                                },
+                                            }).then((res) => {
+                                                console.log(res);
+                                                if (res.status === 200) {
+                                                    fetch(`http://localhost:8080/api/offer/updatepending/${row.OrderId}`, {
+                                                        method: 'PUT',
+                                                        headers: {
+                                                            Accept: 'application/json',
+                                                            'Content-Type': 'application/json',
+                                                        },
+                                                    }).then((res) => {
+                                                        console.log(res);
+                                                        if (res.status === 200) {
+                                                            mynotification.succesNotification("Offer", "accepted");
+                                                            setloading(true);
+
+                                                        }
+
+                                                    });
+
+                                                }
+
+                                            });
+                                        }}>Accept</Button>
+                                    </Col>
+                                    : null
+                                }
+                                {(row.Status.Name == 'Pending' && row.Status.Name != 'Decline' && row.Status.Name != 'Accepted') ? (
+                                    <Col xs={{ span: 20, offset: 2 }} sm={{ span: 20, offset: 2 }} md={{span: 8, offset: 2}} lg={{ span: 6, offset: 2 }} xl={{ span: 4, offset: 1 }}>
+                                        <Button 
+                                        type="danger"
+                                        className="deletebutton"
+                                        onClick={() => {
+                                            fetch(`http://localhost:8080/api/offer/updatedicline/${row.IdOffer}`, {
+                                                method: 'PUT',
+                                                headers: {
+                                                    Accept: 'application/json',
+                                                    'Content-Type': 'application/json',
+                                                },
+                                            }).then((res) => {
+                                                console.log(res);
+                                                if (res.status === 200) {
+                                                    return res.json();
+
+                                                }
+
+                                            }).then((data) => {
+                                                console.log(data);
+                                                if (data != null) {
+                                                    mynotification.succesNotification("Offer", "decline");
+                                                    setloading(true);
+                                                }
+                                            });
+                                        }}>Decline</Button>
+                                    </Col>
+                                ) : null
+
+                                }
+                                {row.Status.Name == 'Accepted' ? (
+                                    
+                                    <Col xs={{span:6,offset:9}} sm={{span:4,offset:10}} md={{span:2,offset:11}} >
+                                    <Button type="danger" className="cancelbutton" shape="circle" icon={<CloseOutlined />} onClick={() => {
+                                        fetch(`http://localhost:8080/api/offer/updatecancel/${row.OrderId}`, {
                                             method: 'PUT',
                                             headers: {
                                                 Accept: 'application/json',
                                                 'Content-Type': 'application/json',
                                             },
                                         }).then((res) => {
-                                            console.log(res);
-                                            if (res.status === 200) {
-                                                mynotification.succesNotification("Offer", "accepted");
+                                            console.log(res)
+                                            if (res.status == 200) {
                                                 setloading(true);
-
+                                                setdataloading(false);
                                             }
 
                                         });
+                                    }}></Button>
+                                    </Col>
+                                    
+                                ) : null
 
-                                    }
-
-                                });
-                            }}>Accept</Button> : null}
-                            {(row.Status.Name == 'Pending' && row.Status.Name != 'Decline' && row.Status.Name != 'Accepted') ? (<Button onClick={() => {
-                                fetch(`http://localhost:8080/api/offer/updatedicline/${row.IdOffer}`, {
-                                    method: 'PUT',
-                                    headers: {
-                                        Accept: 'application/json',
-                                        'Content-Type': 'application/json',
-                                    },
-                                }).then((res) => {
-                                    console.log(res);
-                                    if (res.status === 200) {
-                                        return res.json();
-
-                                    }
-
-                                }).then((data) => {
-                                    console.log(data);
-                                    if (data != null) {
-                                        mynotification.succesNotification("Offer", "decline");
-                                        setloading(true);
-                                    }
-                                });
-                            }}>Decline</Button>) : null
-
-                            }
-                            {(row.Status.Name == 'Accepted') ? ((
-                                <Button onClick={() => {
-                                    fetch(`http://localhost:8080/api/offer/updatecancel/${row.OrderId}`, {
-                                        method: 'PUT',
-                                        headers: {
-                                            Accept: 'application/json',
-                                            'Content-Type': 'application/json',
-                                        },
-                                    }).then((res) => {
-                                        console.log(res)
-                                        if(res.status==200){
-                                            setloading(true);
-                                            setdataloading(false);
-                                        }
-
-                                    });
-                                }}>Cancel</Button>
-                            )) : null
-
-                            }
-                        </Fragment>
+                                }
+                            </Fragment>
+                        </Row>
                     ]}
                 >
                     <Descriptions title={`Offer - Status ${row.Status.Name}`}>
@@ -129,7 +150,13 @@ const MyOfferCard = ({ orderId }) => {
         })
 
 
-    ) : (<Skeleton />);
+    ) : (<Empty 
+        description={
+            <span>
+              No offers yet
+            </span>
+          }
+    />);
 };
 
 export default MyOfferCard;

@@ -1,11 +1,11 @@
-import { Button, Space, Table, Card, Collapse, Typography, Descriptions, Row, Col,Skeleton,Modal } from 'antd';
+import { Button, Space, Table, Card, Collapse, Typography, Descriptions, Row, Col, Skeleton, Modal,Empty } from 'antd';
 import React, { useState, useEffect, Fragment } from 'react';
-import { useNavigate,NavLink } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import { format } from 'date-fns'
 import Axios from "axios";
 import { ExclamationCircleOutlined } from '@ant-design/icons';
-import { LoadingOutlined} from '@ant-design/icons';
-
+import { LoadingOutlined } from '@ant-design/icons';
+import "../../MyStyle/Buttons.css"
 const { Title, Text } = Typography;
 const { Panel } = Collapse;
 
@@ -48,7 +48,7 @@ const OfferPage = () => {
       }
     })
       .catch(console.error);
-      console.log("My state:",state)
+    console.log("My state:", state)
   }, [loading]);
   const getData = async (userId) => {
     await Axios.get(
@@ -56,8 +56,8 @@ const OfferPage = () => {
     ).then(
       res => {
         setState(
-        res.data.map(row => ({
-          
+          res.data.map(row => ({
+
             IdOffer: row.IdOffer,
             Price: row.Price,
             OrderId: row.OrderId,
@@ -70,9 +70,9 @@ const OfferPage = () => {
             TransporterCar: `${row.Transporter.Transport.Model.Name} - ${row.Transporter.Transport.Model.Brand.Name}`,
             TransporterCarType: row.Transporter.Transport.TypeTrasport.Name,
             TransporterCarNumberSeats: row.Transporter.Transport.NumberSeats,
-            Status:row.Status.Name
-          
-        }))
+            Status: row.Status.Name
+
+          }))
         )
       }
 
@@ -81,9 +81,9 @@ const OfferPage = () => {
 
 
   };
-  
-  
-  return loading ? (<Skeleton />) :  (
+
+
+  return loading ? (<Skeleton />) : (
     <>
       <Space
         style={{
@@ -93,46 +93,53 @@ const OfferPage = () => {
 
 
       </Space>
-      <Col align="center" span={22} offset={1} style={{marginTop:"5vh", marginBottom:"0vh" }}><div class="FixedHeightContainer">
+      <Col align="center" span={22} offset={1} style={{ marginTop: "5vh", marginBottom: "0vh" }}><div class="FixedHeightContainer">
         <div class="Content">
 
-          
-              {/* <Table columns={columns} dataSource={state} onChange={handleChange} /> */}
-              <Row align="center" style={{marginTop:"3vh"  }}>
-                {/* <Table columns={columns} dataSource={state} onChange={handleChange} /> */}
-                {/* <div className="site-card-border-less-wrapper"> */}
-                
-              { state ?state.map((item)=>{
-                return ( <Card style={{marginBottom:"2%", textAlign:"Left", fontWeight: "bold" }} className='offercard'  title={item.TitleOffer} 
+
+          {/* <Table columns={columns} dataSource={state} onChange={handleChange} /> */}
+          <Row align="center" style={{ marginTop: "3vh" }}>
+            {/* <Table columns={columns} dataSource={state} onChange={handleChange} /> */}
+            {/* <div className="site-card-border-less-wrapper"> */}
+
+            {state ? state.map((item) => {
+              return (<Card style={{ marginBottom: "2%", textAlign: "Left", fontWeight: "bold" }} className='offercard' title={item.TitleOffer}
                 bordered={false}
                 actions={[
-                  <Row>
+                  <Row style={{ marginTop: "1%" }}>
                     <Fragment>
 
-                      <Col xs={{ span: 9, offset: 12 }} sm={{ span: 5, offset: 10 }} md={{ span: 4, offset: 14 }} lg={{ span: 4, offset: 14 }} xl={{ span: 3, offset: 16 }} xxl={{ span: 2, offset: 18 }}><NavLink to={`/editoffer/${item.IdOffer}`} ><Button type="primary" className='editbutton' >Edit</Button></NavLink></Col>
-                      <Col  xs={{ span: 9, offset: 12 }} sm={{ span: 5, offset: 2 }} md={{ span: 4, offset: 1 }} lg={{ span: 4, offset: 1 }} xl={{ span: 3, offset: 1 }} xxl={{ span: 2, offset: 1 }}><Button type="danger" className='deletebutton'onClick={()=>{
-                        Modal.confirm({
-                          title: 'Confirm',
-                          icon: <ExclamationCircleOutlined />,
-                          content: 'Do you want to delete this offer ?',
-                          okText: 'Confirm',
-                          cancelText: 'Cancel',
-                          onOk() {
-                            Axios.delete(`http://localhost:8080/api/offer/delete/${item.IdOffer}`).then(res => {
-                              console.log(res);
-                              if (res.status == 200) {
-                                setloading(true);
-                              }
+                      <Col style={{ marginBottom: "1%" }} xs={{ span: 6, offset: 9 }} sm={{ span: 6, offset: 9 }} md={{ span: 4, offset: 14 }} lg={{ span: 4, offset: 14 }} xl={{ span: 3, offset: 16 }} xxl={{ span: 2, offset: 18 }}>
+                        <NavLink to={`/editoffer/${item.IdOffer}`} >
+                          <Button type="primary" className='editbutton' >Edit</Button>
+                        </NavLink>
+                      </Col>
+                      <Col xs={{ span: 6, offset: 9 }} sm={{ span: 6, offset: 9 }} md={{ span: 4, offset: 1 }} lg={{ span: 4, offset: 1 }} xl={{ span: 3, offset: 1 }} xxl={{ span: 2, offset: 1 }}>
+                        <Button type="danger" className='deletebutton' onClick={() => {
+                          Modal.confirm({
+                            title: 'Confirm',
+                            icon: <ExclamationCircleOutlined />,
+                            content: 'Do you want to delete this offer ?',
+                            okText: 'Confirm',
+                            cancelText: 'Cancel',
+                            onOk() {
+                              Axios.delete(`http://localhost:8080/api/offer/delete/${item.IdOffer}`).then(res => {
+                                console.log(res);
+                                if (res.status == 200) {
+                                  setloading(true);
+                                }
+                              });
+                            },
                           });
-                          },
-                        });
-                      }} >Delete</Button></Col>
-                      
+                        }} >Delete</Button>
+                      </Col>
 
-                    </Fragment></Row>
+
+                    </Fragment>
+                  </Row>
                 ]}
               >
-                
+
                 <Row >
 
                   <Descriptions title="Order Info"  >
@@ -144,24 +151,30 @@ const OfferPage = () => {
                     <Descriptions.Item label="Status">{item.Status}</Descriptions.Item>
                   </Descriptions>
                   <Col> <Descriptions.Item >
-                      <Collapse id="CollapsePadding"style={{ padding: "0"}} ghost className='ant-collapse-header' >
-                        <Panel id="CollapsePadding" style={{ padding:'0' }} header="Transport Info"  >
-                          <Col>{<Descriptions  title="Transport Info">
-                            <Descriptions.Item label="Car Model">{item.TransporterCar}</Descriptions.Item>
-                            <Descriptions.Item label="Car type">{item.TransporterCarType}</Descriptions.Item>
-                            <Descriptions.Item label="Nr o seats">{item.TransporterCarNumberSeats}</Descriptions.Item>
-                          </Descriptions> }</Col>
+                    <Collapse id="CollapsePadding" style={{ padding: "0" }} ghost className='ant-collapse-header' >
+                      <Panel id="CollapsePadding" style={{ padding: '0' }} header="Transport Info"  >
+                        <Col>{<Descriptions title="Transport Info">
+                          <Descriptions.Item label="Car Model">{item.TransporterCar}</Descriptions.Item>
+                          <Descriptions.Item label="Car type">{item.TransporterCarType}</Descriptions.Item>
+                          <Descriptions.Item label="Nr o seats">{item.TransporterCarNumberSeats}</Descriptions.Item>
+                        </Descriptions>}</Col>
                       </Panel>
                     </Collapse></Descriptions.Item></Col>
 
 
                 </Row>
               </Card>)
-              }):<></>}
-              
-      </Row>
-      </div></div></Col></>
-  
+            }) : <Empty 
+            description={
+                <span>
+                  No offers yet
+                </span>
+              }
+        />}
+
+          </Row>
+        </div></div></Col></>
+
   );
 };
 export default OfferPage;

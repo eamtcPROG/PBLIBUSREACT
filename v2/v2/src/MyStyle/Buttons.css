@@ -1,0 +1,91 @@
+.editbutton {
+    border: 2px solid #1890ff;
+    background-color: #1890ff;
+    color: #ffffff;
+    width: 100%;
+    border-radius: 17px;
+    
+    cursor: pointer;
+    box-shadow: inset 0 0 0 0 rgb(255, 255, 255);
+    -webkit-transition: ease-out 0.4s;
+    -moz-transition: ease-out 0.1s;
+    transition: ease-out 0.42s;
+}
+
+.editbutton:hover {
+    box-shadow: inset 170px 0 0 0 #FFF;
+    color: #1890ff !important;
+}
+
+.acceptbutton {
+    border: 2px solid #21bc1c;
+    background-color: #21bc1c;
+    color: #FFF;
+    width: 100%;
+    border-radius: 17px;
+    
+    cursor: pointer;
+    box-shadow: inset 0 0 0 0 rgb(255, 255, 255);
+    -webkit-transition: ease-out 0.4s;
+    -moz-transition: ease-out 0.1s;
+    transition: ease-out 0.42s;
+}
+
+.acceptbutton:hover {
+    box-shadow: inset 170px 0 0 0 #FFF;
+    color: #21bc1c !important;
+    border: 2px solid #21bc1c !important;
+}
+
+.deletebutton {
+    border: 2px solid #ff4d4f;
+    background-color: #FFF;
+    color: #ff4d4f;
+    width: 100%;
+    border-radius: 17px;
+
+    
+    cursor: pointer;
+    box-shadow: inset 0 0 0 0 #ff4d4f;
+    -webkit-transition: ease-out 0.4s;
+    -moz-transition: ease-out 0.1s;
+    transition: ease-out 0.42s;
+}
+
+.deletebutton:hover {
+    box-shadow: inset 170px 0 0 0 #ff4d4f;
+    color: #FFF;
+}
+
+.cancelbutton {
+    border: 2px solid #ff4d4f;
+    
+    background-color: rgba(61, 255, 43, 0.05) !important;
+    color: #ff4d4f;
+    width: 100%;
+    border-radius: 17px;
+
+    
+    cursor: pointer;
+    box-shadow: inset 0 0 0 0 #ff4d4f;
+    -webkit-transition: ease-out 0.4s;
+    -moz-transition: ease-out 0.1s;
+    transition: ease-out 0.42s;
+}
+
+.cancelbutton:hover {
+    box-shadow: inset 170px 0 0 0 #ff4d4f;
+    color: #FFF;
+}
+.makeofferbutton{
+    cursor: pointer;
+    box-shadow: inset 0 0 0 0 rgb(255, 255, 255);
+    -webkit-transition: ease-out 0.4s;
+    -moz-transition: ease-out 0.1s;
+    transition: ease-out 0.42s;
+}
+
+.makeofferbutton:hover{
+    box-shadow: inset 170px 0 0 0 #FFF;
+    color: #1890ff !important;
+}

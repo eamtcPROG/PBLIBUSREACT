@@ -1,0 +1,13 @@
+.acceptedcard {
+    background-color: rgba(61, 255, 43, 0.285) !important;
+}
+.acceptedcard .ant-card-actions{
+    background-color: rgba(61, 255, 43, 0.05) !important;
+}
+.declinecard {
+    background-color: rgba(255, 43, 43, 0.285) !important;
+}
+
+.declinecard .ant-card-actions{
+    background-color: rgba(255, 43, 43, 0.05) !important;
+}
