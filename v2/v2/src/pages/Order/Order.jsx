@@ -1,4 +1,4 @@
-import { Button, Space, Typography, Row, Col ,Empty} from 'antd';
+import { Button, Space, Typography, Row, Col, Empty } from 'antd';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Axios from "axios";
@@ -57,18 +57,23 @@ const Order = ({ setOrderId }) => {
             <div class="ContentOrder">
 
 
-              
+
               {
                 state.length != 0 ?
                   state.map((item) => {
-                    return <Row style={{ marginTop: "2%" }}><Col xs={2}sm={2}md={4} /><Col xs={20}sm={20}md={16}><OrderCard state={item} setOrderId={setOrderId} /></Col><Col xs={2}sm={2}md={4} /></Row>;
-                  }) : <Empty 
-                  description={
-                      <span style={{color:"white"}}>
+                    return <Row style={{ marginTop: "2%" }}><Col xs={2} sm={2} md={4} />
+                      <Col xs={20} sm={20} md={16}>
+                        <OrderCard state={item} setOrderId={setOrderId} />
+                      </Col>
+                      <Col xs={2} sm={2} md={4} />
+                    </Row>;
+                  }) : <Empty
+                    description={
+                      <span style={{ color: "white" }}>
                         No orders yet
                       </span>
                     }
-              />
+                  />
               }
 
             </div>
