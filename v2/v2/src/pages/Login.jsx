@@ -1,4 +1,4 @@
-import { Button, Checkbox, Form, Input, Typography, Col, Row } from 'antd';
+import { Button, Checkbox, Form, Input, Typography, Col, Row ,message} from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import React,{useState} from 'react';
 import '../MyStyle/Login.css'
@@ -10,7 +10,7 @@ const Login = ({setIsAuthenticated,setTypeUserId}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-  
+    const [messageApi, contextHolder] = message.useMessage();
     const handleEmailChange = (e) => {
       setEmail(e.target.value);
     };
@@ -36,6 +36,7 @@ const Login = ({setIsAuthenticated,setTypeUserId}) => {
           return res.json();
         
         }else{
+            errorM();
           setError('Invalid credentials');
           setIsAuthenticated(false);
         }
@@ -67,10 +68,17 @@ const Login = ({setIsAuthenticated,setTypeUserId}) => {
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
+    const errorM = () => {
+        messageApi.open({
+          type: 'error',
+          content: 'Invalid credentials',
+        });
+      };
     return (
-            
+       
        
         <Row justify="start" style={{marginTop:"11%", marginBottom:"14.5%"}}>
+        {contextHolder}
             <Col align="center" span={20} offset={2}>
                 <div class="login">
                     <Form class="formStyle" style={{}}
