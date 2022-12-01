@@ -70,9 +70,9 @@ const TransporterPage = ({ }) => {
   return (
     <>
       
-      <Row style={{marginTop:"10%"}}>
-        <Col xs={2}sm={2} md={7}/>
-        <Col  align="center" xs={20} sm={20} md={5} ><MyProfile /></Col>
+      <Row style={{marginTop:"5%",marginBottom:"5%"}}>
+        <Col xs={2}sm={2} md={6}/>
+        <Col  align="center" xs={20} sm={20} md={6} ><MyProfile /></Col>
         <Col xs={2} sm={2} md={1}/>
         <Col xs={2} sm={2} md={0}/>
         <Col xs={20} sm={20} md={5} >

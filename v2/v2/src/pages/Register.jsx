@@ -123,7 +123,7 @@ const Register = ({ setIsAuthenticated, setTypeUserId }) => {
 
     return (
 
-        <Row style={{ marginTop: "5%" }}>
+        <Row style={{ marginTop: "5%",marginBottom:"5%" }}>
             <Col xs={2} sm={2} md={8} />
             <Col xs={20} sm={20} md={8}>
                 <Card

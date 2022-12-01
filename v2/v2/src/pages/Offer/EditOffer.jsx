@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Form, Input, Button, Typography, Select, Skeleton,Card } from "antd";
+import { Form, Input, Button, Typography, Select, Skeleton,Card,Row,Col } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import Axios from "axios";
+import "../../MyStyle/OfferCard.css"
 const EditOffer = ({ }) => {
     const history = useNavigate();
     const [form] = Form.useForm();
@@ -153,26 +154,26 @@ const EditOffer = ({ }) => {
             >
 
             </Text> */}
+            <Row style={{marginTop:"10%",marginBottom:"10%"}} >
+      <Col xs={2} sm={2} md={8}/>
+      <Col xs={20} sm={20} md={8}>
         <Card
         title="Edit Offer"
         bordered={false}
         style={{
-        width: 600,
+        width: "100%",
+        textAlign:"center"
         }}
+        className="addOffer"
         >
             <Form // Ant Design's Form Component
                 name="contact-us"
                 layout="vertical"
                 form={form}
                 wrapperCol={{
-                    span: 6,
+                    span: 24,
                 }}
-                style={{
-                    marginTop: 20,
-                    paddingBottom: 10,
-                    paddingLeft: 30,
-                    paddingRight: 30,
-                }}
+                
                 onFinish={handleSubmit}
             >
                 <Form.Item // Form Item (First Name)
@@ -193,7 +194,7 @@ const EditOffer = ({ }) => {
                     < Select
                         defaultValue={trasporterid}
                         style={{
-                            width: 300,
+                            width: "100%",
                         }}
                         onChange={handletrasporteridChange}
                         options={state.map((item) => ({
@@ -207,6 +208,9 @@ const EditOffer = ({ }) => {
                 </Form.Item>
             </Form>
             </Card>
+            </Col>
+            <Col xs={2} sm={2} md={8}/>
+            </Row>
         </div>
     );
 };

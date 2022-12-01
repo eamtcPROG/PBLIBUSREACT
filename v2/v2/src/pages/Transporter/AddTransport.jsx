@@ -189,7 +189,7 @@ const AddTransport = ({ }) => {
   return (
     <div>
       
-      <Row style={{ marginTop: '5%' }}>
+      <Row style={{ marginTop: '5%',marginBottom:'5%' }}>
         <Col span={8}/>
         <Col span={8} align="center" >
         <Card className="AddTransport"
