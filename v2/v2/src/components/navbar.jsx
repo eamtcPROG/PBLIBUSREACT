@@ -1,9 +1,9 @@
-import { Form, Menu, Tabs, Button, Col, Row,Popover } from 'antd';
+import { Form, Menu, Tabs, Button, Col, Row, Popover } from 'antd';
 import React, { useEffect, useState } from 'react';
 //import 'antd/dist/antd.css';
 import '../MyStyle/MyNavBarStyle.css'
 import { NavLink, useNavigate } from 'react-router-dom';
-import { HomeOutlined, TagOutlined, FormOutlined, PoweroffOutlined, UserOutlined, LogoutOutlined,LoginOutlined,MenuOutlined } from "@ant-design/icons/lib/icons"
+import { HomeOutlined, TagOutlined, FormOutlined, PoweroffOutlined, UserOutlined, LogoutOutlined, LoginOutlined, MenuOutlined, BellOutlined } from "@ant-design/icons/lib/icons"
 import MediaQuery from 'react-responsive'
 
 const MyNavBar = ({ setIsAuthenticated, typeUserId, isAuthenticated }) => {
@@ -33,8 +33,8 @@ const MyNavBar = ({ setIsAuthenticated, typeUserId, isAuthenticated }) => {
 
     const [items, setItems] = useState([])
     const [itemsSecond, setItemsSecond] = useState([])
-    const [active,setActive] = useState(false);
-    const handleMenu = () =>{
+    const [active, setActive] = useState(false);
+    const handleMenu = () => {
         setActive(!active);
     }
     useEffect(() => {
@@ -112,9 +112,9 @@ const MyNavBar = ({ setIsAuthenticated, typeUserId, isAuthenticated }) => {
                         },
                     {
                         key: "Logout",
-                        label: (<Button type="link" className='logoutbtn'  style={{padding:0}} onClick={logout}
+                        label: (<Button type="link" className='logoutbtn' style={{ padding: 0 }} onClick={logout}
                         > Logout</Button>),
-                        icon:<LogoutOutlined />
+                        icon: <LogoutOutlined />
                     }])
             }
             else {
@@ -135,10 +135,10 @@ const MyNavBar = ({ setIsAuthenticated, typeUserId, isAuthenticated }) => {
 
     }, [isAuthenticated])
     const content = (
-        <Menu mode="inline" theme="light" items={itemsSecond}/>
-      );
+        <Menu mode="inline" theme="light" items={itemsSecond} />
+    );
 
-
+    
 
     return (
 
@@ -158,8 +158,11 @@ const MyNavBar = ({ setIsAuthenticated, typeUserId, isAuthenticated }) => {
                         />
                     </Col>
                     <Col xs={8} sm={9} md={7} lg={5} xl={4} align={"right"}>
-                        {isAuthenticated ? <Button type="link" className='logoutbtn' icon={<LoginOutlined />}  onClick={logout}
-                        > Logout</Button> : <NavLink align="middle" style={{color:"black"}} to="/login"><LoginOutlined style={{marginRight:8}}/>Sign in</NavLink>}
+                        {isAuthenticated ? <>
+                            
+
+                            <Button type="link" className='logoutbtn' icon={<LoginOutlined />} onClick={logout}
+                            > Logout</Button> </> : <NavLink align="middle" style={{ color: "black" }} to="/login"><LoginOutlined style={{ marginRight: 8 }} />Sign in</NavLink>}
                     </Col>
                 </Row>
             </MediaQuery>
@@ -167,20 +170,20 @@ const MyNavBar = ({ setIsAuthenticated, typeUserId, isAuthenticated }) => {
 
             <MediaQuery maxWidth={768}>
                 <Row>
-                    <Col  span={10}>
-                       <Popover placement="bottomLeft" content={content} trigger="click">
-                    <Button icon={<MenuOutlined />}></Button>
-                    </Popover> 
+                    <Col span={10}>
+                        <Popover placement="bottomLeft" content={content} trigger="click">
+                            <Button icon={<MenuOutlined />}></Button>
+                        </Popover>
                     </Col>
-                    <Col  span={4}>
+                    <Col span={4}>
                         <div className="logo" />
                     </Col>
-                    <Col  span={10}>
+                    <Col span={10}>
 
                     </Col>
-                    
+
                 </Row>
-                
+
             </MediaQuery>
         </>
 

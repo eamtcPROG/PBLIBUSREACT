@@ -87,6 +87,7 @@ const TransporterPage = ({ }) => {
                   <div class="Content1">
                       <Collapse style={{Size: '3vh'}} ghost> 
                         {stateTransport.map((item, i) => {
+                          console.log(item)
                           return (
                             <Panel style={{align:"center", color:"black",fontSize:"18px",fontFamily:"Helvetica"}} header={`${item.Transport.Model.Brand.Name}, ${item.Transport.Model.Name}`} key={i}>
 
@@ -94,7 +95,8 @@ const TransporterPage = ({ }) => {
                                   <Title style={{align:"center", color:"black",fontSize:"16px",fontFamily:"Helvetica"}} level={1} > Transport Info</Title>
                                     <Row><Col span={24}>Vehicle Type : {item.Transport.TypeTrasport.Name}</Col></Row>
                                     <Row><Col span={24}>Number plates : {item.Transport.Plate}</Col></Row>
-                                    <Row><Col span={24}>Nr. of steats :{item.Transport.NumberSeats}</Col></Row>
+                                    <Row><Col span={24}>Nr. of steats : {item.Transport.NumberSeats}</Col></Row>
+                                    <Row><Col span={24}>Rating : {item.Rating}</Col></Row>
                             </Panel>
                           )
                         })}

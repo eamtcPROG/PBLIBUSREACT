@@ -1,4 +1,4 @@
-import { Button, Space, Table, Card, Collapse, Typography, Descriptions, Row, Col, Skeleton, Modal,Empty } from 'antd';
+import { Button, Space, Table, Card, Collapse, Typography, Descriptions, Row, Col, Skeleton, Modal, Empty } from 'antd';
 import React, { useState, useEffect, Fragment } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
 import { format } from 'date-fns'
@@ -6,11 +6,13 @@ import Axios from "axios";
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { LoadingOutlined } from '@ant-design/icons';
 import "../../MyStyle/Buttons.css"
+import MyNotifications from "../../notifications/MyNotifications";
 const { Title, Text } = Typography;
 const { Panel } = Collapse;
 
 const OfferPage = () => {
   const [container, setContainer] = useState({});
+  const mynotification = new MyNotifications();
   const history = useNavigate();
   const [filteredInfo, setFilteredInfo] = useState({});
   const [sortedInfo, setSortedInfo] = useState({});
@@ -103,40 +105,69 @@ const OfferPage = () => {
             {/* <div className="site-card-border-less-wrapper"> */}
 
             {state ? state.map((item) => {
+
               return (<Card style={{ marginBottom: "2%", textAlign: "Left", fontWeight: "bold" }} className='offercard' title={item.TitleOffer}
                 bordered={false}
                 actions={[
-                  <Row style={{ marginTop: "1%" }}>
-                    <Fragment>
+                  item.Status !== "Rated" ?
+                    item.Status !== "Accepted" ? (
+                      <Row style={{ marginTop: "1%" }}>
+                        <Fragment>
 
-                      <Col style={{ marginBottom: "1%" }} xs={{ span: 6, offset: 9 }} sm={{ span: 6, offset: 9 }} md={{ span: 4, offset: 14 }} lg={{ span: 4, offset: 14 }} xl={{ span: 3, offset: 16 }} xxl={{ span: 2, offset: 18 }}>
-                        <NavLink to={`/editoffer/${item.IdOffer}`} >
-                          <Button type="primary" className='editbutton' >Edit</Button>
-                        </NavLink>
-                      </Col>
-                      <Col xs={{ span: 6, offset: 9 }} sm={{ span: 6, offset: 9 }} md={{ span: 4, offset: 1 }} lg={{ span: 4, offset: 1 }} xl={{ span: 3, offset: 1 }} xxl={{ span: 2, offset: 1 }}>
-                        <Button type="danger" className='deletebutton' onClick={() => {
-                          Modal.confirm({
-                            title: 'Confirm',
-                            icon: <ExclamationCircleOutlined />,
-                            content: 'Do you want to delete this offer ?',
-                            okText: 'Confirm',
-                            cancelText: 'Cancel',
-                            onOk() {
-                              Axios.delete(`http://localhost:8080/api/offer/delete/${item.IdOffer}`).then(res => {
-                                console.log(res);
-                                if (res.status == 200) {
-                                  setloading(true);
-                                }
+                          <Col style={{ marginBottom: "1%" }} xs={{ span: 6, offset: 9 }} sm={{ span: 6, offset: 9 }} md={{ span: 4, offset: 14 }} lg={{ span: 4, offset: 14 }} xl={{ span: 3, offset: 16 }} xxl={{ span: 2, offset: 18 }}>
+                            <NavLink to={`/editoffer/${item.IdOffer}`} >
+                              <Button type="primary" className='editbutton' >Edit</Button>
+                            </NavLink>
+                          </Col>
+                          <Col xs={{ span: 6, offset: 9 }} sm={{ span: 6, offset: 9 }} md={{ span: 4, offset: 1 }} lg={{ span: 4, offset: 1 }} xl={{ span: 3, offset: 1 }} xxl={{ span: 2, offset: 1 }}>
+                            <Button type="danger" className='deletebutton' onClick={() => {
+                              Modal.confirm({
+                                title: 'Confirm',
+                                icon: <ExclamationCircleOutlined />,
+                                content: 'Do you want to delete this offer ?',
+                                okText: 'Confirm',
+                                cancelText: 'Cancel',
+                                onOk() {
+                                  Axios.delete(`http://localhost:8080/api/offer/delete/${item.IdOffer}`).then(res => {
+                                    console.log(res);
+                                    if (res.status == 200) {
+                                      setloading(true);
+                                    }
+                                  });
+                                },
                               });
+                            }} >Delete</Button>
+                          </Col>
+
+
+                        </Fragment>
+                      </Row>
+                    ) : (
+                      <Button
+                        type="primary"
+                        shape="round"
+                        className='donebutton'
+                        onClick={() => {
+                          fetch(`http://localhost:8080/api/offer/updatedone/${item.IdOffer}`, {
+                            method: 'PUT',
+                            headers: {
+                              Accept: 'application/json',
+                              'Content-Type': 'application/json',
                             },
+                          }).then((res) => {
+                            console.log(res);
+                            if (res.status === 200) {
+                              mynotification.succesNotification("Order", "done");
+                              setloading(true);
+
+                            }
+
                           });
-                        }} >Delete</Button>
-                      </Col>
-
-
-                    </Fragment>
-                  </Row>
+                        }}
+                      >
+                        Done
+                      </Button>
+                    ) : null
                 ]}
               >
 
@@ -164,13 +195,14 @@ const OfferPage = () => {
 
                 </Row>
               </Card>)
-            }) : <Empty 
-            description={
+
+            }) : <Empty
+              description={
                 <span>
                   No offers yet
                 </span>
               }
-        />}
+            />}
 
           </Row>
         </div></div></Col></>

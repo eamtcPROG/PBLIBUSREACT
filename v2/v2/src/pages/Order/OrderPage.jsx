@@ -97,6 +97,7 @@ const OrderPage = () => {
                 {/* <div className="site-card-border-less-wrapper"> */}
 
                 {state.length != 0 ? state.map((item) => {
+                  console.log(state)
                   return (
 
 
