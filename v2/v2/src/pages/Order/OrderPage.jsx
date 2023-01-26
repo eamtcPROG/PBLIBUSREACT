@@ -97,7 +97,6 @@ const OrderPage = () => {
                 {/* <div className="site-card-border-less-wrapper"> */}
 
                 {state.length != 0 ? state.map((item) => {
-                  console.log(state)
                   return (
 
 
@@ -122,15 +121,15 @@ const OrderPage = () => {
                                     onOk() {
                                       Axios.delete(`http://localhost:8080/api/offer/deletefororder/${item.IdOrder}`).then(res => {
                                         console.log(res);
-                                        if (res.status == 200) {
-                                          Axios.delete(`http://localhost:8080/api/order/delete/${item.IdOrder}`).then(res => {
-                                            console.log(res);
-                                            if (res.status == 200) {
-                                              setloading(true);
-                                              setdataloading(false);
-                                            }
-                                          });
-                                        }
+
+                                        Axios.delete(`http://localhost:8080/api/order/delete/${item.IdOrder}`).then(res => {
+                                          console.log(res);
+                                          if (res.status == 200) {
+                                            setloading(true);
+                                            setdataloading(false);
+                                          }
+                                        });
+
                                       });
 
                                     },

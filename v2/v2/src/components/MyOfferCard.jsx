@@ -25,16 +25,14 @@ const MyOfferCard = ({ orderId }) => {
 
             res => {
                 setState(res.data);
-
                 setdataloading(true);
-                console.log(state);
+                
             }
         );
     };
     const handleChangeRate = (e, myId,orderId) => {
         setRate(e);
-        console.log(e)
-        console.log(myId)
+    
         fetch(`http://localhost:8080/api/transporter/updaterating/${myId}`, {
             method: 'PUT',
             body: JSON.stringify({
@@ -45,7 +43,6 @@ const MyOfferCard = ({ orderId }) => {
                 'Content-Type': 'application/json',
             },
         }).then((res) => {
-            console.log(res);
             if (res.status === 200) {
                 mynotification.succesNotification("Rating", "placed");
                 setloading(true);
@@ -190,7 +187,7 @@ const MyOfferCard = ({ orderId }) => {
 
                                         <Popover
                                             placement="bottomLeft"
-                                            content={content(row.TrasporterId,row.OrderId)}
+                                            content={content(row.TrasporterId,row.IdOffer)}
                                         >
                                             <Button type="primary"
                                                 shape="round"
@@ -205,6 +202,7 @@ const MyOfferCard = ({ orderId }) => {
                                 ) : null
 
                                 }
+                                {row.Status.Name == 'Rated'?(<></>):null}
                             </Fragment>
                         </Row>
                     ]}
